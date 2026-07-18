@@ -1,0 +1,100 @@
+site_name: TypeScript Mastery Path
+site_description: A structured, module-wise TypeScript training program from entry level to master level.
+site_url: https://sigilipelli.github.io/typescript-mastery-path/
+repo_url: https://github.com/SIGILIPELLI/typescript-mastery-path
+repo_name: typescript-mastery-path
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Privacy Policy: privacy.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · Setup & First Program": level-1/01-setup.md
+      - "02 · Basic Types": level-1/02-basic-types.md
+      - "03 · Control Flow with Types": level-1/03-control-flow.md
+      - "04 · Functions & Type Annotations": level-1/04-functions-type-annotations.md
+      - "05 · Interfaces & Type Aliases": level-1/05-interfaces-type-aliases.md
+      - "06 · Arrays & Objects, Typed": level-1/06-arrays-objects-typed.md
+      - "07 · Classes Basics": level-1/07-classes-basics.md
+      - "08 · Enums": level-1/08-enums.md
+      - "09 · Modules & tsconfig Deep Dive": level-1/09-modules-tsconfig.md
+      - "10 · Project — Typed CLI To-Do App": level-1/10-project-todo-cli.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Union & Intersection Types": level-2/01-union-intersection-types.md
+      - "02 · Generics": level-2/02-generics.md
+      - "03 · Interfaces vs Type Aliases Deep Dive": level-2/03-interfaces-vs-types.md
+      - "04 · Classes Advanced": level-2/04-classes-advanced.md
+      - "05 · Utility Types": level-2/05-utility-types.md
+      - "06 · Async/Await with Types": level-2/06-async-await-types.md
+      - "07 · Testing with Jest + ts-jest": level-2/07-testing-jest.md
+      - "08 · Working with JSON/APIs": level-2/08-working-with-json-apis.md
+      - "09 · Type Narrowing & Type Guards": level-2/09-type-narrowing-guards.md
+      - "10 · Project — Typed Weather Dashboard": level-2/10-project-weather-dashboard.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · Advanced Generics": level-3/01-advanced-generics.md
+      - "02 · Decorators": level-3/02-decorators.md
+      - "03 · Building APIs with TypeScript": level-3/03-building-apis-express-ts.md
+      - "04 · Type-Safe Database Access": level-3/04-type-safe-database-access.md
+      - "05 · Design Patterns in TypeScript": level-3/05-design-patterns.md
+      - "06 · Testing Advanced": level-3/06-testing-advanced.md
+      - "07 · Build Tooling": level-3/07-build-tooling.md
+      - "08 · Working with Third-Party Types": level-3/08-third-party-types.md
+      - "09 · Performance & Compilation Considerations": level-3/09-performance-compilation.md
+      - "10 · Project — REST API Service with Express + TypeScript": level-3/10-project-rest-api-express.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · Advanced Type-Level Programming": level-4/01-advanced-type-level-programming.md
+      - "02 · Framework Integration Patterns": level-4/02-framework-integration-patterns.md
+      - "03 · Monorepo & Large-Scale Project Structure": level-4/03-monorepo-large-scale-structure.md
+      - "04 · Testing at Scale & CI": level-4/04-testing-at-scale-ci.md
+      - "05 · Security Considerations": level-4/05-security-considerations.md
+      - "06 · Deployment (Docker)": level-4/06-deployment-docker.md
+      - "07 · Performance Optimization": level-4/07-performance-optimization.md
+      - "08 · Writing Robust Public APIs/Libraries": level-4/08-writing-robust-public-apis.md
+      - "09 · Strict Mode & Type Safety Best Practices": level-4/09-strict-mode-best-practices.md
+      - "10 · Capstone Project": level-4/10-capstone-project.md
