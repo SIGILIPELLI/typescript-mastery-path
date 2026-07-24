@@ -1,3 +1,8 @@
+---
+title: "Learn TypeScript Free: Beginner to Master Course"
+description: "Free TypeScript course from beginner to advanced -- hands-on lessons with runnable code and real capstone projects. Part of a 37-course free learning library."
+---
+
 # TypeScript Mastery Path
 
 A structured, module-wise TypeScript training program that takes you from your
