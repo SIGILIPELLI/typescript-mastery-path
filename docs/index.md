@@ -15,9 +15,9 @@ each level.
 | Level | Focus | Modules |
 |-------|-------|---------|
 | [Level 1 · Entry](level-1/index.md) | Language foundations & the type system | 9 topics + 1 project |
-| [Level 2 · Intermediate](level-2/index.md) | Idiomatic, testable TypeScript | 9 topics + 1 project |
-| [Level 3 · Advanced](level-3/index.md) | APIs, databases, tooling | 9 topics + 1 project |
-| [Level 4 · Master](level-4/index.md) | Production systems & architecture | 9 topics + 1 capstone |
+| Level 2 · Intermediate (coming soon) | Idiomatic, testable TypeScript | 9 topics + 1 project |
+| Level 3 · Advanced (coming soon) | APIs, databases, tooling | 9 topics + 1 project |
+| Level 4 · Master (coming soon) | Production systems & architecture | 9 topics + 1 capstone |
 
 ## How to use this site
 
