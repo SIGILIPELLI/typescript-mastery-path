@@ -62,8 +62,19 @@ nav:
       - "08 · Enums": level-1/08-enums.md
       - "09 · Modules & tsconfig Deep Dive": level-1/09-modules-tsconfig.md
       - "10 · Project — Typed CLI To-Do App": level-1/10-project-todo-cli.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Union & Intersection Types": level-2/01-union-intersection-types.md
+      - "02 · Generics": level-2/02-generics.md
+      - "03 · Interfaces vs Type Aliases Deep Dive": level-2/03-interfaces-vs-types.md
+      - "04 · Classes Advanced": level-2/04-classes-advanced.md
+      - "05 · Utility Types": level-2/05-utility-types.md
+      - "06 · Async/Await with Types": level-2/06-async-await-types.md
+      - "07 · Testing with Jest + ts-jest": level-2/07-testing-jest.md
+      - "08 · Working with JSON/APIs": level-2/08-working-with-json-apis.md
+      - "09 · Type Narrowing & Type Guards": level-2/09-type-narrowing-guards.md
+      - "10 · Project — Typed Weather Dashboard": level-2/10-project-weather-dashboard.md
 # --- auto-pruned stub levels (see AdSense low-value-content fix) ---
 exclude_docs: |
-  level-2/*.md
   level-3/*.md
   level-4/*.md
