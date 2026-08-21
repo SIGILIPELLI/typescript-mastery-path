@@ -2,98 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/privacy/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/01-setup/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/02-basic-types/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/03-control-flow/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/04-functions-type-annotations/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/05-interfaces-type-aliases/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/06-arrays-objects-typed/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/07-classes-basics/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/08-enums/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/09-modules-tsconfig/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-1/10-project-todo-cli/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/01-union-intersection-types/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/02-generics/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/03-interfaces-vs-types/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/04-classes-advanced/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/05-utility-types/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/06-async-await-types/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/07-testing-jest/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/08-working-with-json-apis/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/09-type-narrowing-guards/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/typescript-mastery-path/level-2/10-project-weather-dashboard/</loc>
-         <lastmod>2026-08-02</lastmod>
+         <lastmod>2026-08-21</lastmod>
     </url>
 </urlset>
