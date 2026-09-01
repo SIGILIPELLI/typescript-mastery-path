@@ -1,8 +1,8 @@
 site_name: TypeScript Mastery Path
 site_description: A structured, module-wise TypeScript training program from entry level to master level.
-site_url: https://sigilipelli.github.io/typescript-skillmastery/
-repo_url: https://github.com/SIGILIPELLI/typescript-skillmastery
-repo_name: typescript-skillmastery
+site_url: https://sigilipelli.github.io/typescript-mastery-path/
+repo_url: https://github.com/SIGILIPELLI/typescript-mastery-path
+repo_name: typescript-mastery-path
 
 theme:
   name: material
