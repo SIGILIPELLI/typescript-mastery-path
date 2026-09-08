@@ -140,6 +140,14 @@ doesn't actually match what the caller passed (e.g. extra required
 fields your `interface` declares elsewhere), TypeScript won't catch it
 here — the cast tells the compiler to trust you.
 
+## How It Actually Works
+
+Modern type-safe query builders and ORMs (Prisma, Drizzle, Kysely) achieve their "the query result type matches the actual columns" guarantee through **codegen or schema-driven type inference**, not through any special language feature — they read your database schema (a `.prisma` file, a `sql.ts` table definition, or by introspecting a live database) at build time and generate or infer literal TypeScript types whose shape mirrors the schema exactly, which the checker then structurally verifies your query code against exactly like any other type. The type safety is only as good as that schema staying in sync with the real database — if a migration changes a column and the generated types aren't regenerated, the checker will confidently verify code against a shape the database no longer actually has.
+
+This is a sharp illustration of generic inference doing real structural work: a query builder's `.select("id", "name")` method is typically typed as a generic function whose type parameter is inferred from the *literal string arguments* you pass (using `keyof` constraints against the table's generated row type), and the return type is computed by mapping those literal keys back into a `Pick<Row, "id" | "name">`-style projection — entirely resolved at compile time through the same conditional-type and mapped-type machinery covered earlier, with zero runtime cost, since (as always) none of this survives to the emitted JS, which just calls the ordinary runtime query method with the same string arguments.
+
+Raw SQL strings sit outside all of this: a query builder can only type-check what it can see as TypeScript syntax (method chains, generic arguments), so a raw `db.query<User>("SELECT * FROM users")` call has its result type asserted, not verified — the string literal is opaque to the checker, which is exactly why raw-SQL escape hatches in typed database libraries reintroduce the same trust-the-annotation gap as `JSON.parse`.
+
 ## Cheat sheet
 
 | Pattern | What it buys you |

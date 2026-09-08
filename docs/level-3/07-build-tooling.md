@@ -135,6 +135,14 @@ via the bundler can still fail `tsc`'s type-check with "Cannot find
 module" if the resolution strategy doesn't match what the bundler
 actually does.
 
+## How It Actually Works
+
+Fast bundler-integrated TypeScript pipelines (esbuild, SWC, Vite's default transform) achieve their speed by doing **transpile-only** compilation — stripping type annotations and downleveling syntax without running the full type checker at all, because the checker (the structural comparison pass that walks your whole program's type graph) is by far the most expensive part of a `tsc` build, and a single-file transpiler can erase types with only *that file's* syntax tree, no cross-file type resolution needed. This is why `isolatedModules: true` is required by nearly every such tool: transpile-only mode must be able to compile each file with zero knowledge of any other file's types, which rules out `const enum` (needs cross-file inlining) and re-exporting a type without an explicit `export type` (the transpiler can't tell, from one file alone, whether `export { Foo }` refers to a type it should erase or a value it must keep).
+
+Because these fast paths skip type checking, "type safety" in an esbuild/SWC/Vite-based project is enforced by a *second, separate* process — typically `tsc --noEmit` run in CI or a watch mode, entirely decoupled from the actual build — meaning a bundled, deployed app can genuinely ship with type errors present in the source if that second check is skipped or its failure doesn't block the pipeline; the bundler's fast pass has no mechanism to catch them.
+
+`declaration: true` in `tsconfig.json` triggers an entirely separate emit pass from the JS output: the checker walks the fully-resolved type graph one more time and serializes each module's public type surface back out as `.d.ts` syntax — this is genuinely expensive (it re-runs significant parts of the same structural analysis used for checking) and is why `.d.ts` generation is often the slowest single step in a library's build, independent of how fast the JS bundling itself is.
+
 ## Cheat sheet
 
 | Tool | Job | Type-checks? | Bundles? |

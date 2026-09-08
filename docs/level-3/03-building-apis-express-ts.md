@@ -138,6 +138,14 @@ in Express 4 — you must forward the error yourself
 (`.catch(next)` or a wrapping helper); Express 5 fixes this by
 automatically forwarding rejected promises.
 
+## How It Actually Works
+
+Express's own type declarations (`@types/express`) type `req.body` as `any` by default, because Express itself does zero body parsing or shape validation at runtime — whatever middleware you attach (`express.json()`) populates `req.body` with whatever `JSON.parse` produced from the raw request bytes, and the *type* declaration has no way to know or enforce what shape that will be for your particular route. Declaring a custom `Request<P, ResBody, ReqBody>` generic (Express's `Request` type accepts type parameters for route params, response body, and request body) only narrows what the *checker* will let you write in your handler — it inserts no runtime parsing or validation, so a client sending a malformed body still reaches your handler with `req.body` structurally "typed" as your interface but not actually matching it.
+
+Middleware composition is checked through ordinary function-type contravariance: an Express middleware's signature `(req, res, next) => void` is checked the same way any callback parameter is — which is why loosely-typed middleware (declaring `req: any`) can silently poison the type safety of every handler downstream that receives the same `req` object augmented by that middleware, since TypeScript has no way to track that a middleware function *mutated* `req` at runtime by attaching a new property (like `req.user` from an auth middleware) unless you explicitly extend the `Request` interface's declaration (via declaration merging, augmenting Express's own global namespace) to describe that mutation statically.
+
+Route parameters (`req.params`) are always typed as `{ [key: string]: string }`-shaped objects regardless of how specific your route pattern looks — `/users/:id` gives you `req.params.id: string`, never `number`, because Express extracts URL segments as raw strings at runtime with no type inference tied to the route-pattern syntax; converting `id` to a number is always a runtime step you perform yourself, the router's type declarations can't encode the pattern-to-type relationship your route string implies.
+
 ## Cheat sheet
 
 | Type | Purpose |

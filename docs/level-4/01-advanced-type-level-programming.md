@@ -159,6 +159,14 @@ type**, not in an arbitrary position — `type X<S> = S extends infer T ? T : ne
 is valid, but trying to use `infer` outside a conditional's `extends`
 position is a syntax error.
 
+## How It Actually Works
+
+Template literal types make the checker treat string types compositionally the way it treats object shapes: `` `on${Capitalize<Event>}` `` is resolved by taking each concrete member of the `Event` union, applying the intrinsic `Capitalize<S>` transformation (one of a handful of string-manipulation intrinsics — `Uppercase`, `Lowercase`, `Capitalize`, `Uncapitalize` — implemented directly in the compiler rather than as ordinary conditional types, because they need to inspect and rewrite individual characters of a string-literal type, something conditional/mapped types alone can't express), and concatenating the literal template pieces — the whole thing distributing over unions the same way conditional types do, producing a new union of concrete string-literal types, not a general `string`.
+
+Recursive type-level programming (parsing a string-literal type character by character with `infer`, computing a tuple's length via mapped-type accumulation, and so on) is genuine, if unusual, computation performed entirely by the type checker during the check phase — it has no runtime cost whatsoever since none of it survives erasure, but it has a real *compile-time* cost, bounded by the compiler's hard-coded instantiation-depth limit (currently in the high hundreds), which exists because unrestricted recursive conditional types make type checking undecidable in the general case; hit the limit and the checker gives up and reports the type as `any` or an explicit depth-exceeded error rather than looping forever.
+
+Mapped types with key remapping (`{ [K in keyof T as NewKey]: T[K] }`, using an `as` clause inside the mapped-type position) let you transform not just the values but the *property names* themselves during the iteration over `keyof T` — this is the exact mechanism event-emitter and getter/setter-generating utility types use to derive `"onFoo"` handler property names from a base `"foo"` event-name union, all computed once at the type level with zero corresponding runtime code generated for it.
+
 ## Cheat sheet
 
 | Feature | What it does |

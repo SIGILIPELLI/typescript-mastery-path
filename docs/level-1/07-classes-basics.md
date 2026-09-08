@@ -157,6 +157,14 @@ console.log(temp.fahrenheit);   // 77
 `get`/`set` let you use property-like syntax (`temp.celsius = 25`) while
 still running validation logic behind the scenes.
 
+## How It Actually Works
+
+TypeScript classes compile to plain JS `class` syntax (or, on older `target`s, to constructor-function-plus-prototype patterns), with every type annotation stripped: `private`, `public`, `protected`, parameter-property shorthand, and any `: Type` annotation on a field all vanish from the emitted code. This means `private` in TypeScript is a **compile-time-only** access restriction — the checker refuses code outside the class that reads `instance.secret`, but the emitted JS field is an ordinary, fully-accessible property, so `instance["secret"]` (bracket access with a string) or plain JS calling code bypasses the restriction entirely at runtime. True runtime privacy requires the JS-native `#field` syntax, which TypeScript also supports and which *does* enforce access at the engine level because it's a distinct kind of property key, not compiler-checked.
+
+Despite being structurally typed everywhere else, TypeScript classes are compared **structurally, with one nominal-like exception**: two classes with identical public members are mutually assignable even if unrelated by inheritance — but a `private` or `protected` member makes the comparison behave nominally for that pair, because the checker additionally requires the member to originate from the *same declaration* (the same class or a shared ancestor), not just a matching name and type. This is why two classes that both declare a `private id: string` field are *not* assignable to each other even though the public shape looks identical — the checker treats each class's private members as tagged with that specific class's identity.
+
+Parameter properties (`constructor(private name: string) {}`) are pure syntactic sugar: the compiler expands that single parameter into a declared class field plus an assignment statement (`this.name = name;`) inserted at the top of the constructor body — nothing new is introduced with respect to `private`'s erasure, it's just fewer characters to type; the underlying execution is identical to writing the field and the assignment out by hand.
+
 ## Cheat sheet
 
 | Feature | Syntax |

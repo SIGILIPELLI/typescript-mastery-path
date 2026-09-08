@@ -176,6 +176,18 @@ underlying language service. Any other editor with a TypeScript plugin
 (WebStorm, Neovim + a language server) works too — pick one and move on, since
 the type system matters far more than the editor.
 
+## How It Actually Works
+
+When you run `tsc`, three distinct phases happen in sequence, and understanding them explains almost every confusing error message you'll hit later.
+
+**1. Parsing.** The compiler tokenizes your `.ts` source and builds an Abstract Syntax Tree (AST) — the same kind of tree a JavaScript-only parser would build, except TypeScript's parser also understands type annotations (`: string`), interfaces, generics, and other syntax that has no JavaScript equivalent. This is why a `.ts` file with a syntax error in a type position (like `let x: ;`) fails before type checking even starts — the parser can't build a tree at all.
+
+**2. Type checking.** The checker walks the AST and, for every expression, computes a type and verifies it's compatible with however that expression is used — a variable's declared type, a function's parameter types, a returned value against a return type. This is the "type-checker" (`checker.ts` in the TypeScript source, one of the largest files in the compiler). Crucially, type checking is a *static analysis pass only* — it never runs your code. It infers and compares types by walking the tree, and its output is a list of diagnostics (errors/warnings), not a transformed program.
+
+**3. Emit.** If you're transpiling (not just type-checking with `--noEmit`), a separate pass converts the AST to a plain-JavaScript AST by literally deleting every type-only construct — annotations, interfaces, generic parameters — and downleveling any modern syntax your `target` doesn't support. This is called **type erasure**: at runtime, TypeScript's types do not exist in any form. There's no runtime type-tag, no reflection API for your interfaces, nothing. A `.d.ts` declaration file is only ever consumed by the type checker in phase 2; it contributes zero bytes to phase 3's output.
+
+The practical consequence: type errors and emit are independent. By default `tsc` still emits JavaScript even when type checking fails (you'll see the errors printed, but the `.js` file is written anyway) unless `noEmitOnError` is set — because "erase the types and emit JS" doesn't logically depend on "did the types check out."
+
 ## Exercise
 
 Set up a fresh project: run `npm init -y`, install `typescript` and

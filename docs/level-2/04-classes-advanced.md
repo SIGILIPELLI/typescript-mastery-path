@@ -244,6 +244,14 @@ recommended: it tells the compiler "I intend to override a base class
 method," and if the base class method's name or signature ever changes or
 is removed, you get a compile error instead of a silently unused method.
 
+## How It Actually Works
+
+Abstract classes and methods are, like most access modifiers, a **compile-time-only** restriction layered on top of ordinary JS classes: `abstract class Shape { abstract area(): number }` erases the `abstract` keyword entirely, and the emitted JS class is a normal, instantiable class with no `area` implementation — the "you cannot instantiate an abstract class" and "a subclass must implement abstract members" guarantees exist purely in the checker's bookkeeping (it tracks a `hasAbstractModifier` flag on the declaration and rejects `new Shape()` call expressions and subclasses missing the required override), and nothing prevents constructing the compiled class directly if you bypass the type checker (e.g., via `// @ts-ignore` or plain JS consuming the compiled output).
+
+Method overriding is checked with the same contravariant/covariant rule from function types: a subclass method's parameters must accept at least what the base class's declared parameters promise, and its return type must be assignable to the base's return type — this is why widening an overridden method's parameter type is allowed (accepting more is safe) but narrowing it is a compile error (the base class's callers might pass something the override can't actually handle), a rule called **method parameter bivariance** that TypeScript actually relaxes slightly for methods (vs. strict contravariance for standalone function types) as a pragmatic trade-off, controlled by the `strictFunctionTypes` flag which does *not* apply to method syntax, only to function-typed properties.
+
+`super()` calls are subject to a genuine runtime ordering constraint the checker enforces because JS itself enforces it: in a derived class, `this` is not initialized until `super()` returns (the base class constructor runs first), so the checker flags any use of `this` before the `super()` call as an error — not a stylistic type-safety feature, but the checker surfacing a real `ReferenceError` that would otherwise only be caught by actually running the code.
+
 ## Cheat sheet
 
 | Feature | Syntax | Notes |

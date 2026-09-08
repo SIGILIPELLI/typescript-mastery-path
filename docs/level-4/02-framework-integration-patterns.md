@@ -149,6 +149,14 @@ framework or an internal service layer; when integrating with an
 *existing* framework whose types you don't control, augmentation is
 usually the tool, not a generic wrapper class.
 
+## How It Actually Works
+
+Framework type integrations (React's `useState<T>`, Vue's `ref<T>`, Angular's typed forms) all lean on the same generic-inference machinery from earlier lessons, but layered on top of framework-specific JSX/template-compilation steps that the checker treats as a distinct syntax kind. JSX is parsed by TypeScript's own parser into `React.createElement(...)` call expressions (or the newer automatic-runtime `jsx(...)` calls), and *then* checked like any other function call — this is why a component's prop types are verified through completely ordinary structural comparison of the props object literal against the component's declared props interface, with JSX attribute syntax being purely sugar the parser desugars before the checker ever sees it as anything but a function call.
+
+Generic component type inference (a generic `<List<T> items={...} />`) pushes the two-directional inference from the generics lesson to its limit: the checker infers `T` from the `items` prop's array element type at the JSX call site the same way it infers a generic function's type parameter from an ordinary argument — but because JSX attribute checking and generic inference are two separately-evolved parts of the checker, there have historically been (and still are, in edge cases) real gaps where inference that works for a plain function call doesn't fully carry through JSX syntax, requiring an explicit type argument (`<List<Item> ... />`) as a workaround.
+
+None of a framework's runtime reactivity (React's re-render triggering, Vue's dependency tracking) has any connection to the type system — a `ref<T>`'s `.value` property is typed to give you compile-time safety about what shape the reactive value holds, but the actual reactivity (proxy traps, subscriber notification) is pure runtime JS machinery the type checker is completely unaware of and cannot verify is wired correctly; a component can be fully type-correct and still never re-render due to a runtime reactivity bug the checker has no way to see.
+
 ## Cheat sheet
 
 | Pattern | Where it shows up |

@@ -177,6 +177,16 @@ APIs and anything meant to be `implements`-ed by consumers lean toward
 | Combining several shapes where conflicts should fail loudly | `interface extends` |
 | One-off, internal, "just needs a name for this specific shape" | either — pick a team convention and stay consistent |
 
+## How It Actually Works
+
+The checker treats `interface` and object-shape `type` aliases as producing the same underlying structural type once resolved — assignability comparisons don't care which keyword declared a shape. The real differences are in *how and when* the compiler resolves each declaration. An `interface` is resolved **lazily and incrementally**: the checker can reference an interface's own members while still processing its declaration (self-reference), and declaration merging (covered in an earlier lesson) works because each `interface X { }` block is treated as a partial contribution to one accumulated member list, only flattened into a final shape when something actually needs to check against `X`.
+
+A `type` alias for an object shape, by contrast, is resolved **eagerly** at the point of declaration into a fixed type — no merging, and a self-referencing type alias (`type Tree = { children: Tree[] }`) only works because object/array member positions are lazily evaluated internally by the checker, not because type aliases support recursion in general; a *non-object* self-referential alias (`type Bad = Bad | string`) is rejected as circular precisely because there's no member boundary to defer evaluation across.
+
+This resolution difference is also why large unions of `interface extends` chains can be measurably slower to check than equivalent `type` intersections in some compiler versions — merged-and-then-flattened interface resolution vs. eagerly-computed intersection types exercise different code paths in the checker's caching, though this has narrowed across TypeScript releases and isn't a reliable rule to design around.
+
+Neither form has any runtime representation — both compile to nothing, and both are checked through the same structural, member-by-member comparison; the choice between them is entirely about which authoring-time behaviors (mergeability, union/mapped-type operations only `type` supports) you need, not about differing runtime or type-safety guarantees.
+
 ## Cheat sheet
 
 | Feature | `interface` | `type` |

@@ -263,6 +263,16 @@ verify data that genuinely arrives from outside your program (JSON
 payloads, user input, files). That's the job of runtime validation,
 covered in [Module 8](08-working-with-json-apis.md).
 
+## How It Actually Works
+
+Generics are resolved through **type inference from call-site arguments**, a distinct algorithm from the ordinary structural assignability check. When you call `identity(5)` against `function identity<T>(x: T): T`, the checker doesn't look up a declared type for `T` — it collects "inference candidates" by structurally matching the actual argument's type (`number`, or more precisely the literal `5`) against the position where `T` appears in the parameter's type, then picks the best common supertype among all candidates gathered across every parameter that mentions `T`. This is why generic inference can fail to pick the type you expect when `T` appears in multiple parameters with conflicting concrete types — the checker computes one unified `T` for the whole call, not one per occurrence.
+
+**Contextual typing** feeds the other direction: when a generic function's type parameter can't be inferred from arguments alone (e.g., an empty array literal `[]` passed where `T[]` is expected), the checker instead looks at the *expected type* from the surrounding context — a variable's declared type, a return-type annotation, another parameter's type in the same call — and uses that to seed `T`. This two-directional inference (bottom-up from arguments, top-down from context) is why moving the same expression to a different position in your code can change what a generic call infers, even with no other change.
+
+At emit, all of this vanishes without a trace: `identity<number>(5)` compiles to exactly `identity(5)`, with no runtime representation of `T` whatsoever — there is no way for the compiled function to know at runtime what `T` was instantiated as, which is the underlying reason patterns like `new T()` or `x instanceof T` inside a generic function body are compile errors: `T` is erased before that code ever runs, so there's no runtime value to instantiate or check against.
+
+Generic **constraints** (`<T extends { id: number }>`) don't change any of this — they only narrow what the checker will accept as `T` during structural comparison at the call site; they add zero runtime validation, so a value can still fail to genuinely have that shape if it was force-cast (`as`) into the call.
+
 ## Cheat sheet
 
 | Syntax | Meaning |

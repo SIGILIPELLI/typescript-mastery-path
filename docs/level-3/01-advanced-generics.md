@@ -199,6 +199,14 @@ as returning `(V | T[number])[]` — technically correct, but it throws
 away the exact length and per-position types that the tuple version
 keeps.
 
+## How It Actually Works
+
+Conditional types (`T extends U ? X : Y`) are evaluated by the checker as genuine type-level computation, not simple substitution — for each concrete `T` supplied, the checker performs a structural assignability check (is `T` assignable to `U`?) and picks branch `X` or `Y` accordingly, deferring the whole evaluation if `T` is still a generic (unresolved) type parameter at that point, which is why conditional types inside generic function bodies often show up as unresolved, unreduced types in tooling until the function is actually called with a concrete argument.
+
+**Distribution** over unions (covered briefly in the utility-types lesson) is controlled by a specific syntactic rule: a conditional type distributes over a union *only* when the checked type is a "naked" type parameter — `T extends U ? X : Y` distributes when `T` is literally a type parameter reference, but `[T] extends [U] ? X : Y` (wrapping both sides in a tuple) suppresses distribution, forcing the whole union to be checked against `U` as one unit. This bracket trick exists specifically because sometimes you want the non-distributive behavior (e.g., checking `T extends never` against a whole union rather than each member), and there's no other syntax to opt out.
+
+**`infer`** lets a conditional type extract a piece of a matched structure into a new type variable, resolved by the same structural pattern-matching the checker uses everywhere else — `T extends Promise<infer U> ? U : T` structurally matches `T` against the shape `Promise<?>`, and if it matches, binds whatever filled that position to `U`. Variadic tuple types (`[first: T, ...rest: R]`) extend this same structural matching to tuple *positions and lengths* — the checker can decompose and reconstruct tuple types by index the same way `infer` decomposes a generic type argument, which is the mechanism underlying utility types like `Parameters<F>` (destructuring a function's parameter tuple) and `ReturnType<F>` (both implemented as conditional types with `infer` in TypeScript's own lib).
+
 ## Cheat sheet
 
 | Feature | Syntax | Use it for |

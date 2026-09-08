@@ -213,6 +213,14 @@ under test.
 the chain still works, but any subclass-specific method called after
 that point on `b` is invisible — the variable's declared type wins.
 
+## How It Actually Works
+
+Classic patterns like Factory and Builder lean on structural typing in a way that's specific to TypeScript versus nominally-typed languages: a Factory function typed to return an interface (`function createLogger(): Logger`) lets you swap the concrete class returned without any caller-visible change, because callers only ever check the returned value against `Logger`'s shape, never against which class actually constructed it — polymorphism here is enforced entirely by structural compatibility, not by an explicit `implements` relationship (though `implements` does add a compile-time check that the class's shape genuinely satisfies the interface at declaration time, catching a missing method immediately rather than only at the return-type check).
+
+The Strategy pattern (swapping an algorithm behind a shared function-type interface) is where function-type contravariance genuinely matters for correctness: if your `Strategy` type is `(input: Base) => Result` and you're tempted to write a concrete strategy as `(input: Derived) => Result` (accepting only a narrower subtype), that assignment is *rejected* by the checker under `strictFunctionTypes`, because a narrower parameter type could receive a `Base` at the call site that isn't actually a `Derived`, and the checker's contravariant parameter check exists precisely to catch that unsound substitution — this is a real category of pattern-implementation bug that structural + variance checking specifically prevents.
+
+The Singleton pattern intersects with module resolution rather than the type system proper: TypeScript modules are only ever evaluated once per resolved module specifier (mirroring how Node's `require` cache and ES module instantiation both work), so a module-level `const instance = new Service()` genuinely is a runtime singleton — but only within one module *graph*; if your build produces multiple bundles or your module resolution config causes the same file to resolve to two different specifiers, you silently get two "singleton" instances, a runtime consequence of the module system the type checker has no visibility into or ability to prevent.
+
 ## Cheat sheet
 
 | Pattern | TypeScript feature that makes it clean |

@@ -313,6 +313,14 @@ narrowed type anywhere, including inside closures; a `let` that gets
 reassigned later loses that guarantee inside any closure created before
 the reassignment.
 
+## How It Actually Works
+
+Discriminated union narrowing is control-flow analysis applied to a specific, checker-recognized pattern: a union of object types that all share one property with distinct literal types (the "discriminant," e.g. `kind: "circle" | "square"`). When the checker sees `switch (shape.kind) { case "circle": ... }`, it doesn't just narrow the primitive `shape.kind` — it narrows `shape` *itself* to the specific union member whose discriminant property's literal type matches that branch, because the checker specifically special-cases comparisons against a property that's a literal type shared structurally across every union member. This is the mechanism (not just convention) that makes discriminated unions so much more reliable than "duck typing by presence of an optional field" — the narrowing algorithm has a dedicated code path for a shared-literal discriminant that it doesn't have for arbitrary property presence checks.
+
+Custom **type predicates** (`function isFish(pet: Fish | Bird): pet is Fish`) are how you extend this narrowing to logic the checker can't derive on its own — the function body can contain arbitrary runtime logic, but the checker never verifies that the logic and the declared predicate actually agree; the `pet is Fish` return annotation is trusted exactly like `as`, meaning a type predicate that lies (returns `true` for something that isn't actually a `Fish`) will make the checker unsoundly narrow, propagating a false type guarantee downstream with no error.
+
+Narrowing state is scoped to a single, uninterrupted stretch of the control-flow graph — assigning to the narrowed variable inside a closure (a callback passed to `setTimeout` or an event handler) invalidates the narrowing for the checker, because the closure might run at an unknown later point after the value has changed, and the checker conservatively falls back to the variable's originally declared (wider) type inside any closure boundary, even when you as the programmer know the reassignment can't actually happen before the callback runs.
+
 ## Cheat sheet
 
 | Guard | Example | Best for |

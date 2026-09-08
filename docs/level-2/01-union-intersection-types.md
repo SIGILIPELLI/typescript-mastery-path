@@ -229,6 +229,14 @@ This is a genuine TypeScript trap: the excess property check only fires on
 Don't rely on it as validation — it's a linting convenience, not a runtime
 guarantee.
 
+## How It Actually Works
+
+A union type `A | B` is stored internally by the checker as a literal set of its constituent types, and every operation on a union-typed value is checked by verifying it's valid for *every* member of that set — `value.someMethod()` only type-checks if `someMethod` exists with a compatible signature on both `A` and `B`, because the checker has no way to know at that point in the code which branch of the union is actually present. This is precisely what narrowing (via `typeof`, `in`, discriminant comparison) fixes: each narrowing guard shrinks the *set* the checker considers live at that control-flow node, down to a subset of the original union, which then allows member access specific to the narrowed subset.
+
+An intersection type `A & B` is computed structurally by merging both types' member lists into one combined shape — if a member name exists in both with compatible types, the intersection keeps the more specific (narrower) of the two; if the same member has incompatible primitive types in each (say `string` in `A` and `number` in `B`), the merged member type becomes `never`, because no value can simultaneously satisfy both — and a `never`-typed required member makes the *entire intersection* effectively uninhabitable (nothing but `never` itself can be assigned to it), which is the mechanical reason "intersecting two conflicting object types" quietly produces a type nothing can satisfy rather than a clean compiler error.
+
+Unions and intersections both distribute over function types differently than over object types: a union of function types intersects their parameter lists implicitly (only calls valid on all variants type-check, per the same "must be valid for every member" rule), while an intersection of function types is treated as function *overloads* — `((x: string) => void) & ((x: number) => void)` behaves like calling a function with two possible signatures, resolved the same way overload resolution works, rather than as a value that must simultaneously be both functions.
+
 ## Cheat sheet
 
 | Concept | Syntax | Meaning |

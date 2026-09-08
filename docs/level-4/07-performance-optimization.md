@@ -165,6 +165,14 @@ non-serializable arguments** (functions, `undefined` inside objects,
 circular references) — pass an explicit `keyFn` for any `memoize` call
 where the arguments aren't plain, simple values.
 
+## How It Actually Works
+
+Runtime performance and TypeScript's type system are almost entirely orthogonal, and conflating them is a common source of wasted optimization effort: because every type annotation is erased before execution, the compiled JS for a tightly-typed function and a loosely-typed (`any`-riddled) function with identical logic is byte-for-byte the same — the checker's structural verification affects nothing about how V8 or another JS engine executes the resulting code, so "make it more strictly typed" is never, by itself, a runtime performance technique; it only affects what bugs get caught before the code ever runs.
+
+Where TypeScript compilation genuinely *does* affect runtime performance is through `target` and downleveling decisions, not through the type system: an arrow function downleveled to `function` for `target: es5`, or `async`/`await` downleveled to a generator-driven state machine (the `__awaiter` helper covered in the async lesson) for older targets, are real, different runtime code paths with measurably different execution characteristics — choosing a modern `target` that matches your actual deployment runtime (avoiding unnecessary downleveling) is a legitimate performance lever, entirely distinct from anything about how strictly you've typed the code.
+
+Where the type system *does* have a real, measurable performance cost is exclusively at **compile time** (covered in the performance-compilation lesson) — deep conditional-type recursion, huge union types, and unbounded generic instantiation all cost real `tsc` wall-clock time, but that cost is paid once during the build, never during your program's execution; a codebase can have an extremely slow `tsc` build and a perfectly fast running application, because those two kinds of "performance" are produced by completely different phases of the pipeline.
+
 ## Cheat sheet
 
 | Technique | Solves | Typed via |

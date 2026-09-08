@@ -165,6 +165,14 @@ many new `possibly undefined` errors on code that "worked" before** —
 often on array access (`arr[i]`) throughout the codebase — because it
 applies to every indexed access, not just object index signatures.
 
+## How It Actually Works
+
+`strict: true` is not one setting but an umbrella that enables a specific list of independent checker behaviors, each of which changes a distinct part of the structural-comparison algorithm — `strictNullChecks` removes `null`/`undefined` from being implicitly assignable to every other type (without it, the checker treats every type as structurally including `null | undefined`, which is why enabling it retroactively surfaces enormous numbers of "possibly null" errors across an existing codebase: those unsafe accesses were always there, just invisible to the comparison before); `strictFunctionTypes` enables the contravariant parameter-checking discussed in the classes-advanced lesson for standalone function-typed values (methods keep the more lenient bivariant check regardless); `noImplicitAny` makes the checker report an error instead of silently inferring `any` whenever it can't determine a type from context, converting what would otherwise be a silent type-safety hole into a visible one.
+
+Each flag changes a genuinely different code path inside the checker, which is why they're independently toggleable rather than fused into one binary switch — a codebase might reasonably want `noImplicitAny` (catch missing type annotations) without `strictNullChecks` (a large migration cost) as an intermediate adoption step, and `tsconfig.json`'s design deliberately exposes that granularity because the underlying checker behaviors really are separable passes over the same structural comparison, not a single monolithic "strictness level."
+
+Because none of these flags change *emit* at all — they only change which diagnostics the checker reports — toggling `strict` on or off never changes the compiled JavaScript output for code with zero type errors; it only changes which previously-silent type mismatches now get surfaced, which is why "turning on strict mode broke my build" always means the unsafe code was already there, not that the new setting introduced new runtime behavior.
+
 ## Cheat sheet
 
 | Flag | In `strict`? | Catches |

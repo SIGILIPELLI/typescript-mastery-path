@@ -165,6 +165,14 @@ object property, that nested object's own fields would still be
 mutable unless you also apply `Readonly` (or a recursive `DeepReadonly`
 utility) to it.
 
+## How It Actually Works
+
+A published library's public API surface is defined, as far as consumers' checkers are concerned, entirely by its emitted `.d.ts` files — not by the original `.ts` source, which typically isn't shipped at all. This means "what's a breaking change" for a TypeScript library is a question about the *declaration output*, and it can diverge sharply from what looks like a breaking change in the source: widening a function's parameter type is source-compatible but can still be a declaration-level breaking change for consumers relying on stricter inference from the old, narrower type; conversely, an internal implementation rewrite that leaves the exported `.d.ts` shape byte-identical is not a breaking change at all, regardless of how different the runtime logic underneath now is.
+
+Function-type variance (contravariant parameters, covariant returns, from the classes-advanced lesson) directly governs what counts as a safe versus breaking signature change for a public function: widening a parameter's accepted type or narrowing a return type are both backward-compatible under structural assignability (existing calling code remains valid), while narrowing a parameter or widening a return type can silently break consumers who were relying on the old, more permissive or more specific contract — this is the same variance rule from ordinary structural comparison, just applied at the scale of "will every existing caller still type-check."
+
+Generic API design interacts with declaration emit in a subtle way: a generic type parameter with no `extends` constraint that appears only in output positions (like a builder's fluent return type) can end up inferred as `unknown` for consumers who don't supply an explicit type argument, silently degrading the ergonomics of the public API — which is why well-designed generic libraries put real thought into default type parameters (`<T = DefaultShape>`) and constraint placement, since those choices directly shape what a consumer's checker infers with zero arguments supplied, not just what's technically type-safe.
+
 ## Cheat sheet
 
 | Pattern | Use for |

@@ -102,6 +102,14 @@ console.log(prices["apple"]);   // 1.5
 An index signature (`{ [key: string]: number }`) is how you type an object
 you're using as a dictionary/map, where you don't know every key up front.
 
+## How It Actually Works
+
+`Array<T>` (equivalently `T[]`) is a generic interface defined in TypeScript's own `lib.es5.d.ts`, with a member for every array method (`push(item: T): number`, `map<U>(fn: (item: T, index: number, array: T[]) => U): U[]`, and so on). When you write `const nums: number[] = []`, the checker substitutes `T = number` into that library interface's declaration, and every subsequent method call is checked against the substituted signatures — `nums.push("x")` fails because the library declares `push(...items: T[]): number`, and with `T` bound to `number`, `"x"` isn't assignable to `number`. None of this exists at runtime; the compiled array is an ordinary JS array with no element-type tag, which is why `(nums as any[]).push("x")` compiles and runs fine (it just corrupts the array from the type system's point of view).
+
+**Index signatures** (`{ [key: string]: number }`) tell the checker "any property access with a string key on this object has type `number`," which is a *closed-world assumption the checker enforces only at the type level* — it does not insert a runtime bounds or existence check. Accessing `obj[key]` where `key` isn't actually present at runtime returns `undefined` in JS, but the checker still reports its static type as `number` (not `number | undefined`) unless `noUncheckedIndexedAccess` is enabled, which makes every indexed access `T | undefined` to reflect the real runtime possibility of a missing key.
+
+Object literal shapes are checked member-by-member the same way interfaces are (structural comparison), but array *literals* get their element type inferred as the union of all literal element types, then widened — `[1, "a"]` infers as `(string | number)[]`, and every element access loses the connection to which specific element it was; the checker cannot narrow `arr[0]` to `number` just because you know positionally it came from `1`, since ordinary arrays (unlike tuples) don't track per-index types.
+
 ## Cheat sheet
 
 | Feature | Syntax |

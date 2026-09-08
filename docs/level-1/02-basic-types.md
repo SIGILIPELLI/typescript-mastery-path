@@ -142,6 +142,16 @@ let items = [1, 2, 3];       // inferred: number[]
 // guess what a caller will pass) and for declaring intent on public APIs.
 ```
 
+## How It Actually Works
+
+TypeScript's primitive types (`string`, `number`, `boolean`) aren't runtime-enforced containers — they're compile-time labels the checker attaches to expressions and then erases. When you write `let age: number = 30`, the annotation `: number` never survives to the emitted JavaScript; the line becomes just `let age = 30;`. This is why `typeof age === "number"` is a *runtime* check you still have to write yourself if the value could come from somewhere untyped (JSON, user input) — TypeScript's type system has zero presence at runtime to enforce it for you.
+
+TypeScript is **structurally typed**, not nominally typed. When the checker decides whether a value of type A is assignable to a variable of type B, it doesn't check "was this declared as a B" — it compares the *shape* (the set of member names and their types). This matters even for primitives: literal types like `"active"` are structurally compared against their widened base type `string`, and the checker tracks two versions of a type for `let` vs `const` — a `const` gets the narrowest literal type (`"active"`), while `let` widens to the general primitive (`string`) at the point of declaration, because a `let` binding is presumed reassignable to any value of that base type.
+
+`any` disables structural comparison entirely — it's a escape hatch where the checker stops comparing shapes and lets any operation through, effectively opting that value (and everything derived from it) out of static analysis. `unknown` keeps structural comparison active but starts from "no known members," forcing you to narrow (`typeof`, `instanceof`, a type guard) before the checker will let you use it — the compiler makes you prove the shape before it trusts you with member access.
+
+Type inference works by the same structural machinery in reverse: for `let x = 5`, the checker evaluates the initializer's type (the literal `5`) and widens it to `number` for a mutable binding, storing that as `x`'s declared type for the rest of its scope — no annotation needed because the initializer already carried enough shape information.
+
 ## Cheat sheet
 
 | Type | Example | Notes |

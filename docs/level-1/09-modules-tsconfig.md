@@ -116,6 +116,14 @@ node dist/main.js     # run the compiled output
 npx ts-node src/main.ts
 ```
 
+## How It Actually Works
+
+`tsconfig.json`'s `module` and `target` settings control two independent things the compiler does during emit, and conflating them is the source of most module-related build confusion. `target` picks which JS *language features* get downleveled (an arrow function becomes a `function` expression on `target: es5`, for instance) — it has nothing to do with modules. `module` picks which *module system* your `import`/`export` statements are rewritten into: `commonjs` turns `import { x } from "./y"` into `const { x } = require("./y")` plus a `Object.defineProperty(exports, ...)` for each export; `esnext`/`es2022` leaves ES module syntax untouched for a bundler to handle; `nodenext` inspects each file's `package.json` `"type"` field (and the file extension, `.mts`/`.cts`) to decide per-file whether to emit CommonJS or ESM output — this is why `nodenext` can behave completely differently from `commonjs` even on code that looks identical.
+
+Module *resolution* (`moduleResolution`) is a third, separate axis: it's the algorithm the checker uses purely to find and load the `.d.ts` types for an import, not how the import gets emitted. Under `node`/`node10` resolution, an import path is resolved by walking up `node_modules` directories exactly the way Node's `require()` does, checking each candidate for a matching `.d.ts`, `.ts`, or the `"types"` field in that package's `package.json`. This means module resolution is entirely a compile-time, type-checking-phase concern; at runtime, whatever runtime you actually execute the emitted JS in (Node, a bundler, a browser) does its *own*, completely independent module resolution — TypeScript's guess and the runtime's actual resolution can, in edge cases (deep-import paths, conditional exports), diverge, which is why type-only resolution mismatches ("Cannot find module" in the editor, but it runs fine) are a distinct class of bug from a genuine runtime module error.
+
+`.d.ts` files carry only type declarations, `declare` statements with no implementation — they are never included in emitted output and exist solely to feed the checker's structural comparisons; a package's real behavior at runtime comes entirely from its `.js` files, which the `.d.ts` is simply promising an accurate shape for (and can be wrong about, since nothing enforces the two stay in sync).
+
 ## Cheat sheet
 
 | Task | Syntax/Command |

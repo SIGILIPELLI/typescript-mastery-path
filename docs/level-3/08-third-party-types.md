@@ -125,6 +125,14 @@ types for the *old* API, so a method that was removed in v5 can still
 type-check and then throw `TypeError: ... is not a function` at
 runtime.
 
+## How It Actually Works
+
+`@types/*` packages (DefinitelyTyped) exist because a JS library ships no type information of its own — the checker needs *some* `.d.ts` to structurally check your calls against, and when a package doesn't bundle one, `@types/<package>` supplies an independently-maintained one under `node_modules/@types`, which `moduleResolution` searches automatically as a fallback source of ambient declarations for a bare package import. Critically, nothing links a `@types` package's version to the real library's actual behavior at runtime — they're published and versioned separately, so a `@types` package that's fallen behind the real library's API (a common occurrence for fast-moving packages) will make the checker confidently verify calls against a shape the running code doesn't actually have; this is the same trust gap as `JSON.parse`, just at package-boundary scale instead of per-value.
+
+Declaration merging is the primary mechanism for extending third-party types you don't control: augmenting a global or another module's exported interface (`declare module "express" { interface Request { user?: User } }`) works because the checker treats same-named interface declarations across files as contributions to one accumulated member list, resolved at check time — this only works for `interface`, never for `type` aliases, which is the same declaration-merging asymmetry from the interfaces-vs-types lesson, now applied to the practical case of "I need to add a field to a library's type without forking it."
+
+Writing a `.d.ts` by hand for an untyped library is pure `declare`-syntax — no implementation, just type shape assertions the checker will trust unconditionally; there's no verification step comparing your hand-written declarations against the library's real JS behavior, which is why a hand-rolled `.d.ts` for an untyped dependency is exactly as trustworthy (and exactly as prone to silent drift) as any other unverified type annotation over external, non-TypeScript-checked code.
+
 ## Cheat sheet
 
 | Situation | Fix |

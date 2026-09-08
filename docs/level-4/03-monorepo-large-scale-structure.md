@@ -195,6 +195,14 @@ composite.
 references A, unlike some bundlers that tolerate certain circular
 imports at runtime.
 
+## How It Actually Works
+
+Project references (introduced in the performance lesson) are what make a monorepo's cross-package type checking scale: without them, a single `tsc` invocation over a monorepo treats every file reachable from your entry points as one flat program, re-resolving and re-checking the *entire* dependency graph's types on every build; with `composite: true` and `references`, each package is compiled and checked as an independent unit that emits its own `.d.ts`, and a downstream package's imports resolve against that upstream `.d.ts` output rather than re-walking upstream source — meaning `tsc --build` can skip recompiling any referenced package whose inputs (tracked via each package's own `.tsbuildinfo`) haven't changed, which is a fundamentally different scaling model from a single flat check.
+
+Path aliases (`paths` in `tsconfig.json`, mapping `@myorg/utils` to a local package path) are a **compile-time-only** resolution hint that only affects how the *checker* finds types — the emitted JS still contains the literal, unresolved import specifier (`import { x } from "@myorg/utils"`), so at runtime, whatever actually executes the compiled output (Node, a bundler) needs its own, separately-configured resolution for the same alias (a bundler's own alias config, or a workspace tool's symlinked `node_modules` entries) — a path alias that only exists in `tsconfig.json` and nowhere else compiles clean and then throws a module-not-found error the instant you run it.
+
+Workspace tools (npm/pnpm/yarn workspaces) symlink each internal package into a shared `node_modules`, which is what lets ordinary `node`-strategy module resolution find internal packages using the same algorithm as external npm dependencies — the type checker doesn't need to know a dependency is "local" at all; it just resolves the `.d.ts` through the symlink like any other package, which is why a broken or missing workspace symlink produces exactly the same "cannot find module" checker error as a genuinely missing external dependency.
+
 ## Cheat sheet
 
 | Concern | Solved by |

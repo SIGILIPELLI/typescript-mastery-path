@@ -209,6 +209,14 @@ typing `req.params`/`req.body` in the first place. And `NotFoundError`/
 middleware use `instanceof` to pick the right status code, instead of
 scattering `res.status(...)` calls through every route.
 
+## How It Actually Works
+
+This project's request-validation layer is the practical convergence point of several mechanisms from earlier lessons: `req.body` arrives as `any` (Express's own types, as covered in the Express lesson), so every route handler here that types it as a specific request-shape interface is trusting an annotation the checker cannot verify — the runtime validation call (checking required fields exist and have the right primitive types before proceeding) is the only thing actually enforcing that shape; delete it, and the checker still reports zero errors while a malformed request silently corrupts downstream logic.
+
+The typed error-response union (success vs. error result shapes) used across these routes is a discriminated union in the same structural sense as the narrowing lesson — the checker distinguishes the two shapes by a shared literal discriminant field, and every place that branches on it gets automatic narrowing of the full response object, not just the discriminant property, which is exactly why this pattern scales better across a whole API than ad hoc `if (result.error)` checks against an object with only optional fields (the checker can't guarantee mutual exclusivity of optional-field shapes the way it can with a literal discriminant).
+
+The route parameter types (`req.params.id: string`) tie back to the Express lesson's point about the router having no way to encode "this segment is numeric" in its own type declarations — every place this project converts an `id` param to a number for a database lookup is a manual runtime step the type system cannot skip for you, however precisely the rest of the codebase is typed.
+
 ## Running it
 
 ```bash

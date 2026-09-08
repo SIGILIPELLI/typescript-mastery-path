@@ -148,6 +148,16 @@ function log(message: string): void {
 }
 ```
 
+## How It Actually Works
+
+Function types in TypeScript are compared **structurally and contravariantly on parameters, covariantly on return types** — a rule that governs when one function is assignable to another's type. A function type `B` is assignable to `A` if `B`'s return type is assignable to `A`'s return type (covariant — a more specific return is fine, since the caller can only ever use it as the general type), and `A`'s parameter types are assignable to `B`'s parameter types (contravariant — the assigned function must be able to accept *at least* what the target type promises to pass it). This is why `(x: number) => void` is assignable to a slot expecting `(x: number, y: string) => void`: fewer declared parameters is safe, because JavaScript simply ignores extra arguments at the call site.
+
+Return-type checking is where a common surprise comes from: TypeScript infers a function's return type from its body (via CFA over every `return` statement, unioning the resulting types) unless you annotate it explicitly. Omit `: void` and add a stray `return someValue` on one code path, and the whole function's inferred return type silently becomes `someValue's type | undefined` — no error, because inference just did its job on incomplete intent.
+
+**Overloads** work differently from ordinary structural comparison: when you write multiple signature declarations followed by one implementation signature, the checker treats the overload list as an ordered lookup table it never runs the implementation's own signature against, checking each *call site* against the first overload signature that matches the argument types, top to bottom — the implementation signature itself is only checked for compatibility with the call, never directly resolved against. Get overload order wrong (put a more general signature before a more specific one) and calls will silently resolve to the wrong overload's declared return type.
+
+Like all type information, function parameter and return annotations are fully erased at emit — the compiled JS function has no arity or type enforcement at all; passing the wrong number or type of arguments to a compiled function is only ever prevented by the checker, never by the running code.
+
 ## Cheat sheet
 
 | Feature | Syntax | Notes |

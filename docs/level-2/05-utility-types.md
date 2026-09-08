@@ -212,6 +212,14 @@ Runtime validation of untrusted data is covered in
 [Module 8](08-working-with-json-apis.md) — utility types alone are never
 a substitute for it.
 
+## How It Actually Works
+
+Utility types like `Partial<T>`, `Required<T>`, `Readonly<T>`, and `Pick<T, K>` are not compiler magic — they're ordinary generic **mapped types**, defined in TypeScript's own standard library `.d.ts` and expressible with the same syntax available to you. `Partial<T>` is literally defined as `{ [P in keyof T]?: T[P] }`: `keyof T` produces a union of `T`'s property-name literal types, `[P in keyof T]` iterates that union as a mapped-type index, and `?` adds the optional modifier to every mapped property. Because it's just a mapped type, the checker evaluates `Partial<User>` by actually performing this iteration over `User`'s real members at the point of use — it's a genuine type-level computation, not a lookup table of special cases.
+
+`Pick<T, K extends keyof T>` (`{ [P in K]: T[P] }`) and `Omit<T, K>` (defined via `Pick<T, Exclude<keyof T, K>>`) show how utility types compose from smaller primitives: `Exclude<T, U>` itself is a **conditional type** (`T extends U ? never : T`) that, when `T` is a union, is applied to *each member of the union separately* — this is **distributive conditional type** behavior, and it's why `Exclude<"a" | "b", "a">` correctly narrows to `"b"` rather than evaluating the condition once against the whole union: the compiler distributes the conditional across each union member, checks each independently, and unions the survivors back together.
+
+All of this resolution happens entirely during type checking; none of it produces runtime code. `Readonly<T>` is a particularly sharp example of the type-erasure boundary — it adds a `readonly` modifier the checker enforces on write-*expressions* in your source, but the compiled object is a completely ordinary, mutable JS object; `Object.freeze` is the only way to get an actual runtime immutability guarantee, and the two are unrelated — `Readonly<T>` alone won't stop `Object.assign(obj, ...)`'s internals or a caller who genuinely doesn't type-check their code from mutating the object at runtime.
+
 ## Cheat sheet
 
 | Utility | Signature | Does |

@@ -271,6 +271,12 @@ describe("BookmarkStore", () => {
 });
 ```
 
+## How It Actually Works
+
+The `Result`-based validation in `store.ts` is a deliberate alternative to throw-based error handling, and the reason it's more reliable ties directly back to discriminated-union narrowing: a `Result<T, E> = { ok: true; value: T } | { ok: false; error: E }` type makes every possible failure path a value the checker forces you to check via the `ok` discriminant before accessing `.value`, whereas a thrown exception has *no* representation in a function's TypeScript return type at all — `function save(item: Item): Item` promises nothing about what it might throw, so the checker cannot force a caller to handle failure the way it can force a caller to narrow a `Result` before reading `.value`. This is a real, checker-enforced difference in what "handling errors" means between the two styles, not just a stylistic preference.
+
+The typed Express layer in `index.ts` is where every erasure boundary covered across this path converges in one file: `req.body` arrives untyped (`any`, per the Express lesson) and is passed through a runtime validator before ever being treated as a typed `Item`; the store's generic methods rely on inferred type parameters the same way the generics lesson's `identity<T>` does; and the HTTP responses are built from the same discriminated-union `Result` type the data layer produces, letting one `switch` on `.ok` decide the response status code and shape with full narrowing on both branches — nothing about any of this exists at runtime beyond ordinary object property checks; every generic parameter, interface, and `Result<T, E>` annotation is gone from the emitted JS, and the actual safety this project demonstrates was entirely enforced during `tsc`'s check phase, before the server ever started.
+
 ## Running it
 
 ```bash

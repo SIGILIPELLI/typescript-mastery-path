@@ -148,6 +148,14 @@ check doesn't exercise is broken.** A dedicated `/health` route that
 does nothing but return `200` is more common in real services than
 reusing a business endpoint for this purpose.
 
+## How It Actually Works
+
+Because type erasure means the emitted JS is all a Node runtime ever needs, a well-built Docker image for a TypeScript app should never contain the TypeScript compiler, the `.ts` source, or `devDependencies` at all in its final layer — a multi-stage Dockerfile's build stage runs `tsc` to produce plain `.js` in a `dist/` directory, and the final runtime stage copies only that `dist/` output plus production `node_modules` into a fresh, minimal base image, because at runtime absolutely nothing about the original TypeScript source is needed or referenced; this is the clearest possible illustration that type information has zero existence past compile time — the running container literally cannot tell it was ever TypeScript.
+
+`node_modules` pruning interacts with the `@types/*` packages from the third-party-types lesson in a way worth calling out explicitly: `@types` packages are typically `devDependencies` (or bundled types under `dependencies` for packages that self-type), and since they're consumed *only* by the checker during the build stage, a production image that installs with `--omit=dev` correctly drops them with no runtime effect — they were never going to be referenced by the running JS regardless.
+
+Source maps (`sourceMap: true`) are the one artifact worth deliberately choosing whether to ship: a source map is a separate JSON file mapping positions in the emitted `.js` back to the original `.ts` source, generated during emit and consumed only by error-reporting/debugging tools (a crash reporter, browser devtools, `node --enable-source-maps`) — it's not needed for the program to run, but omitting it from a production image trades off debuggability (stack traces point at generated JS positions, not your original source lines) against not shipping your original source layout inside the container.
+
 ## Cheat sheet
 
 | Dockerfile technique | Why it matters for TypeScript specifically |

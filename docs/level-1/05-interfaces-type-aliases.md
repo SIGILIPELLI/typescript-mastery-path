@@ -158,6 +158,16 @@ const adder: Calculator = {
 console.log(`${adder.label}: ${adder.compute(2, 3)}`);   // Adder: 5
 ```
 
+## How It Actually Works
+
+An `interface` (and a type alias for an object shape) is not a runtime construct — it compiles away to nothing at all; there is no emitted JS for `interface User { name: string }`. The checker's job is entirely to decide, at every place a value flows into a slot typed `User`, whether that value's shape is *structurally compatible*: does it have (at least) a `name` property whose type is assignable to `string`? The comparison walks both types' member lists and checks each member pairwise; it never asks "was this object literally constructed as a `User`."
+
+This is why **excess property checks** exist as a special-cased exception to normal structural typing: passing an object *literal* directly where a `User` is expected triggers a stricter check that flags properties not in the target type, even though structurally a wider object (extra properties, a superset shape) would ordinarily be assignable to a narrower type. The checker relaxes this the moment the object isn't a literal — assign it to an intermediate variable first, and the excess-property check doesn't fire, because now it's an ordinary structural assignability check (superset shapes are fine) rather than a "did you mistype a field name" literal check.
+
+Interfaces support **declaration merging**: two `interface Foo { }` declarations with the same name in the same scope are combined by the checker into one interface with the union of both members' declarations, resolved at compile time before any type checking happens — this is how you can extend a global or third-party interface (like `Window`) by simply re-declaring it. Type aliases cannot do this — a type alias name can only be declared once — which is the actual mechanical reason (not just style) libraries choose `interface` for anything meant to be publicly extensible.
+
+Extending an interface (`interface B extends A`) versus intersecting types (`type B = A & { ... }`) both end up structurally equivalent for assignability purposes, but `extends` is checked incrementally by the compiler at declaration time (conflicting member types between `A` and `B` are caught immediately), while `&` computes the intersection lazily and only surfaces a conflict (like a property typed both `string` and `number`, which resolves to `never`) at the point that intersected type is actually used.
+
 ## Cheat sheet
 
 | Feature | Syntax | Notes |

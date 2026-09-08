@@ -162,6 +162,14 @@ protecting you *after* a value has already been loaded — they say
 nothing about whether that value was safely stored or transmitted in
 the first place.
 
+## How It Actually Works
+
+Every security-relevant example in this lesson comes back to the same structural fact: TypeScript's type checker is a **static, compile-time-only** analysis with zero runtime footprint, so it categorically cannot prevent any runtime security issue on its own — a `sanitize(input: string): string` function's type signature says nothing about whether the function's *implementation* actually strips dangerous content; the checker verifies the shape of data flowing through your program, never the semantic correctness of what a function does with it. Believing "it's typed as sanitized, so it's safe" is a type-erasure category error — the type is a label the checker attached, not a runtime-enforced property of the value.
+
+This is also why `any` is a genuine security-relevant construct, not just a style lint: every place `any` appears (explicitly, or implicitly through `JSON.parse`, `fetch().json()`, or a missing/wrong `@types` declaration as covered in earlier lessons) is a point where the checker's structural verification is fully disabled for that value and everything derived from it — an `any`-typed value flowing into a SQL query builder or an HTML-templating call bypasses whatever type-level protections that API's own signatures might otherwise provide (like requiring a branded "sanitized string" type), because `any` is assignable to that branded type without complaint.
+
+**Branded/nominal types** (`type SafeHtml = string & { __brand: "SafeHtml" }`) are the practical type-level defense against exactly this: intersecting a primitive with an unused, uninhabited marker property makes the checker refuse to accept a plain `string` where a `SafeHtml` is required (structurally, a plain `string` doesn't have the `__brand` property, so it's not assignable), forcing all `SafeHtml` values to originate from one sanitizing function that performs the actual `as SafeHtml` assertion — the type system enforces *that a sanitizer was called somewhere in the value's history*, which is a real, checker-verifiable guarantee, even though it still cannot verify the sanitizer's own logic is correct.
+
 ## Cheat sheet
 
 | Pattern | Prevents |

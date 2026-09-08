@@ -143,6 +143,12 @@ function main(): void {
 main();
 ```
 
+## How It Actually Works
+
+This project ties together type erasure and structural typing in a way worth naming explicitly. The `Todo` interface you define exists purely for the compiler — when `todo.ts` is compiled, every `: Todo` annotation, and the `interface Todo { ... }` declaration itself, is deleted; the emitted JS reading and writing `todos.json` has no notion of a "Todo shape" at all. That means the actual safety net is entirely at compile time: if the JSON file on disk is missing a field or has a `done` value stored as the string `"true"` instead of the boolean `true`, `JSON.parse` will happily hand back an object typed as `Todo` (because you told the checker to trust that shape via a type assertion or annotation on the parse result) even though it doesn't structurally match — this is a case where the checker takes your word for it rather than verifying, since `JSON.parse`'s real return type is `any`.
+
+The CLI's argument parsing (`process.argv`) is a good example of where TypeScript's structural narrowing runs out of information: `process.argv` is typed `string[]`, and everything you pull out of it stays `string` until you narrow it yourself — parsing a todo `id` from a CLI argument requires an explicit runtime check (`Number(arg)` and validating `!isNaN(...)`) because the compiler has no way to verify at compile time that whatever the user actually types on the command line matches your expected shape; type safety only covers what's expressible about *code*, never what's true about live, external input.
+
 ## Running it
 
 ```bash

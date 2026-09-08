@@ -484,6 +484,14 @@ describe("display formatting", () => {
 });
 ```
 
+## How It Actually Works
+
+This project's `httpClient.ts` is the interesting boundary case for everything covered so far: `fetch(...).then(r => r.json())` returns `Promise<any>`, and the moment that `any` gets annotated as `Promise<ForecastResponse>` in this project's helper, the checker's structural verification stops — it trusts the annotation rather than checking the live Open-Meteo response actually has that shape. The "typed lookup table" in `weatherCodes.ts` demonstrates the opposite, safer pattern: a `Record<number, string>`-style object literal is a value the checker *can* fully verify structurally, because unlike an HTTP response it's fully known at compile time — every key and value is checked against the declared index and value types right there in your source.
+
+The generic `httpClient` function (parameterized as `fetchAndValidate<T>(url: string): Promise<T>`) is a clean example of type-parameter inference failing silently rather than loudly: because `T` doesn't appear in any *parameter* type (only in the return type), the checker can't infer it from the call — you must supply it explicitly (`fetchAndValidate<ForecastResponse>(url)`), and if you forget, `T` defaults to `unknown` (with no `strict` settings) or infers from context if the call's result is immediately assigned to an annotated variable; there's no way for a purely-return-position generic to be inferred from arguments the way `identity<T>(x: T)` can be.
+
+`summary.ts` being "the pure logic that gets tested" is deliberate architecture aimed at the type-erasure boundary: pure functions over already-typed, in-memory data (`ForecastResponse → Summary`) are where TypeScript's structural checking is at its strongest — every input and output shape is fully known and verified by the checker — while the `httpClient` and `geocode` boundary functions that touch the network are exactly where the type system's guarantees are weakest, because JSON parsed from `fetch` is where an `any` (or a trusted-but-unverified annotation) necessarily enters the otherwise fully-checked pipeline.
+
 ## Running it
 
 ```bash

@@ -167,6 +167,16 @@ function area(shape: { kind: "circle"; radius: number } | { kind: "square"; side
 This pattern — an exhaustiveness check via `never` — is one of TypeScript's
 most valuable safety nets for `switch` statements over a fixed set of cases.
 
+## How It Actually Works
+
+Control-flow analysis (CFA) is the mechanism that lets TypeScript narrow a variable's type as you move through `if`/`else`, loops, and early returns — and it's a genuinely separate pass from the structural shape-comparison used for assignability. The checker builds a control-flow graph of your function body (mirroring the branches a JS runtime would actually take), and at each node it tracks the *narrowed type* of every variable in scope at that point, independent of its declared type.
+
+Concretely: if `x: string | number`, then inside `if (typeof x === "string") { ... }`, the checker recognizes `typeof x === "string"` as a *type guard expression*, and for the "true" branch of that graph node it narrows `x`'s type to `string`; the "false" branch (the `else`, or code after an early `return`) narrows it to `number` by elimination from the union. This narrowing is purely a compile-time bookkeeping exercise — the emitted JS still has a plain `typeof` check with no trace of the union type.
+
+`never` is what falls out of this graph when a branch's narrowed type becomes the empty set — e.g., the `default` case of a switch over a union type, after every member has been handled in earlier cases, narrows to `never`. This is why assigning to a `never`-typed parameter in an "exhaustiveness check" function causes a compile error if you later add a new member to the union and forget to handle it: the switch's default branch is no longer provably unreachable, so its narrowed type is no longer `never`.
+
+Because CFA operates on syntactic patterns it recognizes (typeof, instanceof, `in`, discriminant property comparison, custom type predicates with `is`), narrowing can silently fail to apply to logically-equivalent code the checker doesn't recognize — for example, narrowing based on a boolean stored in a separate variable (`const isString = typeof x === "string"; if (isString) { ... }`) does not narrow `x`, because the graph only tracks guards evaluated directly in the condition, not indirect boolean aliases.
+
 ## Cheat sheet
 
 | Construct | Notes |

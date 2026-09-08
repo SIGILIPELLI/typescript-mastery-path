@@ -247,6 +247,14 @@ keep them typed with `Partial<T>` (from [Module 5](05-utility-types.md))
 so a typo in a test's setup fails at compile time, not three tests later
 with a confusing runtime error.
 
+## How It Actually Works
+
+Running TypeScript tests through Jest actually involves a second, independent compilation step that's easy to overlook: `ts-jest` (or Babel's TypeScript preset) type-checks and transpiles each test file *in the Jest process*, separately from any `tsc` build you might also run — which is why it's possible for `npm test` to pass while `tsc --noEmit` reports errors, or vice versa, if the two are configured against different `tsconfig.json` settings (a common gotcha: `ts-jest` defaulting to a different `target`/`module` than your production build config, silently downleveling test code differently).
+
+Type assertions used to shape mock data (`as SomeInterface`, or `as unknown as SomeInterface` to bypass an intermediate compatibility check) tell the checker to skip its normal structural comparison and simply trust your claim — this is exactly why a test's compiled, type-checked mock object can still crash at runtime if the interface's real shape has drifted since the mock was written: `as` doesn't insert a runtime validation, it only silences the static one. Libraries like `jest.mocked()` exist specifically to avoid this — instead of asserting a shape, `jest.mocked(fn)` narrows the checker's *inferred* type of an already-typed function to include Jest's mock-specific members (`.mockReturnValue`, `.mock.calls`), by intersecting with `jest.Mock<...>`, computed from the original function's real signature rather than a hand-typed guess.
+
+Type-checking a test file and *running* it are, once again, fully decoupled processes: a test can be 100% type-correct and still fail its assertions (correct types say nothing about correct runtime values), and — depending on your Jest transform config — a test with type errors can sometimes still execute if the transform only transpiles (strips types) without invoking the full checker, which is a common source of "why didn't this type error block my test run" confusion.
+
 ## Cheat sheet
 
 | Task | API |

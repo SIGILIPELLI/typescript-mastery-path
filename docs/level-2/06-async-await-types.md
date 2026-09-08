@@ -207,6 +207,14 @@ async function parallel(): Promise<number[]> {
 If the two operations don't depend on each other's results, start them
 together with `Promise.all` rather than `await`ing each one in turn.
 
+## How It Actually Works
+
+`Promise<T>` is a generic interface (again defined in TypeScript's lib `.d.ts`) whose type parameter `T` tracks what the promise eventually resolves to — but nothing about the checker's handling of `Promise<T>` is aware of *timing*; it's purely a structural label attached to a value that JS's own event loop and microtask queue handle at runtime, completely outside the type system's control. When you write `async function f(): Promise<number> { return 5; }`, the checker actually performs a special-case unwrap: if your declared or inferred return type is itself a `Promise<X>`, the compiler auto-wraps a plain `return 5` as if it were `Promise<number>` — and it also *flattens* a `return somePromise` inside an async function to prevent the doubly-nested `Promise<Promise<number>>` that naive substitution would otherwise produce, mirroring how `await`/native Promise resolution flattens nested thenables at runtime.
+
+`await` is where type-level and control-flow-level narrowing intersect with real asynchrony: at compile time, `await expr` simply unwraps one layer of `Promise<T>` to `T` in the resulting expression's type — but at *emit* time, for anything below `target: es2017`, the `async`/`await` syntax is transformed into a state machine built from generator functions (`function*`) driven by a runtime helper (`__awaiter`), because native async/await didn't exist in older JS engines. This downleveling is a genuine code transformation, not type erasure — the emitted code is materially different, restructured control flow, not just annotation-stripped.
+
+Because `Promise<T>`'s `T` is compile-time-only, nothing prevents a badly-typed async function from resolving to a value that doesn't actually match `T` (e.g., an untyped `fetch().then(r => r.json())` chain typed as `Promise<User>` when the JSON body doesn't match `User`'s shape) — the checker trusts your annotation on the boundary between untyped external data and your typed application code, the same way it trusts a type assertion, because it fundamentally cannot verify runtime data shapes.
+
 ## Cheat sheet
 
 | Concept | Syntax | Notes |

@@ -218,6 +218,14 @@ you, this is usually why — always log or test the actual serialized
 string when debugging outgoing JSON, not just the object before
 stringifying it.
 
+## How It Actually Works
+
+`JSON.parse` is typed to return `any` in TypeScript's standard library — a deliberate acknowledgment that the checker has no static way to know what shape a runtime string actually deserializes to. When you write `const user: User = JSON.parse(text)`, no structural comparison happens at all: `any` is assignable to (and from) everything, silently short-circuiting the checker's normal member-by-member verification. This is the single most common place production type errors hide behind a green `tsc` build — the annotation is trusted, not verified, and a mismatched API response will compile clean and then fail (or silently misbehave) only at runtime.
+
+Closing that gap requires a **runtime validator** — a library like Zod, io-ts, or a hand-written type-predicate function that actually inspects the parsed value's real properties and types at the moment your program runs, not just its declared TypeScript type. A well-designed validator's checking function is typed to return a **type predicate** (`function isUser(x: unknown): x is User`), which plugs directly into the same control-flow narrowing machinery covered in the narrowing lesson: after `if (isUser(data)) { ... }`, the checker treats `data` as narrowed to `User` inside that branch specifically because the function's return type says so — but the actual safety comes entirely from the validator's runtime property checks, which the type predicate is just declaring the result of, not causing.
+
+`fetch`'s `Response.json()` method is typed to return `Promise<any>` for the same reason `JSON.parse` is — the runtime response body is fundamentally unknowable to the checker, which is why libraries increasingly return `unknown` instead of `any` from parsing functions: `unknown` at least forces you to narrow (via a validator or explicit checks) before you can access any member, whereas `any` lets a bad assumption propagate silently through your whole call chain.
+
 ## Cheat sheet
 
 | Step | Code | Why |

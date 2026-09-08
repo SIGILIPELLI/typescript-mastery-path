@@ -145,6 +145,14 @@ actually check the exit code** — a CI step that runs the coverage
 command but has `continue-on-error: true` (or equivalent) will show a
 green checkmark even when the threshold isn't met.
 
+## How It Actually Works
+
+Running `tsc --noEmit` as a dedicated CI step (separate from your test runner and your bundler's own transpile-only pass) matters because, as covered in the build-tooling lesson, fast transpile pipelines deliberately skip full type checking — so a CI pipeline that only runs tests through a transpile-only tool and never separately invokes the real checker can pass green while shipping genuine type errors; `--noEmit` runs the full structural-checking pass across the whole program graph without writing any `.js` output, making it the one step in a typical pipeline that's actually exercising the type checker in full, rather than a per-file transpiler's stripped-down parse-and-erase.
+
+Splitting type-checking into its own CI step (versus bundling it into a build or test command) is also a real performance decision grounded in the incremental-compilation model from the performance lesson: caching `.tsbuildinfo` between CI runs (persisting it as a build cache artifact) lets `tsc --build` skip re-verifying files whose exported type signatures haven't changed, which only pays off if that step is isolated and its cache is deliberately preserved across runs — folding type checking into a bundler step that doesn't understand or preserve `.tsbuildinfo` loses this incremental benefit entirely, turning every CI run into a full, uncached check.
+
+Type coverage tools (measuring what fraction of expressions in a codebase resolve to `any` versus a specific type) work by walking the same checker-produced type information every IDE hover tooltip uses — they call into the TypeScript compiler API's `getTypeAtLocation` for every node in the program and count how many resolve to the `any` type specifically, which is why type-coverage percentage is a genuinely different signal from "does `tsc` report zero errors": a program riddled with `any` (silencing structural checking everywhere it appears) can still compile with zero errors, because `any` is defined to be assignable to and from everything.
+
 ## Cheat sheet
 
 | Tool/config | Purpose |

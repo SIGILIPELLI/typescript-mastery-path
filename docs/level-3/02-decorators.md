@@ -233,6 +233,14 @@ If you stack decorators (logging, then validation, then caching, for
 example) and the combined behavior looks backwards, this ordering — not
 a bug in your decorator — is almost always why.
 
+## How It Actually Works
+
+Unlike almost every other TypeScript-only construct, decorators are **not** type-erased — they compile to real function calls that execute at *class-definition time*, not at instantiation time. `@log class Foo {}` compiles (in the legacy `experimentalDecorators` model) to something like `Foo = __decorate([log], Foo)`, where `__decorate` is a runtime helper the compiler emits once per file that uses decorators, and it calls your decorator function immediately as the class declaration is evaluated, passing it the constructor (or property descriptor) to optionally replace or wrap. This is why decorator *evaluation order* is a real runtime sequencing question, not a type-checking abstraction: decorators run bottom-to-top within a single declaration, and property/method decorators run before class decorators, because that mirrors the order the underlying descriptors actually become available during class construction.
+
+TypeScript's decorator support went through a genuine breaking change: `experimentalDecorators` implements TypeScript's own pre-standard proposal (the `__decorate`/`__param`/`__metadata` helpers, still widely used by frameworks like Angular and NestJS), while newer TypeScript versions also support the **stage-3 ECMAScript decorators** standard, which has a different runtime calling convention (decorators receive a context object, not raw property descriptors) and compiles to different emitted helper code — the two are not interchangeable, and mixing decorator syntax written for one model against a `tsconfig` targeting the other produces confusing runtime failures rather than compile errors, because both are syntactically valid decorator positions to the parser.
+
+`reflect-metadata` (paired with `emitDecoratorMetadata`) is where decorators intersect with the type system in an unusual way: the compiler, when this flag is set, emits calls that store a *runtime-accessible* representation of a parameter or property's declared type (as a constructor-function value, like `String` or `Number`, not the full structural TypeScript type) as metadata on the class — this is the one narrow case where type information does leak into runtime-inspectable form, and it's exactly what dependency-injection frameworks use to look up which class to construct for a given constructor parameter, since ordinary generic-parameter erasure would otherwise make that impossible.
+
 ## Cheat sheet
 
 | Decorator kind | Signature receives | Typical use |

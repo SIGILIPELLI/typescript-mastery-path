@@ -138,6 +138,14 @@ reanalysis by default regardless of your `tsconfig`; a slow editor is
 more often caused by an enormous single file, a very large union type,
 or a plugin, not by the same things that make a cold `tsc --build` slow.
 
+## How It Actually Works
+
+`tsc`'s incremental mode (`incremental: true`, backed by a `.tsbuildinfo` file) avoids re-checking your whole program on every compile by persisting a per-file signature — essentially a hash of each file's *exported, publicly-visible type shape* — across runs; on a subsequent build, the checker only needs to fully re-verify files whose own source changed or whose *signature* (not just source text) of an imported file has changed, because a change that doesn't affect a file's externally visible type shape (a renamed local variable, a comment) can't possibly affect how any file importing it type-checks. This is the mechanical reason incremental builds are so much faster on large codebases: the expensive structural-comparison work is skipped entirely for files provably unaffected by what changed.
+
+**Project references** (`composite: true`, `references: [...]` in `tsconfig.json`) extend this idea across an entire monorepo by splitting the single, whole-program type graph the checker would otherwise build into separate, independently-checked sub-graphs joined only through their emitted `.d.ts` boundaries — a downstream project only ever type-checks against an upstream project's *declaration output*, never re-walking the upstream project's actual implementation source, which is what lets `tsc --build` skip recompiling an entire unchanged package rather than re-verifying it as part of one giant program.
+
+Deeply recursive conditional/mapped types (the kind covered in advanced generics) impose a real, measurable cost distinct from ordinary structural checking: the checker enforces an internal instantiation-depth limit specifically because unbounded recursive type computation is undecidable in the general case, and even within that limit, evaluating a highly recursive type is genuine tree-walking work performed on every file that references it — this is why a single overly-clever recursive utility type in a widely-imported module can measurably slow down an entire project's build, in a way no amount of incremental caching fully hides, because the recursive type itself still has to be resolved wherever it's used.
+
 ## Cheat sheet
 
 | Setting/flag | Effect |

@@ -136,6 +136,14 @@ type correctly — depending on the `EmailClient` interface rather than a
 `SendGridClient` class is what let the tests above use plain object
 literals with zero mocking-framework ceremony.
 
+## How It Actually Works
+
+Type-level testing tools (`tsd`, `expect-type`, or Jest's own `expectTypeOf`) work by exploiting the fact that assignability comparisons happen entirely at compile time and can be turned into a pass/fail signal without running anything: a helper like `Equal<A, B>` is typically implemented as a conditional type that checks mutual assignability in *both* directions using a function-type trick (`(<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? true : false`) — the double-conditional-through-a-generic-function pattern exists specifically to distinguish types the checker would otherwise treat as interchangeable through ordinary one-directional assignability (like `any` matching everything, or two differently-computed-but-assignable unions), forcing an exact structural identity check rather than a "is compatible with" check.
+
+This category of test genuinely executes as part of `tsc`'s check phase, not at runtime — a type-level assertion that fails produces a compile error at the line it's declared, with no test runner or executed code involved at all, which is why type tests can catch a regression (a return type quietly widening from a literal union to `string`, say) that a purely runtime unit test asserting on a specific value would never notice, since the runtime value can still be correct while its *inferred type* has silently degraded.
+
+Mocking generic or overloaded functions for runtime tests runs into the inference machinery from the generics lesson directly: a mock replacement for a function with multiple overload signatures only satisfies the type checker if the mock's own signature is compatible with every overload the real implementation declares — this is why test mocks of complex typed APIs sometimes need `as unknown as RealType` casts, not because the mock's runtime behavior is wrong, but because reproducing an overloaded or deeply-generic real signature exactly in a hand-written mock is often impractical, and the cast explicitly tells the checker to stop verifying what it structurally can't easily confirm.
+
 ## Cheat sheet
 
 | Technique | Use for |
