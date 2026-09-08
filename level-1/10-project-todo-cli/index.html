@@ -1014,6 +1014,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2250,6 +2261,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2422,6 +2444,9 @@ typed arrays/objects, classes, enums, and modules.</p>
 <a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>
 <a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a><span class="nx">main</span><span class="p">();</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>This project ties together type erasure and structural typing in a way worth naming explicitly. The <code>Todo</code> interface you define exists purely for the compiler — when <code>todo.ts</code> is compiled, every <code>: Todo</code> annotation, and the <code>interface Todo { ... }</code> declaration itself, is deleted; the emitted JS reading and writing <code>todos.json</code> has no notion of a "Todo shape" at all. That means the actual safety net is entirely at compile time: if the JSON file on disk is missing a field or has a <code>done</code> value stored as the string <code>"true"</code> instead of the boolean <code>true</code>, <code>JSON.parse</code> will happily hand back an object typed as <code>Todo</code> (because you told the checker to trust that shape via a type assertion or annotation on the parse result) even though it doesn't structurally match — this is a case where the checker takes your word for it rather than verifying, since <code>JSON.parse</code>'s real return type is <code>any</code>.</p>
+<p>The CLI's argument parsing (<code>process.argv</code>) is a good example of where TypeScript's structural narrowing runs out of information: <code>process.argv</code> is typed <code>string[]</code>, and everything you pull out of it stays <code>string</code> until you narrow it yourself — parsing a todo <code>id</code> from a CLI argument requires an explicit runtime check (<code>Number(arg)</code> and validating <code>!isNaN(...)</code>) because the compiler has no way to verify at compile time that whatever the user actually types on the command line matches your expected shape; type safety only covers what's expressible about <em>code</em>, never what's true about live, external input.</p>
 <h2 id="running-it">Running it<a class="headerlink" href="#running-it" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>npx<span class="w"> </span>ts-node<span class="w"> </span>todo.ts<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;Write Level 1 exercises&quot;</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>npx<span class="w"> </span>ts-node<span class="w"> </span>todo.ts<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;Review Level 2 outline&quot;</span>

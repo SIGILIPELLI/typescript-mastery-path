@@ -2136,6 +2136,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2287,6 +2298,17 @@
     <span class="md-ellipsis">
       
         Traps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2458,6 +2480,10 @@ flags only change whether TypeScript catches it before you ship.</p>
 many new <code>possibly undefined</code> errors on code that "worked" before</strong> —
 often on array access (<code>arr[i]</code>) throughout the codebase — because it
 applies to every indexed access, not just object index signatures.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>strict: true</code> is not one setting but an umbrella that enables a specific list of independent checker behaviors, each of which changes a distinct part of the structural-comparison algorithm — <code>strictNullChecks</code> removes <code>null</code>/<code>undefined</code> from being implicitly assignable to every other type (without it, the checker treats every type as structurally including <code>null | undefined</code>, which is why enabling it retroactively surfaces enormous numbers of "possibly null" errors across an existing codebase: those unsafe accesses were always there, just invisible to the comparison before); <code>strictFunctionTypes</code> enables the contravariant parameter-checking discussed in the classes-advanced lesson for standalone function-typed values (methods keep the more lenient bivariant check regardless); <code>noImplicitAny</code> makes the checker report an error instead of silently inferring <code>any</code> whenever it can't determine a type from context, converting what would otherwise be a silent type-safety hole into a visible one.</p>
+<p>Each flag changes a genuinely different code path inside the checker, which is why they're independently toggleable rather than fused into one binary switch — a codebase might reasonably want <code>noImplicitAny</code> (catch missing type annotations) without <code>strictNullChecks</code> (a large migration cost) as an intermediate adoption step, and <code>tsconfig.json</code>'s design deliberately exposes that granularity because the underlying checker behaviors really are separable passes over the same structural comparison, not a single monolithic "strictness level."</p>
+<p>Because none of these flags change <em>emit</em> at all — they only change which diagnostics the checker reports — toggling <code>strict</code> on or off never changes the compiled JavaScript output for code with zero type errors; it only changes which previously-silent type mismatches now get surfaced, which is why "turning on strict mode broke my build" always means the unsafe code was already there, not that the new setting introduced new runtime behavior.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

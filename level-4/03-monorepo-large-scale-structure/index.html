@@ -1979,6 +1979,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2316,6 +2327,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2509,6 +2531,10 @@ composite.</p>
 --build</code> refuses to build a graph where package A references B and B
 references A, unlike some bundlers that tolerate certain circular
 imports at runtime.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Project references (introduced in the performance lesson) are what make a monorepo's cross-package type checking scale: without them, a single <code>tsc</code> invocation over a monorepo treats every file reachable from your entry points as one flat program, re-resolving and re-checking the <em>entire</em> dependency graph's types on every build; with <code>composite: true</code> and <code>references</code>, each package is compiled and checked as an independent unit that emits its own <code>.d.ts</code>, and a downstream package's imports resolve against that upstream <code>.d.ts</code> output rather than re-walking upstream source — meaning <code>tsc --build</code> can skip recompiling any referenced package whose inputs (tracked via each package's own <code>.tsbuildinfo</code>) haven't changed, which is a fundamentally different scaling model from a single flat check.</p>
+<p>Path aliases (<code>paths</code> in <code>tsconfig.json</code>, mapping <code>@myorg/utils</code> to a local package path) are a <strong>compile-time-only</strong> resolution hint that only affects how the <em>checker</em> finds types — the emitted JS still contains the literal, unresolved import specifier (<code>import { x } from "@myorg/utils"</code>), so at runtime, whatever actually executes the compiled output (Node, a bundler) needs its own, separately-configured resolution for the same alias (a bundler's own alias config, or a workspace tool's symlinked <code>node_modules</code> entries) — a path alias that only exists in <code>tsconfig.json</code> and nowhere else compiles clean and then throws a module-not-found error the instant you run it.</p>
+<p>Workspace tools (npm/pnpm/yarn workspaces) symlink each internal package into a shared <code>node_modules</code>, which is what lets ordinary <code>node</code>-strategy module resolution find internal packages using the same algorithm as external npm dependencies — the type checker doesn't need to know a dependency is "local" at all; it just resolves the <code>.d.ts</code> through the symlink like any other package, which is why a broken or missing workspace symlink produces exactly the same "cannot find module" checker error as a genuinely missing external dependency.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

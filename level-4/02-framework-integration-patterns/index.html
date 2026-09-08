@@ -1918,6 +1918,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2250,6 +2261,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2419,6 +2441,10 @@ The generic <code>App&lt;State&gt;</code> pattern here is for building your own
 framework or an internal service layer; when integrating with an
 <em>existing</em> framework whose types you don't control, augmentation is
 usually the tool, not a generic wrapper class.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Framework type integrations (React's <code>useState&lt;T&gt;</code>, Vue's <code>ref&lt;T&gt;</code>, Angular's typed forms) all lean on the same generic-inference machinery from earlier lessons, but layered on top of framework-specific JSX/template-compilation steps that the checker treats as a distinct syntax kind. JSX is parsed by TypeScript's own parser into <code>React.createElement(...)</code> call expressions (or the newer automatic-runtime <code>jsx(...)</code> calls), and <em>then</em> checked like any other function call — this is why a component's prop types are verified through completely ordinary structural comparison of the props object literal against the component's declared props interface, with JSX attribute syntax being purely sugar the parser desugars before the checker ever sees it as anything but a function call.</p>
+<p>Generic component type inference (a generic <code>&lt;List&lt;T&gt; items={...} /&gt;</code>) pushes the two-directional inference from the generics lesson to its limit: the checker infers <code>T</code> from the <code>items</code> prop's array element type at the JSX call site the same way it infers a generic function's type parameter from an ordinary argument — but because JSX attribute checking and generic inference are two separately-evolved parts of the checker, there have historically been (and still are, in edge cases) real gaps where inference that works for a plain function call doesn't fully carry through JSX syntax, requiring an explicit type argument (<code>&lt;List&lt;Item&gt; ... /&gt;</code>) as a workaround.</p>
+<p>None of a framework's runtime reactivity (React's re-render triggering, Vue's dependency tracking) has any connection to the type system — a <code>ref&lt;T&gt;</code>'s <code>.value</code> property is typed to give you compile-time safety about what shape the reactive value holds, but the actual reactivity (proxy traps, subscriber notification) is pure runtime JS machinery the type checker is completely unaware of and cannot verify is wired correctly; a component can be fully type-correct and still never re-render due to a runtime reactivity bug the checker has no way to see.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

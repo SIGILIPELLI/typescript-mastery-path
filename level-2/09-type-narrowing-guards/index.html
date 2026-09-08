@@ -1423,6 +1423,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2372,6 +2383,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2683,6 +2705,10 @@ persistent runtime fact. A plain, never-reassigned binding keeps its
 narrowed type anywhere, including inside closures; a <code>let</code> that gets
 reassigned later loses that guarantee inside any closure created before
 the reassignment.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Discriminated union narrowing is control-flow analysis applied to a specific, checker-recognized pattern: a union of object types that all share one property with distinct literal types (the "discriminant," e.g. <code>kind: "circle" | "square"</code>). When the checker sees <code>switch (shape.kind) { case "circle": ... }</code>, it doesn't just narrow the primitive <code>shape.kind</code> — it narrows <code>shape</code> <em>itself</em> to the specific union member whose discriminant property's literal type matches that branch, because the checker specifically special-cases comparisons against a property that's a literal type shared structurally across every union member. This is the mechanism (not just convention) that makes discriminated unions so much more reliable than "duck typing by presence of an optional field" — the narrowing algorithm has a dedicated code path for a shared-literal discriminant that it doesn't have for arbitrary property presence checks.</p>
+<p>Custom <strong>type predicates</strong> (<code>function isFish(pet: Fish | Bird): pet is Fish</code>) are how you extend this narrowing to logic the checker can't derive on its own — the function body can contain arbitrary runtime logic, but the checker never verifies that the logic and the declared predicate actually agree; the <code>pet is Fish</code> return annotation is trusted exactly like <code>as</code>, meaning a type predicate that lies (returns <code>true</code> for something that isn't actually a <code>Fish</code>) will make the checker unsoundly narrow, propagating a false type guarantee downstream with no error.</p>
+<p>Narrowing state is scoped to a single, uninterrupted stretch of the control-flow graph — assigning to the narrowed variable inside a closure (a callback passed to <code>setTimeout</code> or an event handler) invalidates the narrowing for the checker, because the closure might run at an unknown later point after the value has changed, and the checker conservatively falls back to the variable's originally declared (wider) type inside any closure boundary, even when you as the programmer know the reassignment can't actually happen before the callback runs.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

@@ -1244,6 +1244,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2294,6 +2305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2546,6 +2568,10 @@ enforced by the JS engine itself, not just by TypeScript:</p>
 recommended: it tells the compiler "I intend to override a base class
 method," and if the base class method's name or signature ever changes or
 is removed, you get a compile error instead of a silently unused method.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Abstract classes and methods are, like most access modifiers, a <strong>compile-time-only</strong> restriction layered on top of ordinary JS classes: <code>abstract class Shape { abstract area(): number }</code> erases the <code>abstract</code> keyword entirely, and the emitted JS class is a normal, instantiable class with no <code>area</code> implementation — the "you cannot instantiate an abstract class" and "a subclass must implement abstract members" guarantees exist purely in the checker's bookkeeping (it tracks a <code>hasAbstractModifier</code> flag on the declaration and rejects <code>new Shape()</code> call expressions and subclasses missing the required override), and nothing prevents constructing the compiled class directly if you bypass the type checker (e.g., via <code>// @ts-ignore</code> or plain JS consuming the compiled output).</p>
+<p>Method overriding is checked with the same contravariant/covariant rule from function types: a subclass method's parameters must accept at least what the base class's declared parameters promise, and its return type must be assignable to the base's return type — this is why widening an overridden method's parameter type is allowed (accepting more is safe) but narrowing it is a compile error (the base class's callers might pass something the override can't actually handle), a rule called <strong>method parameter bivariance</strong> that TypeScript actually relaxes slightly for methods (vs. strict contravariance for standalone function types) as a pragmatic trade-off, controlled by the <code>strictFunctionTypes</code> flag which does <em>not</em> apply to method syntax, only to function-typed properties.</p>
+<p><code>super()</code> calls are subject to a genuine runtime ordering constraint the checker enforces because JS itself enforces it: in a derived class, <code>this</code> is not initialized until <code>super()</code> returns (the base class constructor runs first), so the checker flags any use of <code>this</code> before the <code>super()</code> call as an error — not a stylistic type-safety feature, but the checker surfacing a real <code>ReferenceError</code> that would otherwise only be caught by actually running the code.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

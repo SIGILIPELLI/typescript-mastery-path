@@ -851,6 +851,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2316,6 +2327,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2496,6 +2518,11 @@ throws, or an exhaustive <code>switch</code> with no remaining cases:</p>
 </code></pre></div>
 <p>This pattern — an exhaustiveness check via <code>never</code> — is one of TypeScript's
 most valuable safety nets for <code>switch</code> statements over a fixed set of cases.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Control-flow analysis (CFA) is the mechanism that lets TypeScript narrow a variable's type as you move through <code>if</code>/<code>else</code>, loops, and early returns — and it's a genuinely separate pass from the structural shape-comparison used for assignability. The checker builds a control-flow graph of your function body (mirroring the branches a JS runtime would actually take), and at each node it tracks the <em>narrowed type</em> of every variable in scope at that point, independent of its declared type.</p>
+<p>Concretely: if <code>x: string | number</code>, then inside <code>if (typeof x === "string") { ... }</code>, the checker recognizes <code>typeof x === "string"</code> as a <em>type guard expression</em>, and for the "true" branch of that graph node it narrows <code>x</code>'s type to <code>string</code>; the "false" branch (the <code>else</code>, or code after an early <code>return</code>) narrows it to <code>number</code> by elimination from the union. This narrowing is purely a compile-time bookkeeping exercise — the emitted JS still has a plain <code>typeof</code> check with no trace of the union type.</p>
+<p><code>never</code> is what falls out of this graph when a branch's narrowed type becomes the empty set — e.g., the <code>default</code> case of a switch over a union type, after every member has been handled in earlier cases, narrows to <code>never</code>. This is why assigning to a <code>never</code>-typed parameter in an "exhaustiveness check" function causes a compile error if you later add a new member to the union and forget to handle it: the switch's default branch is no longer provably unreachable, so its narrowed type is no longer <code>never</code>.</p>
+<p>Because CFA operates on syntactic patterns it recognizes (typeof, instanceof, <code>in</code>, discriminant property comparison, custom type predicates with <code>is</code>), narrowing can silently fail to apply to logically-equivalent code the checker doesn't recognize — for example, narrowing based on a boolean stored in a separate variable (<code>const isString = typeof x === "string"; if (isString) { ... }</code>) does not narrow <code>x</code>, because the graph only tracks guards evaluated directly in the condition, not indirect boolean aliases.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

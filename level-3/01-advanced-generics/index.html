@@ -1553,6 +1553,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2328,6 +2339,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2530,6 +2552,10 @@ tuples" precisely, including the exact position of every element:</p>
 as returning <code>(V | T[number])[]</code> — technically correct, but it throws
 away the exact length and per-position types that the tuple version
 keeps.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Conditional types (<code>T extends U ? X : Y</code>) are evaluated by the checker as genuine type-level computation, not simple substitution — for each concrete <code>T</code> supplied, the checker performs a structural assignability check (is <code>T</code> assignable to <code>U</code>?) and picks branch <code>X</code> or <code>Y</code> accordingly, deferring the whole evaluation if <code>T</code> is still a generic (unresolved) type parameter at that point, which is why conditional types inside generic function bodies often show up as unresolved, unreduced types in tooling until the function is actually called with a concrete argument.</p>
+<p><strong>Distribution</strong> over unions (covered briefly in the utility-types lesson) is controlled by a specific syntactic rule: a conditional type distributes over a union <em>only</em> when the checked type is a "naked" type parameter — <code>T extends U ? X : Y</code> distributes when <code>T</code> is literally a type parameter reference, but <code>[T] extends [U] ? X : Y</code> (wrapping both sides in a tuple) suppresses distribution, forcing the whole union to be checked against <code>U</code> as one unit. This bracket trick exists specifically because sometimes you want the non-distributive behavior (e.g., checking <code>T extends never</code> against a whole union rather than each member), and there's no other syntax to opt out.</p>
+<p><strong><code>infer</code></strong> lets a conditional type extract a piece of a matched structure into a new type variable, resolved by the same structural pattern-matching the checker uses everywhere else — <code>T extends Promise&lt;infer U&gt; ? U : T</code> structurally matches <code>T</code> against the shape <code>Promise&lt;?&gt;</code>, and if it matches, binds whatever filled that position to <code>U</code>. Variadic tuple types (<code>[first: T, ...rest: R]</code>) extend this same structural matching to tuple <em>positions and lengths</em> — the checker can decompose and reconstruct tuple types by index the same way <code>infer</code> decomposes a generic type argument, which is the mechanism underlying utility types like <code>Parameters&lt;F&gt;</code> (destructuring a function's parameter tuple) and <code>ReturnType&lt;F&gt;</code> (both implemented as conditional types with <code>infer</code> in TypeScript's own lib).</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

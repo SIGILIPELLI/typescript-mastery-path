@@ -834,6 +834,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2338,6 +2349,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2484,6 +2506,11 @@ annotate every single variable:</p>
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">// Explicit annotations matter most for function parameters (TypeScript can&#39;t</span>
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1">// guess what a caller will pass) and for declaring intent on public APIs.</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>TypeScript's primitive types (<code>string</code>, <code>number</code>, <code>boolean</code>) aren't runtime-enforced containers — they're compile-time labels the checker attaches to expressions and then erases. When you write <code>let age: number = 30</code>, the annotation <code>: number</code> never survives to the emitted JavaScript; the line becomes just <code>let age = 30;</code>. This is why <code>typeof age === "number"</code> is a <em>runtime</em> check you still have to write yourself if the value could come from somewhere untyped (JSON, user input) — TypeScript's type system has zero presence at runtime to enforce it for you.</p>
+<p>TypeScript is <strong>structurally typed</strong>, not nominally typed. When the checker decides whether a value of type A is assignable to a variable of type B, it doesn't check "was this declared as a B" — it compares the <em>shape</em> (the set of member names and their types). This matters even for primitives: literal types like <code>"active"</code> are structurally compared against their widened base type <code>string</code>, and the checker tracks two versions of a type for <code>let</code> vs <code>const</code> — a <code>const</code> gets the narrowest literal type (<code>"active"</code>), while <code>let</code> widens to the general primitive (<code>string</code>) at the point of declaration, because a <code>let</code> binding is presumed reassignable to any value of that base type.</p>
+<p><code>any</code> disables structural comparison entirely — it's a escape hatch where the checker stops comparing shapes and lets any operation through, effectively opting that value (and everything derived from it) out of static analysis. <code>unknown</code> keeps structural comparison active but starts from "no known members," forcing you to narrow (<code>typeof</code>, <code>instanceof</code>, a type guard) before the checker will let you use it — the compiler makes you prove the shape before it trusts you with member access.</p>
+<p>Type inference works by the same structural machinery in reverse: for <code>let x = 5</code>, the checker evaluates the initializer's type (the literal <code>5</code>) and widens it to <code>number</code> for a mutable binding, storing that as <code>x</code>'s declared type for the rest of its scope — no annotation needed because the initializer already carried enough shape information.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

@@ -1511,6 +1511,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2492,6 +2503,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2972,6 +2994,10 @@ and see for yourself).</p>
 <a id="__codelineno-12-61" name="__codelineno-12-61" href="#__codelineno-12-61"></a><span class="w">  </span><span class="p">});</span>
 <a id="__codelineno-12-62" name="__codelineno-12-62" href="#__codelineno-12-62"></a><span class="p">});</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>This project's <code>httpClient.ts</code> is the interesting boundary case for everything covered so far: <code>fetch(...).then(r =&gt; r.json())</code> returns <code>Promise&lt;any&gt;</code>, and the moment that <code>any</code> gets annotated as <code>Promise&lt;ForecastResponse&gt;</code> in this project's helper, the checker's structural verification stops — it trusts the annotation rather than checking the live Open-Meteo response actually has that shape. The "typed lookup table" in <code>weatherCodes.ts</code> demonstrates the opposite, safer pattern: a <code>Record&lt;number, string&gt;</code>-style object literal is a value the checker <em>can</em> fully verify structurally, because unlike an HTTP response it's fully known at compile time — every key and value is checked against the declared index and value types right there in your source.</p>
+<p>The generic <code>httpClient</code> function (parameterized as <code>fetchAndValidate&lt;T&gt;(url: string): Promise&lt;T&gt;</code>) is a clean example of type-parameter inference failing silently rather than loudly: because <code>T</code> doesn't appear in any <em>parameter</em> type (only in the return type), the checker can't infer it from the call — you must supply it explicitly (<code>fetchAndValidate&lt;ForecastResponse&gt;(url)</code>), and if you forget, <code>T</code> defaults to <code>unknown</code> (with no <code>strict</code> settings) or infers from context if the call's result is immediately assigned to an annotated variable; there's no way for a purely-return-position generic to be inferred from arguments the way <code>identity&lt;T&gt;(x: T)</code> can be.</p>
+<p><code>summary.ts</code> being "the pure logic that gets tested" is deliberate architecture aimed at the type-erasure boundary: pure functions over already-typed, in-memory data (<code>ForecastResponse → Summary</code>) are where TypeScript's structural checking is at its strongest — every input and output shape is fully known and verified by the checker — while the <code>httpClient</code> and <code>geocode</code> boundary functions that touch the network are exactly where the type system's guarantees are weakest, because JSON parsed from <code>fetch</code> is where an <code>any</code> (or a trusted-but-unverified annotation) necessarily enters the otherwise fully-checked pipeline.</p>
 <h2 id="running-it">Running it<a class="headerlink" href="#running-it" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>npm<span class="w"> </span>install
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>npm<span class="w"> </span>run<span class="w"> </span>build

@@ -1008,6 +1008,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2294,6 +2305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2451,6 +2473,10 @@ go away" defeats the entire purpose of using TypeScript.</p>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Or, during development, skip the manual compile step:</span>
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>npx<span class="w"> </span>ts-node<span class="w"> </span>src/main.ts
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>tsconfig.json</code>'s <code>module</code> and <code>target</code> settings control two independent things the compiler does during emit, and conflating them is the source of most module-related build confusion. <code>target</code> picks which JS <em>language features</em> get downleveled (an arrow function becomes a <code>function</code> expression on <code>target: es5</code>, for instance) — it has nothing to do with modules. <code>module</code> picks which <em>module system</em> your <code>import</code>/<code>export</code> statements are rewritten into: <code>commonjs</code> turns <code>import { x } from "./y"</code> into <code>const { x } = require("./y")</code> plus a <code>Object.defineProperty(exports, ...)</code> for each export; <code>esnext</code>/<code>es2022</code> leaves ES module syntax untouched for a bundler to handle; <code>nodenext</code> inspects each file's <code>package.json</code> <code>"type"</code> field (and the file extension, <code>.mts</code>/<code>.cts</code>) to decide per-file whether to emit CommonJS or ESM output — this is why <code>nodenext</code> can behave completely differently from <code>commonjs</code> even on code that looks identical.</p>
+<p>Module <em>resolution</em> (<code>moduleResolution</code>) is a third, separate axis: it's the algorithm the checker uses purely to find and load the <code>.d.ts</code> types for an import, not how the import gets emitted. Under <code>node</code>/<code>node10</code> resolution, an import path is resolved by walking up <code>node_modules</code> directories exactly the way Node's <code>require()</code> does, checking each candidate for a matching <code>.d.ts</code>, <code>.ts</code>, or the <code>"types"</code> field in that package's <code>package.json</code>. This means module resolution is entirely a compile-time, type-checking-phase concern; at runtime, whatever runtime you actually execute the emitted JS in (Node, a bundler, a browser) does its <em>own</em>, completely independent module resolution — TypeScript's guess and the runtime's actual resolution can, in edge cases (deep-import paths, conditional exports), diverge, which is why type-only resolution mismatches ("Cannot find module" in the editor, but it runs fine) are a distinct class of bug from a genuine runtime module error.</p>
+<p><code>.d.ts</code> files carry only type declarations, <code>declare</code> statements with no implementation — they are never included in emitted output and exist solely to feed the checker's structural comparisons; a package's real behavior at runtime comes entirely from its <code>.js</code> files, which the <code>.d.ts</code> is simply promising an accurate shape for (and can be wrong about, since nothing enforces the two stay in sync).</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

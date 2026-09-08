@@ -2058,6 +2058,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2250,6 +2261,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2430,6 +2452,10 @@ forgets to reset introduces a hard-to-trace bug where an object
 non-serializable arguments</strong> (functions, <code>undefined</code> inside objects,
 circular references) — pass an explicit <code>keyFn</code> for any <code>memoize</code> call
 where the arguments aren't plain, simple values.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Runtime performance and TypeScript's type system are almost entirely orthogonal, and conflating them is a common source of wasted optimization effort: because every type annotation is erased before execution, the compiled JS for a tightly-typed function and a loosely-typed (<code>any</code>-riddled) function with identical logic is byte-for-byte the same — the checker's structural verification affects nothing about how V8 or another JS engine executes the resulting code, so "make it more strictly typed" is never, by itself, a runtime performance technique; it only affects what bugs get caught before the code ever runs.</p>
+<p>Where TypeScript compilation genuinely <em>does</em> affect runtime performance is through <code>target</code> and downleveling decisions, not through the type system: an arrow function downleveled to <code>function</code> for <code>target: es5</code>, or <code>async</code>/<code>await</code> downleveled to a generator-driven state machine (the <code>__awaiter</code> helper covered in the async lesson) for older targets, are real, different runtime code paths with measurably different execution characteristics — choosing a modern <code>target</code> that matches your actual deployment runtime (avoiding unnecessary downleveling) is a legitimate performance lever, entirely distinct from anything about how strictly you've typed the code.</p>
+<p>Where the type system <em>does</em> have a real, measurable performance cost is exclusively at <strong>compile time</strong> (covered in the performance-compilation lesson) — deep conditional-type recursion, huge union types, and unbounded generic instantiation all cost real <code>tsc</code> wall-clock time, but that cost is paid once during the build, never during your program's execution; a codebase can have an extremely slow <code>tsc</code> build and a perfectly fast running application, because those two kinds of "performance" are produced by completely different phases of the pipeline.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

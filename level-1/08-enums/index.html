@@ -969,6 +969,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2272,6 +2283,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2407,6 +2429,10 @@ runtime code, and TypeScript's structural typing already gives you the same
 compile-time safety. Reach for a real <code>enum</code> when you specifically want a
 namespaced group of related constants (<code>Status.Active</code> reads more clearly
 than a bare <code>"ACTIVE"</code> string floating around your code).</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Unlike almost everything else covered so far, a numeric or string <code>enum</code> is <strong>not</strong> fully erased — it's one of the few TypeScript constructs that generates real runtime JavaScript. <code>enum Direction { Up, Down }</code> compiles to an IIFE that builds an object with both forward mappings (<code>Direction.Up === 0</code>) and, for numeric enums only, <em>reverse</em> mappings (<code>Direction[0] === "Up"</code>), so the runtime object literally has twice as many keys as members you declared. String enums skip the reverse mapping (a string value doesn't need a numeric-index lookup back to its name), so they produce a smaller, plainer object.</p>
+<p>This runtime cost is exactly why the language later added <code>as const</code> objects as a lighter alternative: <code>const Direction = { Up: "UP", Down: "DOWN" } as const</code> produces one plain object with no IIFE wrapper and no reverse-mapping bloat, and pairing it with <code>type Direction = typeof Direction[keyof typeof Direction]</code> gets you a structurally-equivalent union-of-literal-values type for compile-time checking, with strictly less emitted code. The checker treats a <code>keyof typeof</code> union exactly like any other string-literal union for narrowing purposes — <code>switch</code> exhaustiveness checks work identically on both.</p>
+<p><code>const enum</code> is a separate, more aggressive variant: annotate <code>enum</code> with <code>const</code> and the compiler <em>inlines</em> every reference at each use site (<code>Direction.Up</code> becomes the literal <code>0</code> in the emitted code) and, given <code>isolatedModules</code> is off, emits no runtime object for the enum at all — the fastest option, but it breaks tools that compile files independently (like Babel or <code>ts-node</code> in isolated-transpile modes) because inlining requires cross-file type information the const-enum's own module doesn't carry, which is why <code>isolatedModules: true</code> (required by most modern bundlers) forbids <code>const enum</code> outright.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

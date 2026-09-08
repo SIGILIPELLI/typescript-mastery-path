@@ -1553,6 +1553,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2272,6 +2283,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2514,6 +2536,10 @@ the factory calls that produce them run <strong>top-down</strong>:</p>
 <p>If you stack decorators (logging, then validation, then caching, for
 example) and the combined behavior looks backwards, this ordering — not
 a bug in your decorator — is almost always why.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Unlike almost every other TypeScript-only construct, decorators are <strong>not</strong> type-erased — they compile to real function calls that execute at <em>class-definition time</em>, not at instantiation time. <code>@log class Foo {}</code> compiles (in the legacy <code>experimentalDecorators</code> model) to something like <code>Foo = __decorate([log], Foo)</code>, where <code>__decorate</code> is a runtime helper the compiler emits once per file that uses decorators, and it calls your decorator function immediately as the class declaration is evaluated, passing it the constructor (or property descriptor) to optionally replace or wrap. This is why decorator <em>evaluation order</em> is a real runtime sequencing question, not a type-checking abstraction: decorators run bottom-to-top within a single declaration, and property/method decorators run before class decorators, because that mirrors the order the underlying descriptors actually become available during class construction.</p>
+<p>TypeScript's decorator support went through a genuine breaking change: <code>experimentalDecorators</code> implements TypeScript's own pre-standard proposal (the <code>__decorate</code>/<code>__param</code>/<code>__metadata</code> helpers, still widely used by frameworks like Angular and NestJS), while newer TypeScript versions also support the <strong>stage-3 ECMAScript decorators</strong> standard, which has a different runtime calling convention (decorators receive a context object, not raw property descriptors) and compiles to different emitted helper code — the two are not interchangeable, and mixing decorator syntax written for one model against a <code>tsconfig</code> targeting the other produces confusing runtime failures rather than compile errors, because both are syntactically valid decorator positions to the parser.</p>
+<p><code>reflect-metadata</code> (paired with <code>emitDecoratorMetadata</code>) is where decorators intersect with the type system in an unusual way: the compiler, when this flag is set, emits calls that store a <em>runtime-accessible</em> representation of a parameter or property's declared type (as a constructor-function value, like <code>String</code> or <code>Number</code>, not the full structural TypeScript type) as metadata on the class — this is the one narrow case where type information does leak into runtime-inspectable form, and it's exactly what dependency-injection frameworks use to look up which class to construct for a given constructor parameter, since ordinary generic-parameter erasure would otherwise make that impossible.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

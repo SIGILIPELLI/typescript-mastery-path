@@ -1339,6 +1339,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2316,6 +2327,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2559,6 +2581,10 @@ that's exactly where bad data quietly slips through untested:</p>
 keep them typed with <code>Partial&lt;T&gt;</code> (from <a href="../05-utility-types/">Module 5</a>)
 so a typo in a test's setup fails at compile time, not three tests later
 with a confusing runtime error.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Running TypeScript tests through Jest actually involves a second, independent compilation step that's easy to overlook: <code>ts-jest</code> (or Babel's TypeScript preset) type-checks and transpiles each test file <em>in the Jest process</em>, separately from any <code>tsc</code> build you might also run — which is why it's possible for <code>npm test</code> to pass while <code>tsc --noEmit</code> reports errors, or vice versa, if the two are configured against different <code>tsconfig.json</code> settings (a common gotcha: <code>ts-jest</code> defaulting to a different <code>target</code>/<code>module</code> than your production build config, silently downleveling test code differently).</p>
+<p>Type assertions used to shape mock data (<code>as SomeInterface</code>, or <code>as unknown as SomeInterface</code> to bypass an intermediate compatibility check) tell the checker to skip its normal structural comparison and simply trust your claim — this is exactly why a test's compiled, type-checked mock object can still crash at runtime if the interface's real shape has drifted since the mock was written: <code>as</code> doesn't insert a runtime validation, it only silences the static one. Libraries like <code>jest.mocked()</code> exist specifically to avoid this — instead of asserting a shape, <code>jest.mocked(fn)</code> narrows the checker's <em>inferred</em> type of an already-typed function to include Jest's mock-specific members (<code>.mockReturnValue</code>, <code>.mock.calls</code>), by intersecting with <code>jest.Mock&lt;...&gt;</code>, computed from the original function's real signature rather than a hand-typed guess.</p>
+<p>Type-checking a test file and <em>running</em> it are, once again, fully decoupled processes: a test can be 100% type-correct and still fail its assertions (correct types say nothing about correct runtime values), and — depending on your Jest transform config — a test with type errors can sometimes still execute if the transform only transpiles (strips types) without invoking the full checker, which is a common source of "why didn't this type error block my test run" confusion.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

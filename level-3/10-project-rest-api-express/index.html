@@ -1766,6 +1766,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2261,6 +2272,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2509,6 +2531,10 @@ typing <code>req.params</code>/<code>req.body</code> in the first place. And <co
 <code>ValidationError</code> as distinct classes let the single error-handling
 middleware use <code>instanceof</code> to pick the right status code, instead of
 scattering <code>res.status(...)</code> calls through every route.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>This project's request-validation layer is the practical convergence point of several mechanisms from earlier lessons: <code>req.body</code> arrives as <code>any</code> (Express's own types, as covered in the Express lesson), so every route handler here that types it as a specific request-shape interface is trusting an annotation the checker cannot verify — the runtime validation call (checking required fields exist and have the right primitive types before proceeding) is the only thing actually enforcing that shape; delete it, and the checker still reports zero errors while a malformed request silently corrupts downstream logic.</p>
+<p>The typed error-response union (success vs. error result shapes) used across these routes is a discriminated union in the same structural sense as the narrowing lesson — the checker distinguishes the two shapes by a shared literal discriminant field, and every place that branches on it gets automatic narrowing of the full response object, not just the discriminant property, which is exactly why this pattern scales better across a whole API than ad hoc <code>if (result.error)</code> checks against an object with only optional fields (the checker can't guarantee mutual exclusivity of optional-field shapes the way it can with a literal discriminant).</p>
+<p>The route parameter types (<code>req.params.id: string</code>) tie back to the Express lesson's point about the router having no way to encode "this segment is numeric" in its own type declarations — every place this project converts an <code>id</code> param to a number for a database lookup is a manual runtime step the type system cannot skip for you, however precisely the rest of the codebase is typed.</p>
 <h2 id="running-it">Running it<a class="headerlink" href="#running-it" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>npm<span class="w"> </span>install
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>npm<span class="w"> </span>run<span class="w"> </span>build

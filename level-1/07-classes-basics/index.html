@@ -952,6 +952,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2294,6 +2305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2491,6 +2513,10 @@ name</code> line needed.</p>
 </code></pre></div>
 <p><code>get</code>/<code>set</code> let you use property-like syntax (<code>temp.celsius = 25</code>) while
 still running validation logic behind the scenes.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>TypeScript classes compile to plain JS <code>class</code> syntax (or, on older <code>target</code>s, to constructor-function-plus-prototype patterns), with every type annotation stripped: <code>private</code>, <code>public</code>, <code>protected</code>, parameter-property shorthand, and any <code>: Type</code> annotation on a field all vanish from the emitted code. This means <code>private</code> in TypeScript is a <strong>compile-time-only</strong> access restriction — the checker refuses code outside the class that reads <code>instance.secret</code>, but the emitted JS field is an ordinary, fully-accessible property, so <code>instance["secret"]</code> (bracket access with a string) or plain JS calling code bypasses the restriction entirely at runtime. True runtime privacy requires the JS-native <code>#field</code> syntax, which TypeScript also supports and which <em>does</em> enforce access at the engine level because it's a distinct kind of property key, not compiler-checked.</p>
+<p>Despite being structurally typed everywhere else, TypeScript classes are compared <strong>structurally, with one nominal-like exception</strong>: two classes with identical public members are mutually assignable even if unrelated by inheritance — but a <code>private</code> or <code>protected</code> member makes the comparison behave nominally for that pair, because the checker additionally requires the member to originate from the <em>same declaration</em> (the same class or a shared ancestor), not just a matching name and type. This is why two classes that both declare a <code>private id: string</code> field are <em>not</em> assignable to each other even though the public shape looks identical — the checker treats each class's private members as tagged with that specific class's identity.</p>
+<p>Parameter properties (<code>constructor(private name: string) {}</code>) are pure syntactic sugar: the compiler expands that single parameter into a declared class field plus an assignment statement (<code>this.name = name;</code>) inserted at the top of the constructor body — nothing new is introduced with respect to <code>private</code>'s erasure, it's just fewer characters to type; the underlying execution is identical to writing the field and the assignment out by hand.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

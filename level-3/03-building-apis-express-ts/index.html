@@ -1570,6 +1570,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2250,6 +2261,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2411,6 +2433,10 @@ fields at runtime.</p>
 in Express 4 — you must forward the error yourself
 (<code>.catch(next)</code> or a wrapping helper); Express 5 fixes this by
 automatically forwarding rejected promises.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Express's own type declarations (<code>@types/express</code>) type <code>req.body</code> as <code>any</code> by default, because Express itself does zero body parsing or shape validation at runtime — whatever middleware you attach (<code>express.json()</code>) populates <code>req.body</code> with whatever <code>JSON.parse</code> produced from the raw request bytes, and the <em>type</em> declaration has no way to know or enforce what shape that will be for your particular route. Declaring a custom <code>Request&lt;P, ResBody, ReqBody&gt;</code> generic (Express's <code>Request</code> type accepts type parameters for route params, response body, and request body) only narrows what the <em>checker</em> will let you write in your handler — it inserts no runtime parsing or validation, so a client sending a malformed body still reaches your handler with <code>req.body</code> structurally "typed" as your interface but not actually matching it.</p>
+<p>Middleware composition is checked through ordinary function-type contravariance: an Express middleware's signature <code>(req, res, next) =&gt; void</code> is checked the same way any callback parameter is — which is why loosely-typed middleware (declaring <code>req: any</code>) can silently poison the type safety of every handler downstream that receives the same <code>req</code> object augmented by that middleware, since TypeScript has no way to track that a middleware function <em>mutated</em> <code>req</code> at runtime by attaching a new property (like <code>req.user</code> from an auth middleware) unless you explicitly extend the <code>Request</code> interface's declaration (via declaration merging, augmenting Express's own global namespace) to describe that mutation statically.</p>
+<p>Route parameters (<code>req.params</code>) are always typed as <code>{ [key: string]: string }</code>-shaped objects regardless of how specific your route pattern looks — <code>/users/:id</code> gives you <code>req.params.id: string</code>, never <code>number</code>, because Express extracts URL segments as raw strings at runtime with no type inference tied to the route-pattern syntax; converting <code>id</code> to a number is always a runtime step you perform yourself, the router's type declarations can't encode the pattern-to-type relationship your route string implies.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

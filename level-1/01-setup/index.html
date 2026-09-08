@@ -795,6 +795,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2484,6 +2506,12 @@ box with zero configuration, since VS Code and TypeScript share the same
 underlying language service. Any other editor with a TypeScript plugin
 (WebStorm, Neovim + a language server) works too — pick one and move on, since
 the type system matters far more than the editor.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>When you run <code>tsc</code>, three distinct phases happen in sequence, and understanding them explains almost every confusing error message you'll hit later.</p>
+<p><strong>1. Parsing.</strong> The compiler tokenizes your <code>.ts</code> source and builds an Abstract Syntax Tree (AST) — the same kind of tree a JavaScript-only parser would build, except TypeScript's parser also understands type annotations (<code>: string</code>), interfaces, generics, and other syntax that has no JavaScript equivalent. This is why a <code>.ts</code> file with a syntax error in a type position (like <code>let x: ;</code>) fails before type checking even starts — the parser can't build a tree at all.</p>
+<p><strong>2. Type checking.</strong> The checker walks the AST and, for every expression, computes a type and verifies it's compatible with however that expression is used — a variable's declared type, a function's parameter types, a returned value against a return type. This is the "type-checker" (<code>checker.ts</code> in the TypeScript source, one of the largest files in the compiler). Crucially, type checking is a <em>static analysis pass only</em> — it never runs your code. It infers and compares types by walking the tree, and its output is a list of diagnostics (errors/warnings), not a transformed program.</p>
+<p><strong>3. Emit.</strong> If you're transpiling (not just type-checking with <code>--noEmit</code>), a separate pass converts the AST to a plain-JavaScript AST by literally deleting every type-only construct — annotations, interfaces, generic parameters — and downleveling any modern syntax your <code>target</code> doesn't support. This is called <strong>type erasure</strong>: at runtime, TypeScript's types do not exist in any form. There's no runtime type-tag, no reflection API for your interfaces, nothing. A <code>.d.ts</code> declaration file is only ever consumed by the type checker in phase 2; it contributes zero bytes to phase 3's output.</p>
+<p>The practical consequence: type errors and emit are independent. By default <code>tsc</code> still emits JavaScript even when type checking fails (you'll see the errors printed, but the <code>.js</code> file is written anyway) unless <code>noEmitOnError</code> is set — because "erase the types and emit JS" doesn't logically depend on "did the types check out."</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Set up a fresh project: run <code>npm init -y</code>, install <code>typescript</code> and
 <code>ts-node</code> as dev dependencies, and generate a <code>tsconfig.json</code> with <code>tsc

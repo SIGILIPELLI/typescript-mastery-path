@@ -1216,6 +1216,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2294,6 +2305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2508,6 +2530,11 @@ APIs and anything meant to be <code>implements</code>-ed by consumers lean towar
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The checker treats <code>interface</code> and object-shape <code>type</code> aliases as producing the same underlying structural type once resolved — assignability comparisons don't care which keyword declared a shape. The real differences are in <em>how and when</em> the compiler resolves each declaration. An <code>interface</code> is resolved <strong>lazily and incrementally</strong>: the checker can reference an interface's own members while still processing its declaration (self-reference), and declaration merging (covered in an earlier lesson) works because each <code>interface X { }</code> block is treated as a partial contribution to one accumulated member list, only flattened into a final shape when something actually needs to check against <code>X</code>.</p>
+<p>A <code>type</code> alias for an object shape, by contrast, is resolved <strong>eagerly</strong> at the point of declaration into a fixed type — no merging, and a self-referencing type alias (<code>type Tree = { children: Tree[] }</code>) only works because object/array member positions are lazily evaluated internally by the checker, not because type aliases support recursion in general; a <em>non-object</em> self-referential alias (<code>type Bad = Bad | string</code>) is rejected as circular precisely because there's no member boundary to defer evaluation across.</p>
+<p>This resolution difference is also why large unions of <code>interface extends</code> chains can be measurably slower to check than equivalent <code>type</code> intersections in some compiler versions — merged-and-then-flattened interface resolution vs. eagerly-computed intersection types exercise different code paths in the checker's caching, though this has narrowed across TypeScript releases and isn't a reliable rule to design around.</p>
+<p>Neither form has any runtime representation — both compile to nothing, and both are checked through the same structural, member-by-member comparison; the choice between them is entirely about which authoring-time behaviors (mergeability, union/mapped-type operations only <code>type</code> supports) you need, not about differing runtime or type-safety guarantees.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

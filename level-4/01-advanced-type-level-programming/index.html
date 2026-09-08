@@ -1912,6 +1912,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2294,6 +2305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2464,6 +2486,10 @@ arrays and functions explicitly.</p>
 type</strong>, not in an arbitrary position — <code>type X&lt;S&gt; = S extends infer T ? T : never</code>
 is valid, but trying to use <code>infer</code> outside a conditional's <code>extends</code>
 position is a syntax error.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Template literal types make the checker treat string types compositionally the way it treats object shapes: <code>`on${Capitalize&lt;Event&gt;}`</code> is resolved by taking each concrete member of the <code>Event</code> union, applying the intrinsic <code>Capitalize&lt;S&gt;</code> transformation (one of a handful of string-manipulation intrinsics — <code>Uppercase</code>, <code>Lowercase</code>, <code>Capitalize</code>, <code>Uncapitalize</code> — implemented directly in the compiler rather than as ordinary conditional types, because they need to inspect and rewrite individual characters of a string-literal type, something conditional/mapped types alone can't express), and concatenating the literal template pieces — the whole thing distributing over unions the same way conditional types do, producing a new union of concrete string-literal types, not a general <code>string</code>.</p>
+<p>Recursive type-level programming (parsing a string-literal type character by character with <code>infer</code>, computing a tuple's length via mapped-type accumulation, and so on) is genuine, if unusual, computation performed entirely by the type checker during the check phase — it has no runtime cost whatsoever since none of it survives erasure, but it has a real <em>compile-time</em> cost, bounded by the compiler's hard-coded instantiation-depth limit (currently in the high hundreds), which exists because unrestricted recursive conditional types make type checking undecidable in the general case; hit the limit and the checker gives up and reports the type as <code>any</code> or an explicit depth-exceeded error rather than looping forever.</p>
+<p>Mapped types with key remapping (<code>{ [K in keyof T as NewKey]: T[K] }</code>, using an <code>as</code> clause inside the mapped-type position) let you transform not just the values but the <em>property names</em> themselves during the iteration over <code>keyof T</code> — this is the exact mechanism event-emitter and getter/setter-generating utility types use to derive <code>"onFoo"</code> handler property names from a base <code>"foo"</code> event-name union, all computed once at the type level with zero corresponding runtime code generated for it.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

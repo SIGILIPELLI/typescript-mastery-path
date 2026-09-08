@@ -2063,6 +2063,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2316,6 +2327,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2473,6 +2495,10 @@ which starts empty and changes) can pass even when a route the health
 check doesn't exercise is broken.</strong> A dedicated <code>/health</code> route that
 does nothing but return <code>200</code> is more common in real services than
 reusing a business endpoint for this purpose.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Because type erasure means the emitted JS is all a Node runtime ever needs, a well-built Docker image for a TypeScript app should never contain the TypeScript compiler, the <code>.ts</code> source, or <code>devDependencies</code> at all in its final layer — a multi-stage Dockerfile's build stage runs <code>tsc</code> to produce plain <code>.js</code> in a <code>dist/</code> directory, and the final runtime stage copies only that <code>dist/</code> output plus production <code>node_modules</code> into a fresh, minimal base image, because at runtime absolutely nothing about the original TypeScript source is needed or referenced; this is the clearest possible illustration that type information has zero existence past compile time — the running container literally cannot tell it was ever TypeScript.</p>
+<p><code>node_modules</code> pruning interacts with the <code>@types/*</code> packages from the third-party-types lesson in a way worth calling out explicitly: <code>@types</code> packages are typically <code>devDependencies</code> (or bundled types under <code>dependencies</code> for packages that self-type), and since they're consumed <em>only</em> by the checker during the build stage, a production image that installs with <code>--omit=dev</code> correctly drops them with no runtime effect — they were never going to be referenced by the running JS regardless.</p>
+<p>Source maps (<code>sourceMap: true</code>) are the one artifact worth deliberately choosing whether to ship: a source map is a separate JSON file mapping positions in the emitted <code>.js</code> back to the original <code>.ts</code> source, generated during emit and consumed only by error-reporting/debugging tools (a crash reporter, browser devtools, <code>node --enable-source-maps</code>) — it's not needed for the program to run, but omitting it from a production image trades off debuggability (stack traces point at generated JS positions, not your original source lines) against not shipping your original source layout inside the container.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

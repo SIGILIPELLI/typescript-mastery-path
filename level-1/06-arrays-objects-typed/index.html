@@ -924,6 +924,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2294,6 +2305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2414,6 +2436,10 @@ it explicitly.</p>
 </code></pre></div>
 <p>An index signature (<code>{ [key: string]: number }</code>) is how you type an object
 you're using as a dictionary/map, where you don't know every key up front.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>Array&lt;T&gt;</code> (equivalently <code>T[]</code>) is a generic interface defined in TypeScript's own <code>lib.es5.d.ts</code>, with a member for every array method (<code>push(item: T): number</code>, <code>map&lt;U&gt;(fn: (item: T, index: number, array: T[]) =&gt; U): U[]</code>, and so on). When you write <code>const nums: number[] = []</code>, the checker substitutes <code>T = number</code> into that library interface's declaration, and every subsequent method call is checked against the substituted signatures — <code>nums.push("x")</code> fails because the library declares <code>push(...items: T[]): number</code>, and with <code>T</code> bound to <code>number</code>, <code>"x"</code> isn't assignable to <code>number</code>. None of this exists at runtime; the compiled array is an ordinary JS array with no element-type tag, which is why <code>(nums as any[]).push("x")</code> compiles and runs fine (it just corrupts the array from the type system's point of view).</p>
+<p><strong>Index signatures</strong> (<code>{ [key: string]: number }</code>) tell the checker "any property access with a string key on this object has type <code>number</code>," which is a <em>closed-world assumption the checker enforces only at the type level</em> — it does not insert a runtime bounds or existence check. Accessing <code>obj[key]</code> where <code>key</code> isn't actually present at runtime returns <code>undefined</code> in JS, but the checker still reports its static type as <code>number</code> (not <code>number | undefined</code>) unless <code>noUncheckedIndexedAccess</code> is enabled, which makes every indexed access <code>T | undefined</code> to reflect the real runtime possibility of a missing key.</p>
+<p>Object literal shapes are checked member-by-member the same way interfaces are (structural comparison), but array <em>literals</em> get their element type inferred as the union of all literal element types, then widened — <code>[1, "a"]</code> infers as <code>(string | number)[]</code>, and every element access loses the connection to which specific element it was; the checker cannot narrow <code>arr[0]</code> to <code>number</code> just because you know positionally it came from <code>1</code>, since ordinary arrays (unlike tuples) don't track per-index types.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

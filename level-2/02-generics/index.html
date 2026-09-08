@@ -1250,6 +1250,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2418,6 +2429,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2677,6 +2699,11 @@ runtime that the value it receives actually matches <code>T</code>:</p>
 verify data that genuinely arrives from outside your program (JSON
 payloads, user input, files). That's the job of runtime validation,
 covered in <a href="../08-working-with-json-apis/">Module 8</a>.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Generics are resolved through <strong>type inference from call-site arguments</strong>, a distinct algorithm from the ordinary structural assignability check. When you call <code>identity(5)</code> against <code>function identity&lt;T&gt;(x: T): T</code>, the checker doesn't look up a declared type for <code>T</code> — it collects "inference candidates" by structurally matching the actual argument's type (<code>number</code>, or more precisely the literal <code>5</code>) against the position where <code>T</code> appears in the parameter's type, then picks the best common supertype among all candidates gathered across every parameter that mentions <code>T</code>. This is why generic inference can fail to pick the type you expect when <code>T</code> appears in multiple parameters with conflicting concrete types — the checker computes one unified <code>T</code> for the whole call, not one per occurrence.</p>
+<p><strong>Contextual typing</strong> feeds the other direction: when a generic function's type parameter can't be inferred from arguments alone (e.g., an empty array literal <code>[]</code> passed where <code>T[]</code> is expected), the checker instead looks at the <em>expected type</em> from the surrounding context — a variable's declared type, a return-type annotation, another parameter's type in the same call — and uses that to seed <code>T</code>. This two-directional inference (bottom-up from arguments, top-down from context) is why moving the same expression to a different position in your code can change what a generic call infers, even with no other change.</p>
+<p>At emit, all of this vanishes without a trace: <code>identity&lt;number&gt;(5)</code> compiles to exactly <code>identity(5)</code>, with no runtime representation of <code>T</code> whatsoever — there is no way for the compiled function to know at runtime what <code>T</code> was instantiated as, which is the underlying reason patterns like <code>new T()</code> or <code>x instanceof T</code> inside a generic function body are compile errors: <code>T</code> is erased before that code ever runs, so there's no runtime value to instantiate or check against.</p>
+<p>Generic <strong>constraints</strong> (<code>&lt;T extends { id: number }&gt;</code>) don't change any of this — they only narrow what the checker will accept as <code>T</code> during structural comparison at the call site; they add zero runtime validation, so a value can still fail to genuinely have that shape if it was force-cast (<code>as</code>) into the call.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

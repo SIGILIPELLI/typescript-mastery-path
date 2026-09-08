@@ -1587,6 +1587,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2228,6 +2239,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2390,6 +2412,10 @@ without a compile error. Prefer looping and assigning per-key with
 doesn't actually match what the caller passed (e.g. extra required
 fields your <code>interface</code> declares elsewhere), TypeScript won't catch it
 here — the cast tells the compiler to trust you.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Modern type-safe query builders and ORMs (Prisma, Drizzle, Kysely) achieve their "the query result type matches the actual columns" guarantee through <strong>codegen or schema-driven type inference</strong>, not through any special language feature — they read your database schema (a <code>.prisma</code> file, a <code>sql.ts</code> table definition, or by introspecting a live database) at build time and generate or infer literal TypeScript types whose shape mirrors the schema exactly, which the checker then structurally verifies your query code against exactly like any other type. The type safety is only as good as that schema staying in sync with the real database — if a migration changes a column and the generated types aren't regenerated, the checker will confidently verify code against a shape the database no longer actually has.</p>
+<p>This is a sharp illustration of generic inference doing real structural work: a query builder's <code>.select("id", "name")</code> method is typically typed as a generic function whose type parameter is inferred from the <em>literal string arguments</em> you pass (using <code>keyof</code> constraints against the table's generated row type), and the return type is computed by mapping those literal keys back into a <code>Pick&lt;Row, "id" | "name"&gt;</code>-style projection — entirely resolved at compile time through the same conditional-type and mapped-type machinery covered earlier, with zero runtime cost, since (as always) none of this survives to the emitted JS, which just calls the ordinary runtime query method with the same string arguments.</p>
+<p>Raw SQL strings sit outside all of this: a query builder can only type-check what it can see as TypeScript syntax (method chains, generic arguments), so a raw <code>db.query&lt;User&gt;("SELECT * FROM users")</code> call has its result type asserted, not verified — the string literal is opaque to the checker, which is exactly why raw-SQL escape hatches in typed database libraries reintroduce the same trust-the-annotation gap as <code>JSON.parse</code>.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

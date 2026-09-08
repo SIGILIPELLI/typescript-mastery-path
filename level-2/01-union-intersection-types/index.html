@@ -1166,6 +1166,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2306,6 +2317,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2543,6 +2565,10 @@ if a literal doesn't match any single member cleanly:</p>
 <em>fresh object literals</em>, not on values passed through a variable first.
 Don't rely on it as validation — it's a linting convenience, not a runtime
 guarantee.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A union type <code>A | B</code> is stored internally by the checker as a literal set of its constituent types, and every operation on a union-typed value is checked by verifying it's valid for <em>every</em> member of that set — <code>value.someMethod()</code> only type-checks if <code>someMethod</code> exists with a compatible signature on both <code>A</code> and <code>B</code>, because the checker has no way to know at that point in the code which branch of the union is actually present. This is precisely what narrowing (via <code>typeof</code>, <code>in</code>, discriminant comparison) fixes: each narrowing guard shrinks the <em>set</em> the checker considers live at that control-flow node, down to a subset of the original union, which then allows member access specific to the narrowed subset.</p>
+<p>An intersection type <code>A &amp; B</code> is computed structurally by merging both types' member lists into one combined shape — if a member name exists in both with compatible types, the intersection keeps the more specific (narrower) of the two; if the same member has incompatible primitive types in each (say <code>string</code> in <code>A</code> and <code>number</code> in <code>B</code>), the merged member type becomes <code>never</code>, because no value can simultaneously satisfy both — and a <code>never</code>-typed required member makes the <em>entire intersection</em> effectively uninhabitable (nothing but <code>never</code> itself can be assigned to it), which is the mechanical reason "intersecting two conflicting object types" quietly produces a type nothing can satisfy rather than a clean compiler error.</p>
+<p>Unions and intersections both distribute over function types differently than over object types: a union of function types intersects their parameter lists implicitly (only calls valid on all variants type-check, per the same "must be valid for every member" rule), while an intersection of function types is treated as function <em>overloads</em> — <code>((x: string) =&gt; void) &amp; ((x: number) =&gt; void)</code> behaves like calling a function with two possible signatures, resolved the same way overload resolution works, rather than as a value that must simultaneously be both functions.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

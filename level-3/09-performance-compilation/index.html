@@ -1749,6 +1749,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2272,6 +2283,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2422,6 +2444,10 @@ language server (what your editor uses) does incremental, single-file
 reanalysis by default regardless of your <code>tsconfig</code>; a slow editor is
 more often caused by an enormous single file, a very large union type,
 or a plugin, not by the same things that make a cold <code>tsc --build</code> slow.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>tsc</code>'s incremental mode (<code>incremental: true</code>, backed by a <code>.tsbuildinfo</code> file) avoids re-checking your whole program on every compile by persisting a per-file signature — essentially a hash of each file's <em>exported, publicly-visible type shape</em> — across runs; on a subsequent build, the checker only needs to fully re-verify files whose own source changed or whose <em>signature</em> (not just source text) of an imported file has changed, because a change that doesn't affect a file's externally visible type shape (a renamed local variable, a comment) can't possibly affect how any file importing it type-checks. This is the mechanical reason incremental builds are so much faster on large codebases: the expensive structural-comparison work is skipped entirely for files provably unaffected by what changed.</p>
+<p><strong>Project references</strong> (<code>composite: true</code>, <code>references: [...]</code> in <code>tsconfig.json</code>) extend this idea across an entire monorepo by splitting the single, whole-program type graph the checker would otherwise build into separate, independently-checked sub-graphs joined only through their emitted <code>.d.ts</code> boundaries — a downstream project only ever type-checks against an upstream project's <em>declaration output</em>, never re-walking the upstream project's actual implementation source, which is what lets <code>tsc --build</code> skip recompiling an entire unchanged package rather than re-verifying it as part of one giant program.</p>
+<p>Deeply recursive conditional/mapped types (the kind covered in advanced generics) impose a real, measurable cost distinct from ordinary structural checking: the checker enforces an internal instantiation-depth limit specifically because unbounded recursive type computation is undecidable in the general case, and even within that limit, evaluating a highly recursive type is genuine tree-walking work performed on every file that references it — this is why a single overly-clever recursive utility type in a widely-imported module can measurably slow down an entire project's build, in a way no amount of incremental caching fully hides, because the recursive type itself still has to be resolved wherever it's used.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

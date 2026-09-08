@@ -1327,6 +1327,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2404,6 +2415,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2613,6 +2635,10 @@ the program:</p>
 <p>Runtime validation of untrusted data is covered in
 <a href="../08-working-with-json-apis/">Module 8</a> — utility types alone are never
 a substitute for it.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Utility types like <code>Partial&lt;T&gt;</code>, <code>Required&lt;T&gt;</code>, <code>Readonly&lt;T&gt;</code>, and <code>Pick&lt;T, K&gt;</code> are not compiler magic — they're ordinary generic <strong>mapped types</strong>, defined in TypeScript's own standard library <code>.d.ts</code> and expressible with the same syntax available to you. <code>Partial&lt;T&gt;</code> is literally defined as <code>{ [P in keyof T]?: T[P] }</code>: <code>keyof T</code> produces a union of <code>T</code>'s property-name literal types, <code>[P in keyof T]</code> iterates that union as a mapped-type index, and <code>?</code> adds the optional modifier to every mapped property. Because it's just a mapped type, the checker evaluates <code>Partial&lt;User&gt;</code> by actually performing this iteration over <code>User</code>'s real members at the point of use — it's a genuine type-level computation, not a lookup table of special cases.</p>
+<p><code>Pick&lt;T, K extends keyof T&gt;</code> (<code>{ [P in K]: T[P] }</code>) and <code>Omit&lt;T, K&gt;</code> (defined via <code>Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;</code>) show how utility types compose from smaller primitives: <code>Exclude&lt;T, U&gt;</code> itself is a <strong>conditional type</strong> (<code>T extends U ? never : T</code>) that, when <code>T</code> is a union, is applied to <em>each member of the union separately</em> — this is <strong>distributive conditional type</strong> behavior, and it's why <code>Exclude&lt;"a" | "b", "a"&gt;</code> correctly narrows to <code>"b"</code> rather than evaluating the condition once against the whole union: the compiler distributes the conditional across each union member, checks each independently, and unions the survivors back together.</p>
+<p>All of this resolution happens entirely during type checking; none of it produces runtime code. <code>Readonly&lt;T&gt;</code> is a particularly sharp example of the type-erasure boundary — it adds a <code>readonly</code> modifier the checker enforces on write-<em>expressions</em> in your source, but the compiled object is a completely ordinary, mutable JS object; <code>Object.freeze</code> is the only way to get an actual runtime immutability guarantee, and the two are unrelated — <code>Readonly&lt;T&gt;</code> alone won't stop <code>Object.assign(obj, ...)</code>'s internals or a caller who genuinely doesn't type-check their code from mutating the object at runtime.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

@@ -1721,6 +1721,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2272,6 +2283,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2405,6 +2427,10 @@ installing <code>lodash@5</code> with <code>@types/lodash@4</code> still install
 types for the <em>old</em> API, so a method that was removed in v5 can still
 type-check and then throw <code>TypeError: ... is not a function</code> at
 runtime.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>@types/*</code> packages (DefinitelyTyped) exist because a JS library ships no type information of its own — the checker needs <em>some</em> <code>.d.ts</code> to structurally check your calls against, and when a package doesn't bundle one, <code>@types/&lt;package&gt;</code> supplies an independently-maintained one under <code>node_modules/@types</code>, which <code>moduleResolution</code> searches automatically as a fallback source of ambient declarations for a bare package import. Critically, nothing links a <code>@types</code> package's version to the real library's actual behavior at runtime — they're published and versioned separately, so a <code>@types</code> package that's fallen behind the real library's API (a common occurrence for fast-moving packages) will make the checker confidently verify calls against a shape the running code doesn't actually have; this is the same trust gap as <code>JSON.parse</code>, just at package-boundary scale instead of per-value.</p>
+<p>Declaration merging is the primary mechanism for extending third-party types you don't control: augmenting a global or another module's exported interface (<code>declare module "express" { interface Request { user?: User } }</code>) works because the checker treats same-named interface declarations across files as contributions to one accumulated member list, resolved at check time — this only works for <code>interface</code>, never for <code>type</code> aliases, which is the same declaration-merging asymmetry from the interfaces-vs-types lesson, now applied to the practical case of "I need to add a field to a library's type without forking it."</p>
+<p>Writing a <code>.d.ts</code> by hand for an untyped library is pure <code>declare</code>-syntax — no implementation, just type shape assertions the checker will trust unconditionally; there's no verification step comparing your hand-written declarations against the library's real JS behavior, which is why a hand-rolled <code>.d.ts</code> for an untyped dependency is exactly as trustworthy (and exactly as prone to silent drift) as any other unverified type annotation over external, non-TypeScript-checked code.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

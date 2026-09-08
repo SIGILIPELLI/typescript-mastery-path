@@ -1367,6 +1367,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2316,6 +2327,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2544,6 +2566,10 @@ values. If a field disappearing from an API payload has ever confused
 you, this is usually why — always log or test the actual serialized
 string when debugging outgoing JSON, not just the object before
 stringifying it.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>JSON.parse</code> is typed to return <code>any</code> in TypeScript's standard library — a deliberate acknowledgment that the checker has no static way to know what shape a runtime string actually deserializes to. When you write <code>const user: User = JSON.parse(text)</code>, no structural comparison happens at all: <code>any</code> is assignable to (and from) everything, silently short-circuiting the checker's normal member-by-member verification. This is the single most common place production type errors hide behind a green <code>tsc</code> build — the annotation is trusted, not verified, and a mismatched API response will compile clean and then fail (or silently misbehave) only at runtime.</p>
+<p>Closing that gap requires a <strong>runtime validator</strong> — a library like Zod, io-ts, or a hand-written type-predicate function that actually inspects the parsed value's real properties and types at the moment your program runs, not just its declared TypeScript type. A well-designed validator's checking function is typed to return a <strong>type predicate</strong> (<code>function isUser(x: unknown): x is User</code>), which plugs directly into the same control-flow narrowing machinery covered in the narrowing lesson: after <code>if (isUser(data)) { ... }</code>, the checker treats <code>data</code> as narrowed to <code>User</code> inside that branch specifically because the function's return type says so — but the actual safety comes entirely from the validator's runtime property checks, which the type predicate is just declaring the result of, not causing.</p>
+<p><code>fetch</code>'s <code>Response.json()</code> method is typed to return <code>Promise&lt;any&gt;</code> for the same reason <code>JSON.parse</code> is — the runtime response body is fundamentally unknowable to the checker, which is why libraries increasingly return <code>unknown</code> instead of <code>any</code> from parsing functions: <code>unknown</code> at least forces you to narrow (via a validator or explicit checks) before you can access any member, whereas <code>any</code> lets a bad assumption propagate silently through your whole call chain.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

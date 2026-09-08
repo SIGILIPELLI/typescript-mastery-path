@@ -1704,6 +1704,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2294,6 +2305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2440,6 +2462,10 @@ package <code>exports</code> maps — a package that works when imported at runt
 via the bundler can still fail <code>tsc</code>'s type-check with "Cannot find
 module" if the resolution strategy doesn't match what the bundler
 actually does.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Fast bundler-integrated TypeScript pipelines (esbuild, SWC, Vite's default transform) achieve their speed by doing <strong>transpile-only</strong> compilation — stripping type annotations and downleveling syntax without running the full type checker at all, because the checker (the structural comparison pass that walks your whole program's type graph) is by far the most expensive part of a <code>tsc</code> build, and a single-file transpiler can erase types with only <em>that file's</em> syntax tree, no cross-file type resolution needed. This is why <code>isolatedModules: true</code> is required by nearly every such tool: transpile-only mode must be able to compile each file with zero knowledge of any other file's types, which rules out <code>const enum</code> (needs cross-file inlining) and re-exporting a type without an explicit <code>export type</code> (the transpiler can't tell, from one file alone, whether <code>export { Foo }</code> refers to a type it should erase or a value it must keep).</p>
+<p>Because these fast paths skip type checking, "type safety" in an esbuild/SWC/Vite-based project is enforced by a <em>second, separate</em> process — typically <code>tsc --noEmit</code> run in CI or a watch mode, entirely decoupled from the actual build — meaning a bundled, deployed app can genuinely ship with type errors present in the source if that second check is skipped or its failure doesn't block the pipeline; the bundler's fast pass has no mechanism to catch them.</p>
+<p><code>declaration: true</code> in <code>tsconfig.json</code> triggers an entirely separate emit pass from the JS output: the checker walks the fully-resolved type graph one more time and serializes each module's public type surface back out as <code>.d.ts</code> syntax — this is genuinely expensive (it re-runs significant parts of the same structural analysis used for checking) and is why <code>.d.ts</code> generation is often the slowest single step in a library's build, independent of how fast the JS bundling itself is.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

@@ -918,6 +918,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2338,6 +2349,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2507,6 +2529,11 @@ TypeScript's type system.</p>
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
 <a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">adder</span><span class="p">.</span><span class="nx">label</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">adder</span><span class="p">.</span><span class="nx">compute</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span><span class="w">   </span><span class="c1">// Adder: 5</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>An <code>interface</code> (and a type alias for an object shape) is not a runtime construct — it compiles away to nothing at all; there is no emitted JS for <code>interface User { name: string }</code>. The checker's job is entirely to decide, at every place a value flows into a slot typed <code>User</code>, whether that value's shape is <em>structurally compatible</em>: does it have (at least) a <code>name</code> property whose type is assignable to <code>string</code>? The comparison walks both types' member lists and checks each member pairwise; it never asks "was this object literally constructed as a <code>User</code>."</p>
+<p>This is why <strong>excess property checks</strong> exist as a special-cased exception to normal structural typing: passing an object <em>literal</em> directly where a <code>User</code> is expected triggers a stricter check that flags properties not in the target type, even though structurally a wider object (extra properties, a superset shape) would ordinarily be assignable to a narrower type. The checker relaxes this the moment the object isn't a literal — assign it to an intermediate variable first, and the excess-property check doesn't fire, because now it's an ordinary structural assignability check (superset shapes are fine) rather than a "did you mistype a field name" literal check.</p>
+<p>Interfaces support <strong>declaration merging</strong>: two <code>interface Foo { }</code> declarations with the same name in the same scope are combined by the checker into one interface with the union of both members' declarations, resolved at compile time before any type checking happens — this is how you can extend a global or third-party interface (like <code>Window</code>) by simply re-declaring it. Type aliases cannot do this — a type alias name can only be declared once — which is the actual mechanical reason (not just style) libraries choose <code>interface</code> for anything meant to be publicly extensible.</p>
+<p>Extending an interface (<code>interface B extends A</code>) versus intersecting types (<code>type B = A &amp; { ... }</code>) both end up structurally equivalent for assignability purposes, but <code>extends</code> is checked incrementally by the compiler at declaration time (conflicting member types between <code>A</code> and <code>B</code> are caught immediately), while <code>&amp;</code> computes the intersection lazily and only surfaces a conflict (like a property typed both <code>string</code> and <code>number</code>, which resolves to <code>never</code>) at the point that intersected type is actually used.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

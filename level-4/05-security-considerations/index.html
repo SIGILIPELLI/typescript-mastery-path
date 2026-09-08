@@ -2002,6 +2002,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2250,6 +2261,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2425,6 +2447,10 @@ problem no type system fixes.</strong> <code>EnvConfig</code>'s types only start
 protecting you <em>after</em> a value has already been loaded — they say
 nothing about whether that value was safely stored or transmitted in
 the first place.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Every security-relevant example in this lesson comes back to the same structural fact: TypeScript's type checker is a <strong>static, compile-time-only</strong> analysis with zero runtime footprint, so it categorically cannot prevent any runtime security issue on its own — a <code>sanitize(input: string): string</code> function's type signature says nothing about whether the function's <em>implementation</em> actually strips dangerous content; the checker verifies the shape of data flowing through your program, never the semantic correctness of what a function does with it. Believing "it's typed as sanitized, so it's safe" is a type-erasure category error — the type is a label the checker attached, not a runtime-enforced property of the value.</p>
+<p>This is also why <code>any</code> is a genuine security-relevant construct, not just a style lint: every place <code>any</code> appears (explicitly, or implicitly through <code>JSON.parse</code>, <code>fetch().json()</code>, or a missing/wrong <code>@types</code> declaration as covered in earlier lessons) is a point where the checker's structural verification is fully disabled for that value and everything derived from it — an <code>any</code>-typed value flowing into a SQL query builder or an HTML-templating call bypasses whatever type-level protections that API's own signatures might otherwise provide (like requiring a branded "sanitized string" type), because <code>any</code> is assignable to that branded type without complaint.</p>
+<p><strong>Branded/nominal types</strong> (<code>type SafeHtml = string &amp; { __brand: "SafeHtml" }</code>) are the practical type-level defense against exactly this: intersecting a primitive with an unused, uninhabited marker property makes the checker refuse to accept a plain <code>string</code> where a <code>SafeHtml</code> is required (structurally, a plain <code>string</code> doesn't have the <code>__brand</code> property, so it's not assignable), forcing all <code>SafeHtml</code> values to originate from one sanitizing function that performs the actual <code>as SafeHtml</code> assertion — the type system enforces <em>that a sanitizer was called somewhere in the value's history</em>, which is a real, checker-verifiable guarantee, even though it still cannot verify the sanitizer's own logic is correct.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

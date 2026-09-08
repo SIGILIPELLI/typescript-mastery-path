@@ -1654,6 +1654,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2250,6 +2261,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2408,6 +2430,10 @@ mocking libraries</strong> (<code>vi.mock()</code>, module factories) which are 
 type correctly — depending on the <code>EmailClient</code> interface rather than a
 <code>SendGridClient</code> class is what let the tests above use plain object
 literals with zero mocking-framework ceremony.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Type-level testing tools (<code>tsd</code>, <code>expect-type</code>, or Jest's own <code>expectTypeOf</code>) work by exploiting the fact that assignability comparisons happen entirely at compile time and can be turned into a pass/fail signal without running anything: a helper like <code>Equal&lt;A, B&gt;</code> is typically implemented as a conditional type that checks mutual assignability in <em>both</em> directions using a function-type trick (<code>(&lt;T&gt;() =&gt; T extends A ? 1 : 2) extends (&lt;T&gt;() =&gt; T extends B ? 1 : 2) ? true : false</code>) — the double-conditional-through-a-generic-function pattern exists specifically to distinguish types the checker would otherwise treat as interchangeable through ordinary one-directional assignability (like <code>any</code> matching everything, or two differently-computed-but-assignable unions), forcing an exact structural identity check rather than a "is compatible with" check.</p>
+<p>This category of test genuinely executes as part of <code>tsc</code>'s check phase, not at runtime — a type-level assertion that fails produces a compile error at the line it's declared, with no test runner or executed code involved at all, which is why type tests can catch a regression (a return type quietly widening from a literal union to <code>string</code>, say) that a purely runtime unit test asserting on a specific value would never notice, since the runtime value can still be correct while its <em>inferred type</em> has silently degraded.</p>
+<p>Mocking generic or overloaded functions for runtime tests runs into the inference machinery from the generics lesson directly: a mock replacement for a function with multiple overload signatures only satisfies the type checker if the mock's own signature is compatible with every overload the real implementation declares — this is why test mocks of complex typed APIs sometimes need <code>as unknown as RealType</code> casts, not because the mock's runtime behavior is wrong, but because reproducing an overloaded or deeply-generic real signature exactly in a hand-written mock is often impractical, and the cast explicitly tells the checker to stop verifying what it structurally can't easily confirm.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

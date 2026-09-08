@@ -1648,6 +1648,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2294,6 +2305,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2514,6 +2536,10 @@ under test.</p>
 <code>const b: RequestBuilder = new RequestBuilder(); b.setMethod("POST")</code>,
 the chain still works, but any subclass-specific method called after
 that point on <code>b</code> is invisible — the variable's declared type wins.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Classic patterns like Factory and Builder lean on structural typing in a way that's specific to TypeScript versus nominally-typed languages: a Factory function typed to return an interface (<code>function createLogger(): Logger</code>) lets you swap the concrete class returned without any caller-visible change, because callers only ever check the returned value against <code>Logger</code>'s shape, never against which class actually constructed it — polymorphism here is enforced entirely by structural compatibility, not by an explicit <code>implements</code> relationship (though <code>implements</code> does add a compile-time check that the class's shape genuinely satisfies the interface at declaration time, catching a missing method immediately rather than only at the return-type check).</p>
+<p>The Strategy pattern (swapping an algorithm behind a shared function-type interface) is where function-type contravariance genuinely matters for correctness: if your <code>Strategy</code> type is <code>(input: Base) =&gt; Result</code> and you're tempted to write a concrete strategy as <code>(input: Derived) =&gt; Result</code> (accepting only a narrower subtype), that assignment is <em>rejected</em> by the checker under <code>strictFunctionTypes</code>, because a narrower parameter type could receive a <code>Base</code> at the call site that isn't actually a <code>Derived</code>, and the checker's contravariant parameter check exists precisely to catch that unsound substitution — this is a real category of pattern-implementation bug that structural + variance checking specifically prevents.</p>
+<p>The Singleton pattern intersects with module resolution rather than the type system proper: TypeScript modules are only ever evaluated once per resolved module specifier (mirroring how Node's <code>require</code> cache and ES module instantiation both work), so a module-level <code>const instance = new Service()</code> genuinely is a runtime singleton — but only within one module <em>graph</em>; if your build produces multiple bundles or your module resolution config causes the same file to resolve to two different specifiers, you silently get two "singleton" instances, a runtime consequence of the module system the type checker has no visibility into or ability to prevent.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

@@ -1311,6 +1311,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2316,6 +2327,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2533,6 +2555,10 @@ identically:</p>
 </code></pre></div>
 <p>If the two operations don't depend on each other's results, start them
 together with <code>Promise.all</code> rather than <code>await</code>ing each one in turn.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>Promise&lt;T&gt;</code> is a generic interface (again defined in TypeScript's lib <code>.d.ts</code>) whose type parameter <code>T</code> tracks what the promise eventually resolves to — but nothing about the checker's handling of <code>Promise&lt;T&gt;</code> is aware of <em>timing</em>; it's purely a structural label attached to a value that JS's own event loop and microtask queue handle at runtime, completely outside the type system's control. When you write <code>async function f(): Promise&lt;number&gt; { return 5; }</code>, the checker actually performs a special-case unwrap: if your declared or inferred return type is itself a <code>Promise&lt;X&gt;</code>, the compiler auto-wraps a plain <code>return 5</code> as if it were <code>Promise&lt;number&gt;</code> — and it also <em>flattens</em> a <code>return somePromise</code> inside an async function to prevent the doubly-nested <code>Promise&lt;Promise&lt;number&gt;&gt;</code> that naive substitution would otherwise produce, mirroring how <code>await</code>/native Promise resolution flattens nested thenables at runtime.</p>
+<p><code>await</code> is where type-level and control-flow-level narrowing intersect with real asynchrony: at compile time, <code>await expr</code> simply unwraps one layer of <code>Promise&lt;T&gt;</code> to <code>T</code> in the resulting expression's type — but at <em>emit</em> time, for anything below <code>target: es2017</code>, the <code>async</code>/<code>await</code> syntax is transformed into a state machine built from generator functions (<code>function*</code>) driven by a runtime helper (<code>__awaiter</code>), because native async/await didn't exist in older JS engines. This downleveling is a genuine code transformation, not type erasure — the emitted code is materially different, restructured control flow, not just annotation-stripped.</p>
+<p>Because <code>Promise&lt;T&gt;</code>'s <code>T</code> is compile-time-only, nothing prevents a badly-typed async function from resolving to a value that doesn't actually match <code>T</code> (e.g., an untyped <code>fetch().then(r =&gt; r.json())</code> chain typed as <code>Promise&lt;User&gt;</code> when the JSON body doesn't match <code>User</code>'s shape) — the checker trusts your annotation on the boundary between untyped external data and your typed application code, the same way it trusts a type assertion, because it fundamentally cannot verify runtime data shapes.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

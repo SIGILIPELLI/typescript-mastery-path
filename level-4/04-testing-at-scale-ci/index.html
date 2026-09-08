@@ -1985,6 +1985,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2272,6 +2283,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cheat-sheet" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2432,6 +2454,10 @@ fail-loud behavior you want in a pipeline.</p>
 actually check the exit code</strong> — a CI step that runs the coverage
 command but has <code>continue-on-error: true</code> (or equivalent) will show a
 green checkmark even when the threshold isn't met.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Running <code>tsc --noEmit</code> as a dedicated CI step (separate from your test runner and your bundler's own transpile-only pass) matters because, as covered in the build-tooling lesson, fast transpile pipelines deliberately skip full type checking — so a CI pipeline that only runs tests through a transpile-only tool and never separately invokes the real checker can pass green while shipping genuine type errors; <code>--noEmit</code> runs the full structural-checking pass across the whole program graph without writing any <code>.js</code> output, making it the one step in a typical pipeline that's actually exercising the type checker in full, rather than a per-file transpiler's stripped-down parse-and-erase.</p>
+<p>Splitting type-checking into its own CI step (versus bundling it into a build or test command) is also a real performance decision grounded in the incremental-compilation model from the performance lesson: caching <code>.tsbuildinfo</code> between CI runs (persisting it as a build cache artifact) lets <code>tsc --build</code> skip re-verifying files whose exported type signatures haven't changed, which only pays off if that step is isolated and its cache is deliberately preserved across runs — folding type checking into a bundler step that doesn't understand or preserve <code>.tsbuildinfo</code> loses this incremental benefit entirely, turning every CI run into a full, uncached check.</p>
+<p>Type coverage tools (measuring what fraction of expressions in a codebase resolve to <code>any</code> versus a specific type) work by walking the same checker-produced type information every IDE hover tooltip uses — they call into the TypeScript compiler API's <code>getTypeAtLocation</code> for every node in the program and count how many resolve to the <code>any</code> type specifically, which is why type-coverage percentage is a genuinely different signal from "does <code>tsc</code> report zero errors": a program riddled with <code>any</code> (silencing structural checking everywhere it appears) can still compile with zero errors, because <code>any</code> is defined to be assignable to and from everything.</p>
 <h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

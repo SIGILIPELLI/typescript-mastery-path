@@ -2162,6 +2162,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2296,6 +2307,17 @@
     <span class="md-ellipsis">
       
         src/store.test.ts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2605,6 +2627,9 @@ useful once a project grows past manually curling a running server.</p>
 <a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="w">  </span><span class="p">});</span>
 <a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="p">});</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The <code>Result</code>-based validation in <code>store.ts</code> is a deliberate alternative to throw-based error handling, and the reason it's more reliable ties directly back to discriminated-union narrowing: a <code>Result&lt;T, E&gt; = { ok: true; value: T } | { ok: false; error: E }</code> type makes every possible failure path a value the checker forces you to check via the <code>ok</code> discriminant before accessing <code>.value</code>, whereas a thrown exception has <em>no</em> representation in a function's TypeScript return type at all — <code>function save(item: Item): Item</code> promises nothing about what it might throw, so the checker cannot force a caller to handle failure the way it can force a caller to narrow a <code>Result</code> before reading <code>.value</code>. This is a real, checker-enforced difference in what "handling errors" means between the two styles, not just a stylistic preference.</p>
+<p>The typed Express layer in <code>index.ts</code> is where every erasure boundary covered across this path converges in one file: <code>req.body</code> arrives untyped (<code>any</code>, per the Express lesson) and is passed through a runtime validator before ever being treated as a typed <code>Item</code>; the store's generic methods rely on inferred type parameters the same way the generics lesson's <code>identity&lt;T&gt;</code> does; and the HTTP responses are built from the same discriminated-union <code>Result</code> type the data layer produces, letting one <code>switch</code> on <code>.ok</code> decide the response status code and shape with full narrowing on both branches — nothing about any of this exists at runtime beyond ordinary object property checks; every generic parameter, interface, and <code>Result&lt;T, E&gt;</code> annotation is gone from the emitted JS, and the actual safety this project demonstrates was entirely enforced during <code>tsc</code>'s check phase, before the server ever started.</p>
 <h2 id="running-it">Running it<a class="headerlink" href="#running-it" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>npm<span class="w"> </span>install
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>npm<span class="w"> </span>run<span class="w"> </span>typecheck
