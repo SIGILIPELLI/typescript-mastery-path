@@ -1,5 +1,9 @@
 # 01 · Setup & First Program
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/DLNgLSOXxac" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## Install Node.js
 
 TypeScript compiles down to JavaScript, and that JavaScript runs on

@@ -1,5 +1,9 @@
 # 09 · Modules & tsconfig Deep Dive
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/1-lfRdOQThI" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 TypeScript projects use ES modules for organizing code across files, and a
 `tsconfig.json` file to control exactly how the compiler behaves.
 

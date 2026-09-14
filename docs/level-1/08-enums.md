@@ -1,5 +1,9 @@
 # 08 · Enums
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/iHYffsRO_M8" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 An enum names a fixed set of related constant values — useful whenever a
 variable should only ever hold one of a small, known list of options.
 

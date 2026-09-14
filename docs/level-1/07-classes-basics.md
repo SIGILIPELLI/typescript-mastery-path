@@ -1,5 +1,9 @@
 # 07 · Classes Basics
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/u-rhy6tPl2U" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 TypeScript classes look like JavaScript classes with typed properties, typed
 constructor parameters, and access modifiers the compiler actually enforces.
 
