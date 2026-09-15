@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A structured, module-wise TypeScript training program from entry level to master level.">
+        <meta name="description" content="Setup & First Program — node runs JavaScript outside a browser; npm (Node Package Manager) installs packages — including TypeScript itself.">
       
       
       
@@ -67,14 +67,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="TypeScript Mastery Path">
   <meta property="og:title" content="01 · Setup & First Program">
-  <meta property="og:description" content="A structured, module-wise TypeScript training program from entry level to master level — free, with runnable code in every module.">
+  <meta property="og:description" content="Setup & First Program — node runs JavaScript outside a browser; npm (Node Package Manager) installs packages — including TypeScript itself.">
   <meta property="og:url" content="https://sigilipelli.github.io/typescript-mastery-path/level-1/01-setup/">
   <meta property="og:image" content="https://sigilipelli.github.io/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="01 · Setup & First Program">
-  <meta name="twitter:description" content="A structured, module-wise TypeScript training program from entry level to master level — free, with runnable code in every module.">
+  <meta name="twitter:description" content="Setup & First Program — node runs JavaScript outside a browser; npm (Node Package Manager) installs packages — including TypeScript itself.">
   <meta name="twitter:image" content="https://sigilipelli.github.io/og-image.png">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
      crossorigin="anonymous"></script>
@@ -816,6 +816,17 @@
     <span class="md-ellipsis">
       
         How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-this-in-another-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 See this in another language
       
     </span>
   </a>
@@ -2355,6 +2366,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#see-this-in-another-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 See this in another language
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2543,6 +2565,12 @@ the type system matters far more than the editor.</p>
 <p><strong>2. Type checking.</strong> The checker walks the AST and, for every expression, computes a type and verifies it's compatible with however that expression is used — a variable's declared type, a function's parameter types, a returned value against a return type. This is the "type-checker" (<code>checker.ts</code> in the TypeScript source, one of the largest files in the compiler). Crucially, type checking is a <em>static analysis pass only</em> — it never runs your code. It infers and compares types by walking the tree, and its output is a list of diagnostics (errors/warnings), not a transformed program.</p>
 <p><strong>3. Emit.</strong> If you're transpiling (not just type-checking with <code>--noEmit</code>), a separate pass converts the AST to a plain-JavaScript AST by literally deleting every type-only construct — annotations, interfaces, generic parameters — and downleveling any modern syntax your <code>target</code> doesn't support. This is called <strong>type erasure</strong>: at runtime, TypeScript's types do not exist in any form. There's no runtime type-tag, no reflection API for your interfaces, nothing. A <code>.d.ts</code> declaration file is only ever consumed by the type checker in phase 2; it contributes zero bytes to phase 3's output.</p>
 <p>The practical consequence: type errors and emit are independent. By default <code>tsc</code> still emits JavaScript even when type checking fails (you'll see the errors printed, but the <code>.js</code> file is written anyway) unless <code>noEmitOnError</code> is set — because "erase the types and emit JS" doesn't logically depend on "did the types check out."</p>
+<h2 id="see-this-in-another-language">🔀 See this in another language<a class="headerlink" href="#see-this-in-another-language" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://sigilipelli.github.io/c-mastery-path/level-1/01-setup/">C — Setup &amp; First Program</a></li>
+<li><a href="https://sigilipelli.github.io/php-mastery-path/level-1/01-setup/">PHP — Setup &amp; First Program</a></li>
+<li><a href="https://sigilipelli.github.io/matlab-mastery-path/level-1/01-what-is-matlab/">MATLAB — What Is MATLAB?</a></li>
+</ul>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Set up a fresh project: run <code>npm init -y</code>, install <code>typescript</code> and
 <code>ts-node</code> as dev dependencies, and generate a <code>tsconfig.json</code> with <code>tsc
@@ -2557,6 +2585,9 @@ emitted JavaScript with <code>node dist/greeter.js</code> to confirm both paths 
 
 
 
+
+  
+  
 
 
 
