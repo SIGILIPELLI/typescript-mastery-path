@@ -1,3 +1,7 @@
+---
+description: "Classes Advanced — Level 1 covered typed properties, constructors, and basic public/private/protected modifiers. This module builds on that: abstract…"
+---
+
 # 04 · Classes Advanced
 
 [Level 1](../level-1/07-classes-basics.md) covered typed properties,

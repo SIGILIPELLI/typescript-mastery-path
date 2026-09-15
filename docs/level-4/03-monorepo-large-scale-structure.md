@@ -1,3 +1,7 @@
+---
+description: "Monorepo & Large-Scale Structure — A monorepo with multiple TypeScript packages needs two separate things to work: tsc needs to know how packages depend…"
+---
+
 # 03 · Monorepo & Large-Scale Structure
 
 A monorepo with multiple TypeScript packages needs two separate things

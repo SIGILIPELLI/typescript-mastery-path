@@ -1,3 +1,7 @@
+---
+description: "Interfaces & Type Aliases — An object literal assigned to a User-typed variable must have exactly the properties User declares (structural typing — more…"
+---
+
 # 05 · Interfaces & Type Aliases
 
 ## 🎥 Video walkthrough
@@ -182,6 +186,12 @@ Extending an interface (`interface B extends A`) versus intersecting types (`typ
 | Readonly prop | `readonly id: string` | Settable once, then immutable |
 | `extends` | `interface B extends A` | Interface inheritance |
 | Structural typing | -- | Shape match is enough, no explicit `implements` needed |
+
+## 🔀 See this in another language
+
+- [C — Arrays & Strings](https://sigilipelli.github.io/c-mastery-path/level-1/05-arrays-strings/)
+- [PHP — Arrays](https://sigilipelli.github.io/php-mastery-path/level-1/05-arrays/)
+- [MATLAB — Functions in MATLAB](https://sigilipelli.github.io/matlab-mastery-path/level-1/05-functions/)
 
 ## Exercise
 

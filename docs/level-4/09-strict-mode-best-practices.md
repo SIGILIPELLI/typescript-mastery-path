@@ -1,3 +1,7 @@
+---
+description: "Strict Mode Best Practices — 'strict': true is actually a bundle of eight separate flags, and there are several more useful checks that aren't included in…"
+---
+
 # 09 · Strict Mode Best Practices
 
 `"strict": true` is actually a bundle of eight separate flags, and

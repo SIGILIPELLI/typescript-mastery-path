@@ -1,3 +1,7 @@
+---
+description: "Utility Types — TypeScript ships a set of built-in generic types that transform existing types into new ones — making a type's fields optional, picking a…"
+---
+
 # 05 · Utility Types
 
 TypeScript ships a set of built-in generic types that transform existing

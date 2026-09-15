@@ -1,3 +1,7 @@
+---
+description: "Basic Types — Unlike some languages, TypeScript has a single number type for all numbers — no separate int/float/double. There's also bigint for…"
+---
+
 # 02 · Basic Types
 
 ## 🎥 Video walkthrough
@@ -169,6 +173,12 @@ Type inference works by the same structural machinery in reverse: for `let x = 5
 | `unknown` | -- | Safe "don't know yet" -- requires narrowing |
 | `null` / `undefined` | -- | Only assignable elsewhere via a union under `strict` |
 | `void` | -- | Function returns nothing meaningful |
+
+## 🔀 See this in another language
+
+- [C — Variables, Data Types & Operators](https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/)
+- [PHP — Variables & Types](https://sigilipelli.github.io/php-mastery-path/level-1/02-variables-types/)
+- [MATLAB — Variables & Basic Data Types](https://sigilipelli.github.io/matlab-mastery-path/level-1/02-variables-types/)
 
 ## Exercise
 

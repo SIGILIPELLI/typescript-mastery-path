@@ -1,3 +1,7 @@
+---
+description: "Advanced Type-Level Programming — TypeScript's type system is Turing-complete-ish in practice: recursive conditional types, template literal types, and…"
+---
+
 # 01 · Advanced Type-Level Programming
 
 TypeScript's type system is Turing-complete-ish in practice: recursive

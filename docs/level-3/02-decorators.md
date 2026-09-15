@@ -1,3 +1,7 @@
+---
+description: "Decorators — Decorators let you attach reusable behavior to a class, method, accessor, or field by writing @something right above its declaration …"
+---
+
 # 02 · Decorators
 
 Decorators let you attach reusable behavior to a class, method, accessor,

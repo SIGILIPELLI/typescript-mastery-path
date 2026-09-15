@@ -1,3 +1,7 @@
+---
+description: "Project — Typed Weather Dashboard — The capstone for Level 2: a command-line weather dashboard that looks up a city, fetches its current conditions and a…"
+---
+
 # 10 · Project — Typed Weather Dashboard
 
 The capstone for Level 2: a command-line weather dashboard that looks up

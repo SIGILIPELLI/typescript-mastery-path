@@ -1,3 +1,7 @@
+---
+description: "Arrays & Objects, Typed — number[] and Array mean exactly the same thing — T[] is just shorthand for Array."
+---
+
 # 06 · Arrays & Objects, Typed
 
 ## 🎥 Video walkthrough
@@ -124,6 +128,12 @@ Object literal shapes are checked member-by-member the same way interfaces are (
 | Optional property | `age?: number` |
 | Index signature | `{ [key: string]: number }` |
 | Destructure with default | `function f({ x = 0 }: { x?: number }) {}` |
+
+## 🔀 See this in another language
+
+- [C — Pointers Basics](https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/)
+- [PHP — Strings & String Functions](https://sigilipelli.github.io/php-mastery-path/level-1/06-strings/)
+- [MATLAB — Plotting & Visualization Basics](https://sigilipelli.github.io/matlab-mastery-path/level-1/06-plotting-basics/)
 
 ## Exercise
 

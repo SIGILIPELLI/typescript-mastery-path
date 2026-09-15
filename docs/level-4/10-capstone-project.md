@@ -1,3 +1,7 @@
+---
+description: "Capstone Project — Bookmark API — The capstone pulls together the path's major threads into one small but complete service: a typed Express API, a generic…"
+---
+
 # 10 · Capstone Project — Bookmark API
 
 The capstone pulls together the path's major threads into one small

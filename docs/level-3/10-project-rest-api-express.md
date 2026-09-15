@@ -1,3 +1,7 @@
+---
+description: "Project — REST API with Express — This project pulls together everything from Level 3: typed Express routes, a class-based data layer, custom error types…"
+---
+
 # 10 · Project — REST API with Express
 
 This project pulls together everything from Level 3: typed Express

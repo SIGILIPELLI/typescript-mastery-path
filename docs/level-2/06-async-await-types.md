@@ -1,3 +1,7 @@
+---
+description: "Async/Await with Types — Every async function returns a Promise, and TypeScript tracks exactly what that promise resolves to. Once you know how Promise…"
+---
+
 # 06 · Async/Await with Types
 
 Every `async` function returns a `Promise`, and TypeScript tracks exactly

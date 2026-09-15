@@ -1,3 +1,7 @@
+---
+description: "Classes Basics — Prefixing a constructor parameter with public, private, or protected declares AND assigns the property in one step — no separate…"
+---
+
 # 07 · Classes Basics
 
 ## 🎥 Video walkthrough
@@ -179,6 +183,12 @@ Parameter properties (`constructor(private name: string) {}`) are pure syntactic
 | Inheritance | `class Sub extends Base { ... }` |
 | Call parent constructor | `super(args)` |
 | Getter/setter | `get prop() { ... }` / `set prop(v) { ... }` |
+
+## 🔀 See this in another language
+
+- [C — Structs](https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/)
+- [PHP — Classes & Objects Basics](https://sigilipelli.github.io/php-mastery-path/level-1/07-classes-objects/)
+- [MATLAB — Working with Data Files](https://sigilipelli.github.io/matlab-mastery-path/level-1/07-data-files/)
 
 ## Exercise
 

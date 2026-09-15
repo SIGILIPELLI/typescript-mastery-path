@@ -1,3 +1,7 @@
+---
+description: "Control Flow with Types — Inside the if (typeof id === 'number') block, TypeScript knows id is a number — it narrows the union string | number down to…"
+---
+
 # 03 · Control Flow with Types
 
 ## 🎥 Video walkthrough
@@ -191,6 +195,12 @@ Because CFA operates on syntactic patterns it recognizes (typeof, instanceof, `i
 | `for...of` | Iterate values (arrays, strings, most iterables) |
 | `for...in` | Iterate keys (objects) |
 | `never` | Type of a value that can't occur -- powers exhaustiveness checks |
+
+## 🔀 See this in another language
+
+- [C — Control Flow](https://sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/)
+- [PHP — Control Flow](https://sigilipelli.github.io/php-mastery-path/level-1/03-control-flow/)
+- [MATLAB — Vectors & Matrix Operations](https://sigilipelli.github.io/matlab-mastery-path/level-1/03-vectors-matrices/)
 
 ## Exercise
 

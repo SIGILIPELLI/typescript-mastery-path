@@ -1,3 +1,7 @@
+---
+description: "Testing Advanced — Level 2 covered basic Jest assertions. This module goes further: typed mocks and spies, mocking an interface (not a concrete class)…"
+---
+
 # 06 · Testing Advanced
 
 Level 2 covered basic Jest assertions. This module goes further: typed

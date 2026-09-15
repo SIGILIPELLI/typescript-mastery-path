@@ -1,3 +1,7 @@
+---
+description: "Interfaces vs Type Aliases Deep Dive — Level 1 gave you the quick rule of thumb: interface for object shapes, type for everything else. That's good enough…"
+---
+
 # 03 · Interfaces vs Type Aliases Deep Dive
 
 [Level 1](../level-1/05-interfaces-type-aliases.md) gave you the quick

@@ -1,3 +1,7 @@
+---
+description: "Testing at Scale & CI — A handful of tests running locally is a different problem from hundreds of tests running in CI across multiple Node versions with…"
+---
+
 # 04 · Testing at Scale & CI
 
 A handful of tests running locally is a different problem from

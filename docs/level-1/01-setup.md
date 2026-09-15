@@ -1,3 +1,7 @@
+---
+description: "Setup & First Program — node runs JavaScript outside a browser; npm (Node Package Manager) installs packages — including TypeScript itself."
+---
+
 # 01 · Setup & First Program
 
 ## 🎥 Video walkthrough
@@ -191,6 +195,12 @@ When you run `tsc`, three distinct phases happen in sequence, and understanding 
 **3. Emit.** If you're transpiling (not just type-checking with `--noEmit`), a separate pass converts the AST to a plain-JavaScript AST by literally deleting every type-only construct — annotations, interfaces, generic parameters — and downleveling any modern syntax your `target` doesn't support. This is called **type erasure**: at runtime, TypeScript's types do not exist in any form. There's no runtime type-tag, no reflection API for your interfaces, nothing. A `.d.ts` declaration file is only ever consumed by the type checker in phase 2; it contributes zero bytes to phase 3's output.
 
 The practical consequence: type errors and emit are independent. By default `tsc` still emits JavaScript even when type checking fails (you'll see the errors printed, but the `.js` file is written anyway) unless `noEmitOnError` is set — because "erase the types and emit JS" doesn't logically depend on "did the types check out."
+
+## 🔀 See this in another language
+
+- [C — Setup & First Program](https://sigilipelli.github.io/c-mastery-path/level-1/01-setup/)
+- [PHP — Setup & First Program](https://sigilipelli.github.io/php-mastery-path/level-1/01-setup/)
+- [MATLAB — What Is MATLAB?](https://sigilipelli.github.io/matlab-mastery-path/level-1/01-what-is-matlab/)
 
 ## Exercise
 

@@ -1,3 +1,7 @@
+---
+description: "Security Considerations — TypeScript's type system doesn't stop SQL injection or XSS by itself — but it can make certain classes of mistake structurally…"
+---
+
 # 05 · Security Considerations
 
 TypeScript's type system doesn't stop SQL injection or XSS by itself —

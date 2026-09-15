@@ -1,3 +1,7 @@
+---
+description: "Union & Intersection Types — Level 1 introduced union types as string-literal switches ('pending' | 'active' | 'closed'). This module goes deeper: how…"
+---
+
 # 01 · Union & Intersection Types
 
 Level 1 introduced union types as string-literal switches (`"pending" |

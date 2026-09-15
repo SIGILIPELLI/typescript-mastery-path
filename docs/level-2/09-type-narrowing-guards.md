@@ -1,3 +1,7 @@
+---
+description: "Type Narrowing & Type Guards — Several earlier modules leaned on narrowing without naming it directly — the typeof check in Module 1, the instanceof Error…"
+---
+
 # 09 · Type Narrowing & Type Guards
 
 Several earlier modules leaned on narrowing without naming it directly —

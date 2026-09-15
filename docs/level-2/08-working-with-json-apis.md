@@ -1,3 +1,7 @@
+---
+description: "Working with JSON/APIs — fetch and JSON.parse both return types that TypeScript cannot verify against reality — Promise and any respectively. Every 'typed…"
+---
+
 # 08 · Working with JSON/APIs
 
 `fetch` and `JSON.parse` both return types that TypeScript cannot verify

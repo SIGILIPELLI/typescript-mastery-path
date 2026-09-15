@@ -1,3 +1,7 @@
+---
+description: "Deployment with Docker — Shipping a TypeScript service means shipping compiled JavaScript, not source — and a naive Dockerfile that copies everything and…"
+---
+
 # 06 · Deployment with Docker
 
 Shipping a TypeScript service means shipping compiled JavaScript, not

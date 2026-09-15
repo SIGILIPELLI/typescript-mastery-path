@@ -1,3 +1,7 @@
+---
+description: "Testing with Jest + ts-jest — Writing TypeScript doesn't automatically mean your logic is correct — the compiler catches type mismatches, not wrong…"
+---
+
 # 07 · Testing with Jest + ts-jest
 
 Writing TypeScript doesn't automatically mean your logic is correct — the

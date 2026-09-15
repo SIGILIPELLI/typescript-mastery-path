@@ -1,3 +1,7 @@
+---
+description: "Writing Robust Public APIs — Code you call from the same file behaves however you want; code consumed by other people's codebases needs a stable…"
+---
+
 # 08 · Writing Robust Public APIs
 
 Code you call from the same file behaves however you want; code

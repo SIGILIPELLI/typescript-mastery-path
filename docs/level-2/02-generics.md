@@ -1,3 +1,7 @@
+---
+description: "Generics — Generics let you write a function, class, or type once and have it work correctly for many different types — without falling back to any and…"
+---
+
 # 02 · Generics
 
 Generics let you write a function, class, or type once and have it work

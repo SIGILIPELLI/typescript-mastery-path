@@ -1,3 +1,7 @@
+---
+description: "Performance Optimization — TypeScript compiles away to plain JavaScript, so runtime performance techniques here are really JavaScript performance…"
+---
+
 # 07 · Performance Optimization
 
 TypeScript compiles away to plain JavaScript, so runtime performance

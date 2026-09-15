@@ -1,3 +1,7 @@
+---
+description: "Modules & tsconfig Deep Dive — Named exports (export function add) are generally preferred over default exports in modern TypeScript — they're easier to…"
+---
+
 # 09 · Modules & tsconfig Deep Dive
 
 ## 🎥 Video walkthrough
@@ -140,6 +144,12 @@ Module *resolution* (`moduleResolution`) is a third, separate axis: it's the alg
 | Generate tsconfig | `npx tsc --init` |
 | Compile | `npx tsc` |
 | Run without a separate compile step | `npx ts-node file.ts` |
+
+## 🔀 See this in another language
+
+- [C — Preprocessor & Multi-file Compilation](https://sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/)
+- [PHP — Composer & Package Basics](https://sigilipelli.github.io/php-mastery-path/level-1/09-composer-basics/)
+- [MATLAB — Basic Numerical Methods](https://sigilipelli.github.io/matlab-mastery-path/level-1/09-numerical-methods/)
 
 ## Exercise
 

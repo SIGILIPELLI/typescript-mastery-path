@@ -1,3 +1,7 @@
+---
+description: "Type-Safe Database Access — Real projects use Prisma, Drizzle, or Knex for this, but the underlying techniques — generic repository classes…"
+---
+
 # 04 · Type-Safe Database Access
 
 Real projects use Prisma, Drizzle, or Knex for this, but the underlying

@@ -1,3 +1,7 @@
+---
+description: "Framework Integration Patterns — Express, Koa, Fastify, and most server frameworks share a shape: a chain of middleware functions passed a context and a…"
+---
+
 # 02 · Framework Integration Patterns
 
 Express, Koa, Fastify, and most server frameworks share a shape: a

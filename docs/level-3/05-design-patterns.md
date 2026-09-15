@@ -1,3 +1,7 @@
+---
+description: "Design Patterns in TypeScript — Classic OOP patterns read differently in TypeScript than in Java or C++ because interfaces are structural and functions…"
+---
+
 # 05 · Design Patterns in TypeScript
 
 Classic OOP patterns read differently in TypeScript than in Java or C++

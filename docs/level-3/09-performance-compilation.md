@@ -1,3 +1,7 @@
+---
+description: "Performance & Compilation — TypeScript's compiler is doing real work — parsing, binding, and a type checker that can recursively expand generic types …"
+---
+
 # 09 · Performance & Compilation
 
 TypeScript's compiler is doing real work — parsing, binding, and a type

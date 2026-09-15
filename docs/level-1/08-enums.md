@@ -1,3 +1,7 @@
+---
+description: "Enums — By default, enum members are numbered starting at 0. Direction[1] looking up 'South' (the reverse mapping) only works for numeric enums, not…"
+---
+
 # 08 · Enums
 
 ## 🎥 Video walkthrough
@@ -133,6 +137,12 @@ This runtime cost is exactly why the language later added `as const` objects as 
 | String enum | Readable, serializable — a solid default when you want an enum |
 | `const enum` | Same as string/numeric, but compiled away for smaller output |
 | String literal union | Zero runtime cost, often simpler for small fixed sets |
+
+## 🔀 See this in another language
+
+- [C — File I/O](https://sigilipelli.github.io/c-mastery-path/level-1/08-file-io/)
+- [PHP — Error Handling Basics](https://sigilipelli.github.io/php-mastery-path/level-1/08-error-handling/)
+- [MATLAB — String & Text Processing](https://sigilipelli.github.io/matlab-mastery-path/level-1/08-string-text-processing/)
 
 ## Exercise
 

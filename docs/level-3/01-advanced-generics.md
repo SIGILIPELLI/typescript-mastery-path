@@ -1,3 +1,7 @@
+---
+description: "Advanced Generics — Level 2 covered generic functions, classes, and T extends keyof U constraints. This module goes further into the type-level features…"
+---
+
 # 01 · Advanced Generics
 
 Level 2 covered generic functions, classes, and `T extends keyof U`

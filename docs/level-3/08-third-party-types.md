@@ -1,3 +1,7 @@
+---
+description: "Third-Party Types — Most npm packages either ship their own .d.ts files or get typed separately via @types/* (the DefinitelyTyped project) — but you'll…"
+---
+
 # 08 · Third-Party Types
 
 Most npm packages either ship their own `.d.ts` files or get typed

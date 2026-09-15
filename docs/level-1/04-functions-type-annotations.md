@@ -1,3 +1,7 @@
+---
+description: "Functions & Type Annotations — TypeScript usually infers the return type from the function body, but annotating it explicitly (as above) is good practice…"
+---
+
 # 04 · Functions & Type Annotations
 
 ## 🎥 Video walkthrough
@@ -173,6 +177,12 @@ Like all type information, function parameter and return annotations are fully e
 | Rest param | `(...nums: number[])` | Collects trailing args into an array |
 | Function type | `(a: number, b: number) => number` | Type of a callback / function value |
 | Overloads | multiple signatures + one implementation | For calls that differ in argument shape |
+
+## 🔀 See this in another language
+
+- [C — Functions](https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/)
+- [PHP — Functions](https://sigilipelli.github.io/php-mastery-path/level-1/04-functions/)
+- [MATLAB — Control Flow](https://sigilipelli.github.io/matlab-mastery-path/level-1/04-control-flow/)
 
 ## Exercise
 

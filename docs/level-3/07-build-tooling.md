@@ -1,3 +1,7 @@
+---
+description: "Build Tooling — tsc type-checks and emits JavaScript, but it isn't a bundler and its plain output isn't minified — for a browser bundle or a fast dev…"
+---
+
 # 07 · Build Tooling
 
 `tsc` type-checks and emits JavaScript, but it isn't a bundler and its

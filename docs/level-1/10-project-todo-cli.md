@@ -1,3 +1,7 @@
+---
+description: "Project — Typed CLI To-Do App — This project ties together type erasure and structural typing in a way worth naming explicitly. The Todo interface you…"
+---
+
 # 10 · Project — Typed CLI To-Do App
 
 ## 🎥 Video walkthrough
@@ -177,3 +181,9 @@ npx ts-node todo.ts list
   in [Level 2](../level-2/07-testing-jest.md)).
 
 Completing this project means you're ready for **Level 2 · Intermediate**.
+
+## 🔀 See this in another language
+
+- [C — Project — CLI Contact Book](https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/)
+- [PHP — Project — CLI To-Do App](https://sigilipelli.github.io/php-mastery-path/level-1/10-project-todo-app/)
+- [MATLAB — Project — Data Analysis & Plotting Script](https://sigilipelli.github.io/matlab-mastery-path/level-1/10-project-data-analysis/)
