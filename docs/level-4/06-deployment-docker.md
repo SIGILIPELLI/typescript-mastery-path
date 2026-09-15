@@ -171,6 +171,12 @@ Source maps (`sourceMap: true`) are the one artifact worth deliberately choosing
 | `.dockerignore` with `node_modules`, `dist` | Prevents stale local artifacts leaking into the build context |
 | `USER node` | Runs the container process unprivileged |
 
+## 🔀 See this in another language
+
+- [C# — 07 · Deployment (Docker for .NET)](https://sigilipelli.github.io/csharp-mastery-path/level-4/07-deployment-docker/)
+- [Go — 06 · Deployment with Docker](https://sigilipelli.github.io/go-mastery-path/level-4/06-deployment-docker/)
+- [Rust — 07 · Deployment with Docker](https://sigilipelli.github.io/rust-mastery-path/level-4/07-deployment-docker/)
+
 ## Exercise
 
 Build the two-stage Dockerfile above locally (`docker build -t task-api .`),

@@ -242,6 +242,12 @@ Closing that gap requires a **runtime validator** — a library like Zod, io-ts,
 | Reusable pattern | `fetchJson<T>(url, isT)` | Generic helper combining fetch + status check + validation |
 | Array validation | `Array.isArray(x) && x.every(isT)` | Checks both "is an array" and "every element matches" |
 
+## 🔀 See this in another language
+
+- [Ruby — 06 · Working with JSON/APIs](https://sigilipelli.github.io/ruby-mastery-path/level-2/06-json-apis/)
+- [PHP — 06 · Working with JSON/APIs](https://sigilipelli.github.io/php-mastery-path/level-2/06-json-apis/)
+- [PowerShell — 07 · Working with JSON/REST APIs](https://sigilipelli.github.io/powershell-mastery-path/level-2/07-json-rest-apis/)
+
 ## Exercise
 
 Define an interface `Weather { temperatureC: number; conditions: string;

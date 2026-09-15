@@ -230,6 +230,11 @@ Because `Promise<T>`'s `T` is compile-time-only, nothing prevents a badly-typed 
 | Typed failure without throwing | `Promise<{ ok: true; data: T } \| { ok: false; error: string }>` | Forces callers to check `ok` before reading `data` |
 | Common bug | forgetting `await` | Value stays a `Promise<T>`; TS only catches it if misused as `T` |
 
+## 🔀 See this in another language
+
+- [JavaScript — 04 · Promises & Async/Await](https://sigilipelli.github.io/javascript-mastery-path/level-2/04-promises-async-await/)
+- [C# — 04 · Async/Await Basics](https://sigilipelli.github.io/csharp-mastery-path/level-2/04-async-await-basics/)
+
 ## Exercise
 
 Write a function `fetchWithRetry<T>(fn: () => Promise<T>, retries:

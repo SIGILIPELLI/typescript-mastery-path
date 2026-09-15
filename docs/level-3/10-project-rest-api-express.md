@@ -292,3 +292,9 @@ protocol violation some HTTP clients reject.
 - Swap the in-memory `TaskStore` for the `Table<T>` generic repository
   from Module 04, and confirm the same routes still pass the same
   `curl` checks with zero route-level changes.
+
+## 🔀 See this in another language
+
+- [JavaScript — 03 · Building a REST API with Express](https://sigilipelli.github.io/javascript-mastery-path/level-3/03-rest-api-express/)
+- [Python — 11 · Project — REST API + Database](https://sigilipelli.github.io/python-mastery-path/level-3/11-project-rest-api-db/)
+- [Java — 11 · Project — REST API + Database CRUD Service](https://sigilipelli.github.io/java-mastery-path/level-3/11-project-rest-api-db/)

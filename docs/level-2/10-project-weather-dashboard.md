@@ -560,3 +560,7 @@ npm test
   [Level 1 to-do project](../level-1/10-project-todo-cli.md)), so
   repeated lookups of the same city don't re-hit the geocoding API at
   all.
+
+## 🔀 See this in another language
+
+- [JavaScript — 10 · Project — Weather Dashboard](https://sigilipelli.github.io/javascript-mastery-path/level-2/10-project-weather-dashboard/)

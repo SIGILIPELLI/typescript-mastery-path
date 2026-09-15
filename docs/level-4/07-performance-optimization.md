@@ -186,6 +186,12 @@ Where the type system *does* have a real, measurable performance cost is exclusi
 | `Pool<T>` | GC churn from many short-lived objects in hot loops | Generic factory + typed acquire/release |
 | `--target es2020`+ | Enables direct `for...of` over generic `Iterable<T>` | Compiler flag, not a code change |
 
+## 🔀 See this in another language
+
+- [C — 03 · Performance Optimization & Profiling](https://sigilipelli.github.io/c-mastery-path/level-4/03-performance-profiling/)
+- [C# — 05 · Performance Profiling & Optimization](https://sigilipelli.github.io/csharp-mastery-path/level-4/05-performance-profiling/)
+- [Go — 09 · Performance Optimization](https://sigilipelli.github.io/go-mastery-path/level-4/09-performance-optimization/)
+
 ## Exercise
 
 Add an LRU eviction policy to `memoize`: cap the cache at `maxSize`
