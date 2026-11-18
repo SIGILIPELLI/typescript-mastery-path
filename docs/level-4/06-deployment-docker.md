@@ -173,9 +173,9 @@ Source maps (`sourceMap: true`) are the one artifact worth deliberately choosing
 
 ## 🔀 See this in another language
 
-- [C# — 07 · Deployment (Docker for .NET)](https://sigilipelli.github.io/csharp-mastery-path/level-4/07-deployment-docker/)
-- [Go — 06 · Deployment with Docker](https://sigilipelli.github.io/go-mastery-path/level-4/06-deployment-docker/)
-- [Rust — 07 · Deployment with Docker](https://sigilipelli.github.io/rust-mastery-path/level-4/07-deployment-docker/)
+- [C# — 07 · Deployment (Docker for .NET)](https://learnmasterypath.com/csharp-mastery-path/level-4/07-deployment-docker/)
+- [Go — 06 · Deployment with Docker](https://learnmasterypath.com/go-mastery-path/level-4/06-deployment-docker/)
+- [Rust — 07 · Deployment with Docker](https://learnmasterypath.com/rust-mastery-path/level-4/07-deployment-docker/)
 
 ## Exercise
 

@@ -176,9 +176,9 @@ Type inference works by the same structural machinery in reverse: for `let x = 5
 
 ## 🔀 See this in another language
 
-- [C — Variables, Data Types & Operators](https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/)
-- [PHP — Variables & Types](https://sigilipelli.github.io/php-mastery-path/level-1/02-variables-types/)
-- [MATLAB — Variables & Basic Data Types](https://sigilipelli.github.io/matlab-mastery-path/level-1/02-variables-types/)
+- [C — Variables, Data Types & Operators](https://learnmasterypath.com/c-mastery-path/level-1/02-variables-data-types/)
+- [PHP — Variables & Types](https://learnmasterypath.com/php-mastery-path/level-1/02-variables-types/)
+- [MATLAB — Variables & Basic Data Types](https://learnmasterypath.com/matlab-mastery-path/level-1/02-variables-types/)
 
 ## Exercise
 

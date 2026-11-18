@@ -131,9 +131,9 @@ Object literal shapes are checked member-by-member the same way interfaces are (
 
 ## 🔀 See this in another language
 
-- [C — Pointers Basics](https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/)
-- [PHP — Strings & String Functions](https://sigilipelli.github.io/php-mastery-path/level-1/06-strings/)
-- [MATLAB — Plotting & Visualization Basics](https://sigilipelli.github.io/matlab-mastery-path/level-1/06-plotting-basics/)
+- [C — Pointers Basics](https://learnmasterypath.com/c-mastery-path/level-1/06-pointers-basics/)
+- [PHP — Strings & String Functions](https://learnmasterypath.com/php-mastery-path/level-1/06-strings/)
+- [MATLAB — Plotting & Visualization Basics](https://learnmasterypath.com/matlab-mastery-path/level-1/06-plotting-basics/)
 
 ## Exercise
 

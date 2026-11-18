@@ -189,9 +189,9 @@ Extending an interface (`interface B extends A`) versus intersecting types (`typ
 
 ## 🔀 See this in another language
 
-- [C — Arrays & Strings](https://sigilipelli.github.io/c-mastery-path/level-1/05-arrays-strings/)
-- [PHP — Arrays](https://sigilipelli.github.io/php-mastery-path/level-1/05-arrays/)
-- [MATLAB — Functions in MATLAB](https://sigilipelli.github.io/matlab-mastery-path/level-1/05-functions/)
+- [C — Arrays & Strings](https://learnmasterypath.com/c-mastery-path/level-1/05-arrays-strings/)
+- [PHP — Arrays](https://learnmasterypath.com/php-mastery-path/level-1/05-arrays/)
+- [MATLAB — Functions in MATLAB](https://learnmasterypath.com/matlab-mastery-path/level-1/05-functions/)
 
 ## Exercise
 

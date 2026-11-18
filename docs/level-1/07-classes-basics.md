@@ -186,9 +186,9 @@ Parameter properties (`constructor(private name: string) {}`) are pure syntactic
 
 ## 🔀 See this in another language
 
-- [C — Structs](https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/)
-- [PHP — Classes & Objects Basics](https://sigilipelli.github.io/php-mastery-path/level-1/07-classes-objects/)
-- [MATLAB — Working with Data Files](https://sigilipelli.github.io/matlab-mastery-path/level-1/07-data-files/)
+- [C — Structs](https://learnmasterypath.com/c-mastery-path/level-1/07-structs/)
+- [PHP — Classes & Objects Basics](https://learnmasterypath.com/php-mastery-path/level-1/07-classes-objects/)
+- [MATLAB — Working with Data Files](https://learnmasterypath.com/matlab-mastery-path/level-1/07-data-files/)
 
 ## Exercise
 

@@ -563,4 +563,4 @@ npm test
 
 ## 🔀 See this in another language
 
-- [JavaScript — 10 · Project — Weather Dashboard](https://sigilipelli.github.io/javascript-mastery-path/level-2/10-project-weather-dashboard/)
+- [JavaScript — 10 · Project — Weather Dashboard](https://learnmasterypath.com/javascript-mastery-path/level-2/10-project-weather-dashboard/)

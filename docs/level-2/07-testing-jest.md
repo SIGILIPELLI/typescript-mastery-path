@@ -274,7 +274,7 @@ Type-checking a test file and *running* it are, once again, fully decoupled proc
 
 ## 🔀 See this in another language
 
-- [JavaScript — 08 · Testing Basics with Jest](https://sigilipelli.github.io/javascript-mastery-path/level-2/08-testing-jest/)
+- [JavaScript — 08 · Testing Basics with Jest](https://learnmasterypath.com/javascript-mastery-path/level-2/08-testing-jest/)
 
 ## Exercise
 

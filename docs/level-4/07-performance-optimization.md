@@ -188,9 +188,9 @@ Where the type system *does* have a real, measurable performance cost is exclusi
 
 ## 🔀 See this in another language
 
-- [C — 03 · Performance Optimization & Profiling](https://sigilipelli.github.io/c-mastery-path/level-4/03-performance-profiling/)
-- [C# — 05 · Performance Profiling & Optimization](https://sigilipelli.github.io/csharp-mastery-path/level-4/05-performance-profiling/)
-- [Go — 09 · Performance Optimization](https://sigilipelli.github.io/go-mastery-path/level-4/09-performance-optimization/)
+- [C — 03 · Performance Optimization & Profiling](https://learnmasterypath.com/c-mastery-path/level-4/03-performance-profiling/)
+- [C# — 05 · Performance Profiling & Optimization](https://learnmasterypath.com/csharp-mastery-path/level-4/05-performance-profiling/)
+- [Go — 09 · Performance Optimization](https://learnmasterypath.com/go-mastery-path/level-4/09-performance-optimization/)
 
 ## Exercise
 

@@ -198,9 +198,9 @@ The practical consequence: type errors and emit are independent. By default `tsc
 
 ## 🔀 See this in another language
 
-- [C — Setup & First Program](https://sigilipelli.github.io/c-mastery-path/level-1/01-setup/)
-- [PHP — Setup & First Program](https://sigilipelli.github.io/php-mastery-path/level-1/01-setup/)
-- [MATLAB — What Is MATLAB?](https://sigilipelli.github.io/matlab-mastery-path/level-1/01-what-is-matlab/)
+- [C — Setup & First Program](https://learnmasterypath.com/c-mastery-path/level-1/01-setup/)
+- [PHP — Setup & First Program](https://learnmasterypath.com/php-mastery-path/level-1/01-setup/)
+- [MATLAB — What Is MATLAB?](https://learnmasterypath.com/matlab-mastery-path/level-1/01-what-is-matlab/)
 
 ## Exercise
 

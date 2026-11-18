@@ -147,9 +147,9 @@ Module *resolution* (`moduleResolution`) is a third, separate axis: it's the alg
 
 ## 🔀 See this in another language
 
-- [C — Preprocessor & Multi-file Compilation](https://sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/)
-- [PHP — Composer & Package Basics](https://sigilipelli.github.io/php-mastery-path/level-1/09-composer-basics/)
-- [MATLAB — Basic Numerical Methods](https://sigilipelli.github.io/matlab-mastery-path/level-1/09-numerical-methods/)
+- [C — Preprocessor & Multi-file Compilation](https://learnmasterypath.com/c-mastery-path/level-1/09-preprocessor-multifile/)
+- [PHP — Composer & Package Basics](https://learnmasterypath.com/php-mastery-path/level-1/09-composer-basics/)
+- [MATLAB — Basic Numerical Methods](https://learnmasterypath.com/matlab-mastery-path/level-1/09-numerical-methods/)
 
 ## Exercise
 

@@ -232,8 +232,8 @@ Because `Promise<T>`'s `T` is compile-time-only, nothing prevents a badly-typed 
 
 ## 🔀 See this in another language
 
-- [JavaScript — 04 · Promises & Async/Await](https://sigilipelli.github.io/javascript-mastery-path/level-2/04-promises-async-await/)
-- [C# — 04 · Async/Await Basics](https://sigilipelli.github.io/csharp-mastery-path/level-2/04-async-await-basics/)
+- [JavaScript — 04 · Promises & Async/Await](https://learnmasterypath.com/javascript-mastery-path/level-2/04-promises-async-await/)
+- [C# — 04 · Async/Await Basics](https://learnmasterypath.com/csharp-mastery-path/level-2/04-async-await-basics/)
 
 ## Exercise
 

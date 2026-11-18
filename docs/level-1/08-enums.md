@@ -140,9 +140,9 @@ This runtime cost is exactly why the language later added `as const` objects as 
 
 ## 🔀 See this in another language
 
-- [C — File I/O](https://sigilipelli.github.io/c-mastery-path/level-1/08-file-io/)
-- [PHP — Error Handling Basics](https://sigilipelli.github.io/php-mastery-path/level-1/08-error-handling/)
-- [MATLAB — String & Text Processing](https://sigilipelli.github.io/matlab-mastery-path/level-1/08-string-text-processing/)
+- [C — File I/O](https://learnmasterypath.com/c-mastery-path/level-1/08-file-io/)
+- [PHP — Error Handling Basics](https://learnmasterypath.com/php-mastery-path/level-1/08-error-handling/)
+- [MATLAB — String & Text Processing](https://learnmasterypath.com/matlab-mastery-path/level-1/08-string-text-processing/)
 
 ## Exercise
 

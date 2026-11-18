@@ -180,9 +180,9 @@ Like all type information, function parameter and return annotations are fully e
 
 ## 🔀 See this in another language
 
-- [C — Functions](https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/)
-- [PHP — Functions](https://sigilipelli.github.io/php-mastery-path/level-1/04-functions/)
-- [MATLAB — Control Flow](https://sigilipelli.github.io/matlab-mastery-path/level-1/04-control-flow/)
+- [C — Functions](https://learnmasterypath.com/c-mastery-path/level-1/04-functions/)
+- [PHP — Functions](https://learnmasterypath.com/php-mastery-path/level-1/04-functions/)
+- [MATLAB — Control Flow](https://learnmasterypath.com/matlab-mastery-path/level-1/04-control-flow/)
 
 ## Exercise
 

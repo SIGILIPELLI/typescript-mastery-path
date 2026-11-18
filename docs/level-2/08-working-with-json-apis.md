@@ -244,9 +244,9 @@ Closing that gap requires a **runtime validator** — a library like Zod, io-ts,
 
 ## 🔀 See this in another language
 
-- [Ruby — 06 · Working with JSON/APIs](https://sigilipelli.github.io/ruby-mastery-path/level-2/06-json-apis/)
-- [PHP — 06 · Working with JSON/APIs](https://sigilipelli.github.io/php-mastery-path/level-2/06-json-apis/)
-- [PowerShell — 07 · Working with JSON/REST APIs](https://sigilipelli.github.io/powershell-mastery-path/level-2/07-json-rest-apis/)
+- [Ruby — 06 · Working with JSON/APIs](https://learnmasterypath.com/ruby-mastery-path/level-2/06-json-apis/)
+- [PHP — 06 · Working with JSON/APIs](https://learnmasterypath.com/php-mastery-path/level-2/06-json-apis/)
+- [PowerShell — 07 · Working with JSON/REST APIs](https://learnmasterypath.com/powershell-mastery-path/level-2/07-json-rest-apis/)
 
 ## Exercise
 
