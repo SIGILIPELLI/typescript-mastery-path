@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free TypeScript Mastery Path: Union & Intersection Types, Generics, Interfaces vs Type Aliases Deep Dive, Classes Advanced…"
+---
+
 # Level 2 · Intermediate <span class="level-badge">Intermediate</span>
 
 ## Modules

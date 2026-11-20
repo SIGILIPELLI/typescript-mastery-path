@@ -1,3 +1,7 @@
+---
+description: "Level 1 (Entry) of the free TypeScript Mastery Path. Get comfortable reading and writing TypeScript, understand its core type system, and ship a small…"
+---
+
 # Level 1 · Entry <span class="level-badge">Foundations</span>
 
 Goal: get comfortable reading and writing TypeScript, understand its core type

@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free TypeScript Mastery Path: Advanced Type-Level Programming, Framework Integration Patterns, Monorepo & Large-Scale Project…"
+---
+
 # Level 4 · Master
 
 ## Modules

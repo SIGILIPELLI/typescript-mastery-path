@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free TypeScript Mastery Path: Advanced Generics, Decorators, Building APIs with TypeScript, Type-Safe Database Access, Design…"
+---
+
 # Level 3 · Advanced <span class="level-badge">Advanced</span>
 
 ## Modules
