@@ -295,6 +295,6 @@ protocol violation some HTTP clients reject.
 
 ## 🔀 See this in another language
 
-- [JavaScript — 03 · Building a REST API with Express](https://learnmasterypath.com/javascript-mastery-path/level-3/03-rest-api-express/)
-- [Python — 11 · Project — REST API + Database](https://learnmasterypath.com/python-mastery-path/level-3/11-project-rest-api-db/)
-- [Java — 11 · Project — REST API + Database CRUD Service](https://learnmasterypath.com/java-mastery-path/level-3/11-project-rest-api-db/)
+- [JavaScript — 03 · Building a REST API with Express](https://learnmasterypath.com/javascript-mastery-path/level-3/02-nodejs-express-rest-api/#part-2-building-a-rest-api-with-express)
+- [Python — 11 · Project — REST API + Database](https://learnmasterypath.com/python-mastery-path/level-3/10-project-rest-api-db/)
+- [Java — 11 · Project — REST API + Database CRUD Service](https://learnmasterypath.com/java-mastery-path/level-3/10-project-rest-api-db/)
