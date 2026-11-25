@@ -1,0 +1,4205 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="179 TypeScript interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the TypeScript Mastery Path.">
+      
+      
+      
+        <link rel="canonical" href="https://learnmasterypath.com/typescript-mastery-path/interview-questions/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../cheat-sheet/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+  
+  <title>TypeScript Interview Questions and Answers (179 Questions)</title>
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/progress-tracker.css">
+    
+      <link rel="stylesheet" href="../stylesheets/final-quiz.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-05VBGCXN12"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-05VBGCXN12');
+  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mastery Path">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="TypeScript Interview Questions and Answers (179 Questions)">
+  <meta property="og:description" content="179 TypeScript interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the TypeScript Mastery Path.">
+  <meta property="og:url" content="https://learnmasterypath.com/typescript-mastery-path/interview-questions/">
+  <meta property="og:image" content="https://learnmasterypath.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mastery Path: free structured courses, beginner to master">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TypeScript Interview Questions and Answers (179 Questions)">
+  <meta name="twitter:description" content="179 TypeScript interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the TypeScript Mastery Path.">
+  <meta name="twitter:image" content="https://learnmasterypath.com/og-image.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
+     crossorigin="anonymous"></script><script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Mastery Path", "item": "https://learnmasterypath.com/"},
+      {"@type": "ListItem", "position": 2, "name": "TypeScript Mastery Path", "item": "https://learnmasterypath.com/typescript-mastery-path/"},
+      {"@type": "ListItem", "position": 3, "name": "Interview Questions", "item": "https://learnmasterypath.com/typescript-mastery-path/interview-questions/"}
+    ]
+  }
+  </script>
+  <style>
+    .md-banner a:hover { text-decoration: underline !important; }
+    .mp-related { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--md-default-fg-color--lightest); font-size: .78rem; }
+    .mp-related h2 { font-size: .9rem; margin: 0 0 .5rem; }
+    .mp-related ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem .9rem; }
+    .mp-related li { margin: 0 !important; }
+  </style>
+  <script type="application/json" id="mp-course-meta">{"home": false, "id": "typescript-mastery-path", "name": "TypeScript Mastery Path", "repo": "https://github.com/SIGILIPELLI/typescript-mastery-path", "src": "interview-questions.md", "url": "https://learnmasterypath.com/typescript-mastery-path/"}</script>
+  <link rel="stylesheet" href="https://learnmasterypath.com/assets/learn.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://learnmasterypath.com/assets/course.css?v=1">
+  <script src="https://learnmasterypath.com/assets/learn.js" defer></script>
+  <script src="https://learnmasterypath.com/assets/signup.js" defer></script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#typescript-interview-questions-and-answers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://learnmasterypath.com/" style="color: inherit; text-decoration: none;">
+    &larr; Mastery Path &middot; all 100+ free courses
+  </a>
+  <span style="opacity: .6; margin: 0 .6em;">|</span>
+  <a href="https://learnmasterypath.com/search/" style="color: inherit; text-decoration: none;">Search all courses</a>
+  <span style="opacity: .6; margin: 0 .6em;">|</span>
+  <a href="https://learnmasterypath.com/resume/" style="color: inherit; font-weight: 700; text-decoration: none;">
+    Got the skills? Free resume ATS check &rarr;
+  </a>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="TypeScript Mastery Path" class="md-header__button md-logo" aria-label="TypeScript Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TypeScript Mastery Path
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TypeScript Interview Questions and Answers (179 Questions)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SIGILIPELLI/typescript-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    typescript-mastery-path
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Interview Questions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cheat-sheet/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cheat Sheet
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 1 · Entry
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 2 · Intermediate
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 3 · Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-4/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 4 · Master
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quiz/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Final Quiz
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="TypeScript Mastery Path" class="md-nav__button md-logo" aria-label="TypeScript Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    TypeScript Mastery Path
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SIGILIPELLI/typescript-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    typescript-mastery-path
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1 · Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 1 · Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-setup-first-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Setup &amp; First Program
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-basic-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Basic Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-control-flow-with-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Control Flow with Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-functions-type-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Functions &amp; Type Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-interfaces-type-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Interfaces &amp; Type Aliases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-arrays-objects-typed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Arrays &amp; Objects, Typed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-classes-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Classes Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Enums
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-modules-tsconfig-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Modules &amp; tsconfig Deep Dive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-typed-cli-to-do-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Typed CLI To-Do App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-intermediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2 · Intermediate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 2 · Intermediate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-union-intersection-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Union &amp; Intersection Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-generics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Generics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-interfaces-vs-type-aliases-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Interfaces vs Type Aliases Deep Dive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-classes-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Classes Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-utility-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Utility Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-asyncawait-with-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Async/Await with Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-testing-with-jest-ts-jest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Testing with Jest + ts-jest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-working-with-jsonapis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Working with JSON/APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-type-narrowing-type-guards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Type Narrowing &amp; Type Guards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-typed-weather-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Typed Weather Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-3-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 3 · Advanced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 3 · Advanced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-advanced-generics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Advanced Generics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-decorators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Decorators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-building-apis-with-express-ts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Building APIs with Express + TS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-type-safe-database-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Type-Safe Database Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-design-patterns-in-typescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Design Patterns in TypeScript
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-testing-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Testing Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-build-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Build Tooling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-third-party-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Third-Party Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-performance-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Performance &amp; Compilation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-rest-api-with-express" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — REST API with Express
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-4-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4 · Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 4 · Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-advanced-type-level-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Advanced Type-Level Programming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-framework-integration-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Framework Integration Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-monorepo-large-scale-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Monorepo &amp; Large-Scale Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-testing-at-scale-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Testing at Scale &amp; CI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Security Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-deployment-with-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Deployment with Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-writing-robust-public-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Writing Robust Public APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-strict-mode-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Strict Mode Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-capstone-project-bookmark-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Capstone Project — Bookmark API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-questions-across-all-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed questions across all levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-coding-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical coding questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical coding questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#safe-division-with-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safe division with Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generic-groupby" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic groupBy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheat-sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1 · Entry
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 1 · Entry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/01-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Setup & First Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/02-basic-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Basic Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/03-control-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Control Flow with Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/04-functions-type-annotations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Functions & Type Annotations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/05-interfaces-type-aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Interfaces & Type Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/06-arrays-objects-typed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Arrays & Objects, Typed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/07-classes-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Classes Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/08-enums/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/09-modules-tsconfig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Modules & tsconfig Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/10-project-todo-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Typed CLI To-Do App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 2 · Intermediate
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 2 · Intermediate
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/01-union-intersection-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Union & Intersection Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/02-generics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Generics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/03-interfaces-vs-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Interfaces vs Type Aliases Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/04-classes-advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Classes Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/05-utility-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Utility Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/06-async-await-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Async/Await with Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/07-testing-jest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Testing with Jest + ts-jest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/08-working-with-json-apis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Working with JSON/APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/09-type-narrowing-guards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Type Narrowing & Type Guards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/10-project-weather-dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Typed Weather Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3 · Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 3 · Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/01-advanced-generics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Advanced Generics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/02-decorators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Decorators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/03-building-apis-express-ts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Building APIs with Express + TS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/04-type-safe-database-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Type-Safe Database Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/05-design-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Design Patterns in TypeScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/06-testing-advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Testing Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/07-build-tooling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Build Tooling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/08-third-party-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Third-Party Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/09-performance-compilation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Performance & Compilation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/10-project-rest-api-express/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — REST API with Express
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-4/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 4 · Master
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 4 · Master
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/01-advanced-type-level-programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Advanced Type-Level Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/02-framework-integration-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Framework Integration Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/03-monorepo-large-scale-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Monorepo & Large-Scale Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/04-testing-at-scale-ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Testing at Scale & CI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/05-security-considerations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Security Considerations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/06-deployment-docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Deployment with Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/07-performance-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Performance Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/08-writing-robust-public-apis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Writing Robust Public APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/09-strict-mode-best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Strict Mode Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/10-capstone-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Capstone Project — Bookmark API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1 · Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 1 · Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-setup-first-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Setup &amp; First Program
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-basic-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Basic Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-control-flow-with-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Control Flow with Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-functions-type-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Functions &amp; Type Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-interfaces-type-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Interfaces &amp; Type Aliases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-arrays-objects-typed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Arrays &amp; Objects, Typed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-classes-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Classes Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Enums
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-modules-tsconfig-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Modules &amp; tsconfig Deep Dive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-typed-cli-to-do-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Typed CLI To-Do App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-intermediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2 · Intermediate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 2 · Intermediate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-union-intersection-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Union &amp; Intersection Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-generics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Generics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-interfaces-vs-type-aliases-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Interfaces vs Type Aliases Deep Dive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-classes-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Classes Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-utility-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Utility Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-asyncawait-with-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Async/Await with Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-testing-with-jest-ts-jest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Testing with Jest + ts-jest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-working-with-jsonapis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Working with JSON/APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-type-narrowing-type-guards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Type Narrowing &amp; Type Guards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-typed-weather-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Typed Weather Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-3-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 3 · Advanced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 3 · Advanced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-advanced-generics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Advanced Generics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-decorators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Decorators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-building-apis-with-express-ts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Building APIs with Express + TS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-type-safe-database-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Type-Safe Database Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-design-patterns-in-typescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Design Patterns in TypeScript
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-testing-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Testing Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-build-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Build Tooling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-third-party-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Third-Party Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-performance-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Performance &amp; Compilation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-rest-api-with-express" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — REST API with Express
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-4-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4 · Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 4 · Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-advanced-type-level-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Advanced Type-Level Programming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-framework-integration-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Framework Integration Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-monorepo-large-scale-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Monorepo &amp; Large-Scale Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-testing-at-scale-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Testing at Scale &amp; CI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Security Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-deployment-with-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Deployment with Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-writing-robust-public-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Writing Robust Public APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-strict-mode-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Strict Mode Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-capstone-project-bookmark-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Capstone Project — Bookmark API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-questions-across-all-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed questions across all levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-coding-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical coding questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical coding questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#safe-division-with-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safe division with Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generic-groupby" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic groupBy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+
+  
+  
+
+
+<h1 id="typescript-interview-questions-and-answers">TypeScript Interview Questions and Answers<a class="headerlink" href="#typescript-interview-questions-and-answers" title="Permanent link">&para;</a></h1>
+<p><strong>179 questions</strong> with the correct answer and a short explanation, organised from beginner (Level 1) to advanced (Level 4). Every question comes from a lesson in the free TypeScript Mastery Path, so you can open the lesson to go deeper.</p>
+<div class="admonition tip">
+<p class="admonition-title">Practise, don't just read</p>
+<p>Each lesson also ends with an interactive quiz, and the <a href="../quiz/">final quiz</a> tests all four levels. Try to answer each question below before reading the answer.</p>
+</div>
+<h2 id="level-1-entry">Level 1 · Entry<a class="headerlink" href="#level-1-entry" title="Permanent link">&para;</a></h2>
+<h3 id="01-setup-first-program"><a href="../level-1/01-setup/">01 · Setup &amp; First Program</a><a class="headerlink" href="#01-setup-first-program" title="Permanent link">&para;</a></h3>
+<p><strong>Q1.</strong> What does tsc do to your TypeScript code?</p>
+<p><strong>Answer:</strong> Type-checks it and erases all types, emitting plain JavaScript</p>
+<p>Types exist only at compile time and leave no trace in the output.</p>
+<p><strong>Q2.</strong> Why run the compiler with npx tsc for a project-local install?</p>
+<p><strong>Answer:</strong> npx finds the project-local binary instead of assuming it's on the global PATH</p>
+<p>A per-project install is the standard for real projects.</p>
+<p><strong>Q3.</strong> What is the point of the error TS2345 when you call greet(42) on a function taking a string?</p>
+<p><strong>Answer:</strong> It catches the bug before the program runs</p>
+<p>tsc refuses to compile until the error is fixed unless told otherwise.</p>
+<p><strong>Q4.</strong> What does npx tsc --init create?</p>
+<p><strong>Answer:</strong> A tsconfig.json describing the project's files, target and strictness</p>
+<p>Real projects use tsconfig.json rather than passing a filename.</p>
+<h3 id="02-basic-types"><a href="../level-1/02-basic-types/">02 · Basic Types</a><a class="headerlink" href="#02-basic-types" title="Permanent link">&para;</a></h3>
+<p><strong>Q5.</strong> How many numeric types does TypeScript have for ordinary numbers?</p>
+<p><strong>Answer:</strong> One: number (plus bigint for arbitrarily large integers)</p>
+<p>There is no separate int/float/double.</p>
+<p><strong>Q6.</strong> What does <code>let city = "Seattle";</code> infer, and what happens on <code>city = 42</code>?</p>
+<p><strong>Answer:</strong> Infers string; assigning 42 is error TS2322</p>
+<p>Inference works from the initializer without an annotation.</p>
+<p><strong>Q7.</strong> What is a tuple?</p>
+<p><strong>Answer:</strong> An array with a known length and a known type at each position</p>
+<p>Example: [string, number, boolean]. Labels like [status: number, body: string] are documentation only.</p>
+<p><strong>Q8.</strong> What does annotating a value as any do?</p>
+<p><strong>Answer:</strong> Disables type checking for that value, so even calling a number compiles</p>
+<p>Mistakes on any values are not caught at compile time.</p>
+<h3 id="03-control-flow-with-types"><a href="../level-1/03-control-flow/">03 · Control Flow with Types</a><a class="headerlink" href="#03-control-flow-with-types" title="Permanent link">&para;</a></h3>
+<p><strong>Q9.</strong> Inside <code>if (typeof id === "number")</code> for id: string | number, what is id's type?</p>
+<p><strong>Answer:</strong> number, because TypeScript narrows it</p>
+<p>In the else branch it narrows to string.</p>
+<p><strong>Q10.</strong> What is this ability to track types through branches called?</p>
+<p><strong>Answer:</strong> Control flow analysis</p>
+<p>It's why type-safe code needs fewer manual casts.</p>
+<p><strong>Q11.</strong> What does formatId(42) return in the lesson?</p>
+<p><strong>Answer:</strong> "42"</p>
+<p>id.toFixed(0) on 42 gives the string "42"; formatId("ab12") gives "AB12".</p>
+<p><strong>Q12.</strong> What does a switch on a union of string literals such as Direction let the compiler do?</p>
+<p><strong>Answer:</strong> Check which cases are handled, since each case narrows the value</p>
+<p>Control flow tracks the remaining possible values.</p>
+<h3 id="04-functions-type-annotations"><a href="../level-1/04-functions-type-annotations/">04 · Functions &amp; Type Annotations</a><a class="headerlink" href="#04-functions-type-annotations" title="Permanent link">&para;</a></h3>
+<p><strong>Q13.</strong> What does power(5) return for <code>function power(base: number, exponent: number = 2)</code>?</p>
+<p><strong>Answer:</strong> 25</p>
+<p>The default exponent of 2 applies; power(5, 3) is 125.</p>
+<p><strong>Q14.</strong> Where must optional parameters appear?</p>
+<p><strong>Answer:</strong> After all required parameters</p>
+<p>TypeScript enforces this at the declaration site.</p>
+<p><strong>Q15.</strong> In <code>function sum(...numbers: number[])</code>, what does the number[] annotation describe?</p>
+<p><strong>Answer:</strong> The collected array of trailing arguments</p>
+<p>sum(10, 20, 30, 40) returns 100.</p>
+<p><strong>Q16.</strong> Why annotate return types on functions other code depends on?</p>
+<p><strong>Answer:</strong> It documents intent and catches drift between implementation and callers' expectations</p>
+<p>TypeScript usually infers it, but explicit annotation is good practice.</p>
+<h3 id="05-interfaces-type-aliases"><a href="../level-1/05-interfaces-type-aliases/">05 · Interfaces &amp; Type Aliases</a><a class="headerlink" href="#05-interfaces-type-aliases" title="Permanent link">&para;</a></h3>
+<p><strong>Q17.</strong> What happens with <code>const bad: User = { id: 2, name: "Bob" }</code> when User requires email?</p>
+<p><strong>Answer:</strong> Error TS2741: Property 'email' is missing</p>
+<p>An object literal must have the declared properties.</p>
+<p><strong>Q18.</strong> What does a readonly property like sku prevent?</p>
+<p><strong>Answer:</strong> Reassignment after creation (error TS2540)</p>
+<p>It can be set once.</p>
+<p><strong>Q19.</strong> What does item.discount evaluate to when an optional discount is omitted?</p>
+<p><strong>Answer:</strong> undefined</p>
+<p>Optional properties default to undefined when absent.</p>
+<p><strong>Q20.</strong> What is the common rule of thumb for interface versus type?</p>
+<p><strong>Answer:</strong> interface for extendable object shapes and public APIs; type for unions, tuples and non-object shapes</p>
+<p>Level 2 covers declaration merging and extends versus &amp;.</p>
+<h3 id="06-arrays-objects-typed"><a href="../level-1/06-arrays-objects-typed/">06 · Arrays &amp; Objects, Typed</a><a class="headerlink" href="#06-arrays-objects-typed" title="Permanent link">&para;</a></h3>
+<p><strong>Q21.</strong> How do number[] and Array&lt;number&gt; relate?</p>
+<p><strong>Answer:</strong> They mean exactly the same thing</p>
+<p>T[] is shorthand for Array&lt;T&gt;.</p>
+<p><strong>Q22.</strong> What does <code>const evens = numbers.filter((n) =&gt; n % 2 === 0)</code> produce for [1,2,3,4,5]?</p>
+<p><strong>Answer:</strong> [2, 4]</p>
+<p>The callback keeps even numbers; and reduce sums to 15.</p>
+<p><strong>Q23.</strong> What does connect({ host: "localhost", port: 8080 }) print for a destructured debug = false default?</p>
+<p><strong>Answer:</strong> Connecting to localhost:8080, debug=false</p>
+<p>The default applies when debug is omitted.</p>
+<p><strong>Q24.</strong> Why prefer a named interface over repeating an inline object type?</p>
+<p><strong>Answer:</strong> It's reusable and stays consistent when the shape changes</p>
+<p>Inline shapes work but get repeated.</p>
+<h3 id="07-classes-basics"><a href="../level-1/07-classes-basics/">07 · Classes Basics</a><a class="headerlink" href="#07-classes-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q25.</strong> What does <code>constructor(public name: string, public age: number) {}</code> do?</p>
+<p><strong>Answer:</strong> Declares and assigns the properties in one step</p>
+<p>No separate this.name = name line is needed.</p>
+<p><strong>Q26.</strong> What happens with <code>account.balance</code> when balance is private?</p>
+<p><strong>Answer:</strong> Error TS2341: Property 'balance' is private</p>
+<p>The class exposes getBalance() instead.</p>
+<p><strong>Q27.</strong> Which modifier makes a member visible in the class and its subclasses?</p>
+<p><strong>Answer:</strong> protected</p>
+<p>public is the default; readonly blocks reassignment after construction.</p>
+<p><strong>Q28.</strong> What does the loop over [new Dog("Rex"), new Cat("Whiskers")] print?</p>
+<p><strong>Answer:</strong> Rex: Woof! then Whiskers: Meow!</p>
+<p>Each subclass overrides makeSound().</p>
+<h3 id="08-enums"><a href="../level-1/08-enums/">08 · Enums</a><a class="headerlink" href="#08-enums" title="Permanent link">&para;</a></h3>
+<p><strong>Q29.</strong> With <code>enum Direction { North, South, East, West }</code>, what is Direction.South and Direction[1]?</p>
+<p><strong>Answer:</strong> 1 and "South"</p>
+<p>Numeric enums start at 0 and are reverse-mappable.</p>
+<p><strong>Q30.</strong> Why are string enums usually the better default?</p>
+<p><strong>Answer:</strong> They serialise to readable values like "ACTIVE", which is easier to debug and safer to store or send</p>
+<p>They have no numeric reverse mapping.</p>
+<p><strong>Q31.</strong> What does handle(HttpStatus.NotFound) print with NotFound = 404?</p>
+<p><strong>Answer:</strong> Error: 404</p>
+<p>The status isn't HttpStatus.OK, so the else branch runs.</p>
+<p><strong>Q32.</strong> What is the trade-off of a const enum?</p>
+<p><strong>Answer:</strong> It's inlined at compile time with no runtime object, so you can't iterate members or reverse lookup</p>
+<p>The output is smaller.</p>
+<h3 id="09-modules-tsconfig-deep-dive"><a href="../level-1/09-modules-tsconfig/">09 · Modules &amp; tsconfig Deep Dive</a><a class="headerlink" href="#09-modules-tsconfig-deep-dive" title="Permanent link">&para;</a></h3>
+<p><strong>Q33.</strong> Why are named exports generally preferred over default exports?</p>
+<p><strong>Answer:</strong> They're easier to refactor and better supported by auto-import tooling</p>
+<p>A default import can be given any name without the compiler noticing a different meaning.</p>
+<p><strong>Q34.</strong> What does strict: true enable?</p>
+<p><strong>Answer:</strong> All strict type-checking flags, including strictNullChecks and noImplicitAny</p>
+<p>The lesson calls it the single most important setting.</p>
+<p><strong>Q35.</strong> What do outDir and rootDir configure?</p>
+<p><strong>Answer:</strong> Where compiled .js is written and where the compiler expects .ts source</p>
+<p>In the lesson, rootDir is ./src and outDir is ./dist.</p>
+<p><strong>Q36.</strong> What does skipLibCheck do?</p>
+<p><strong>Answer:</strong> Skips type-checking .d.ts files from dependencies, for faster builds</p>
+<p>It's one of the key compilerOptions.</p>
+<h3 id="10-project-typed-cli-to-do-app"><a href="../level-1/10-project-todo-cli/">10 · Project — Typed CLI To-Do App</a><a class="headerlink" href="#10-project-typed-cli-to-do-app" title="Permanent link">&para;</a></h3>
+<p><strong>Q37.</strong> How does the app persist tasks between runs?</p>
+<p><strong>Answer:</strong> It reads and writes a JSON file (tasks.json) with fs</p>
+<p>loadTasks returns [] if the file is missing or can't be parsed.</p>
+<p><strong>Q38.</strong> How does the app number tasks for the user?</p>
+<p><strong>Answer:</strong> Displayed 1-based (i + 1) and converted with index - 1 internally</p>
+<p>completeTask reads tasks[index - 1].</p>
+<p><strong>Q39.</strong> What does deleteTask do for an out-of-range number?</p>
+<p><strong>Answer:</strong> Prints "No task with number N" and returns</p>
+<p>It checks index &lt; 1 || index &gt; tasks.length.</p>
+<p><strong>Q40.</strong> What does <code>JSON.parse(contents) as Task[]</code> do for type safety?</p>
+<p><strong>Answer:</strong> Asserts the type at compile time only; it doesn't validate the data at runtime</p>
+<p>Types are erased, so a malformed file is not detected by the assertion.</p>
+<h2 id="level-2-intermediate">Level 2 · Intermediate<a class="headerlink" href="#level-2-intermediate" title="Permanent link">&para;</a></h2>
+<h3 id="01-union-intersection-types"><a href="../level-2/01-union-intersection-types/">01 · Union &amp; Intersection Types</a><a class="headerlink" href="#01-union-intersection-types" title="Permanent link">&para;</a></h3>
+<p><strong>Q41.</strong> On a value of type string | number, which members can you use without narrowing?</p>
+<p><strong>Answer:</strong> Only those common to every type in the union</p>
+<p>value.length alone errors with TS2339 because number has no length.</p>
+<p><strong>Q42.</strong> What is a discriminated union?</p>
+<p><strong>Answer:</strong> A union of object types sharing a literal property (like kind) that lets TypeScript narrow by checking it</p>
+<p>The shared kind literal is the discriminant.</p>
+<p><strong>Q43.</strong> What does area({ kind: "square", side: 3 }) return in the lesson?</p>
+<p><strong>Answer:</strong> 9</p>
+<p>The non-circle branch returns shape.side ** 2; the circle with radius 2 gives 12.57.</p>
+<p><strong>Q44.</strong> What does printLength(3.14159) print?</p>
+<p><strong>Answer:</strong> 3</p>
+<p>It narrows to number and prints value.toFixed(0) = "3".</p>
+<h3 id="02-generics"><a href="../level-2/02-generics/">02 · Generics</a><a class="headerlink" href="#02-generics" title="Permanent link">&para;</a></h3>
+<p><strong>Q45.</strong> Why is firstAny(arr: any[]): any risky?</p>
+<p><strong>Answer:</strong> Calling oops.toUpperCase() on a number compiles but crashes at runtime</p>
+<p>any disables checks, so the bug hides until runtime.</p>
+<p><strong>Q46.</strong> What does <code>firstElement([1, 2, 3])</code> infer as the type of num?</p>
+<p><strong>Answer:</strong> number</p>
+<p>T is inferred from the argument; you rarely need firstElement&lt;number&gt;(...).</p>
+<p><strong>Q47.</strong> What does pair("age", 30) have as its type?</p>
+<p><strong>Answer:</strong> [string, number], a tuple</p>
+<p>Two type parameters A and B keep each position's type.</p>
+<p><strong>Q48.</strong> What does <code>T extends HasLength</code> achieve?</p>
+<p><strong>Answer:</strong> It constrains T to types that have a numeric length, so logLength(42) is an error</p>
+<p>Strings, arrays and { length: 10 } all pass.</p>
+<h3 id="03-interfaces-vs-type-aliases-deep-dive"><a href="../level-2/03-interfaces-vs-types/">03 · Interfaces vs Type Aliases Deep Dive</a><a class="headerlink" href="#03-interfaces-vs-type-aliases-deep-dive" title="Permanent link">&para;</a></h3>
+<p><strong>Q49.</strong> What happens with two interfaces of the same name in the same scope?</p>
+<p><strong>Answer:</strong> They merge automatically</p>
+<p>Two type aliases of the same name give TS2300 Duplicate identifier.</p>
+<p><strong>Q50.</strong> What practical use does declaration merging have?</p>
+<p><strong>Answer:</strong> Extending third-party types such as Express's Request without editing the library</p>
+<p>It's also a trap if you accidentally name an interface like one from a library.</p>
+<p><strong>Q51.</strong> For a plain object shape, are UserI (interface) and UserT (type) assignable to each other?</p>
+<p><strong>Answer:</strong> Yes: structural typing doesn't care which form produced the shape</p>
+<p>printUser(asType) works in the lesson.</p>
+<p><strong>Q52.</strong> How do interfaces and type aliases combine with others?</p>
+<p><strong>Answer:</strong> Interfaces use extends; type aliases use &amp;, and they behave differently on conflicting members</p>
+<p>A conflicting extends gives TS2430.</p>
+<h3 id="04-classes-advanced"><a href="../level-2/04-classes-advanced/">04 · Classes Advanced</a><a class="headerlink" href="#04-classes-advanced" title="Permanent link">&para;</a></h3>
+<p><strong>Q53.</strong> What happens with <code>new Shape()</code> when Shape is abstract?</p>
+<p><strong>Answer:</strong> Error TS2511: Cannot create an instance of an abstract class</p>
+<p>Subclasses must implement abstract methods like area().</p>
+<p><strong>Q54.</strong> How does an abstract class differ from a plain interface?</p>
+<p><strong>Answer:</strong> It can mix shared working code with must-override contracts</p>
+<p>describe() is concrete while area() is abstract.</p>
+<p><strong>Q55.</strong> How many classes can a class extend, and how many interfaces can it implement?</p>
+<p><strong>Answer:</strong> At most one class; any number of interfaces</p>
+<p>extends is for 'is a kind of'; implements for 'conforms to this contract'.</p>
+<p><strong>Q56.</strong> What does Counter.total print after three <code>new Counter()</code> calls?</p>
+<p><strong>Answer:</strong> 3</p>
+<p>The static count belongs to the class, not instances.</p>
+<h3 id="05-utility-types"><a href="../level-2/05-utility-types/">05 · Utility Types</a><a class="headerlink" href="#05-utility-types" title="Permanent link">&para;</a></h3>
+<p><strong>Q57.</strong> What does Partial&lt;Article&gt; make each property?</p>
+<p><strong>Answer:</strong> Optional, so callers can send only the changed fields</p>
+<p>Useful for update functions.</p>
+<p><strong>Q58.</strong> What happens with run({ timeout: 1000 }) when run takes Required&lt;Options&gt;?</p>
+<p><strong>Answer:</strong> Error: Property 'retries' is missing</p>
+<p>Required forces every optional property to be present.</p>
+<p><strong>Q59.</strong> Does Readonly&lt;Article&gt; stop draft.tags.push(...)?</p>
+<p><strong>Answer:</strong> No: it's compile-time only and shallow, so tags is read-only as a reference but not deeply frozen</p>
+<p>It doesn't deep-freeze the object at runtime.</p>
+<p><strong>Q60.</strong> What does Pick&lt;Article, "id" | "title" | "tags"&gt; produce?</p>
+<p><strong>Answer:</strong> A type with only those three properties</p>
+<p>Accessing preview.body is error TS2339.</p>
+<h3 id="06-asyncawait-with-types"><a href="../level-2/06-async-await-types/">06 · Async/Await with Types</a><a class="headerlink" href="#06-asyncawait-with-types" title="Permanent link">&para;</a></h3>
+<p><strong>Q61.</strong> What type do you write for <code>async function getGreeting()</code> that returns a plain string?</p>
+<p><strong>Answer:</strong> Promise&lt;string&gt;</p>
+<p>TypeScript wraps a plain return in a Promise automatically.</p>
+<p><strong>Q62.</strong> What does <code>await</code> do to a Promise&lt;T&gt; inside an async function?</p>
+<p><strong>Answer:</strong> Unwraps it to T</p>
+<p>Outside async functions you use .then() on the Promise&lt;T&gt;.</p>
+<p><strong>Q63.</strong> How does Promise.all type the result of [Promise&lt;string&gt;, Promise&lt;number&gt;, Promise&lt;boolean&gt;]?</p>
+<p><strong>Answer:</strong> As a tuple [string, number, boolean]</p>
+<p>Each element keeps its own type.</p>
+<p><strong>Q64.</strong> What is the type of the caught value in a catch block since TypeScript 4.4 (by default)?</p>
+<p><strong>Answer:</strong> unknown, forcing you to narrow</p>
+<p>It was any previously; unknown is a deliberate safety improvement.</p>
+<h3 id="07-testing-with-jest-ts-jest"><a href="../level-2/07-testing-jest/">07 · Testing with Jest + ts-jest</a><a class="headerlink" href="#07-testing-with-jest-ts-jest" title="Permanent link">&para;</a></h3>
+<p><strong>Q65.</strong> What does ts-jest add to Jest?</p>
+<p><strong>Answer:</strong> It runs .ts files directly and type-checks tests with your real tsconfig.json</p>
+<p>A test with a type error fails like a production file would.</p>
+<p><strong>Q66.</strong> Why must you write expect(() =&gt; divide(1, 0)).toThrow(...) rather than expect(divide(1, 0)).toThrow(...)?</p>
+<p><strong>Answer:</strong> The second throws while evaluating the argument, before expect runs</p>
+<p>Wrap the throwing call in a function.</p>
+<p><strong>Q67.</strong> Given activeUsers(sample) with Ada (active), Bob (inactive), Cy (active), what does result.map(u =&gt; u.name) equal?</p>
+<p><strong>Answer:</strong> ["Ada", "Cy"]</p>
+<p>The filter keeps active users, so the length is 2.</p>
+<p><strong>Q68.</strong> What does the compiler catch versus Jest tests?</p>
+<p><strong>Answer:</strong> The compiler catches type mismatches; tests catch wrong business logic</p>
+<p>TypeScript doesn't make logic correct.</p>
+<h3 id="08-working-with-jsonapis"><a href="../level-2/08-working-with-json-apis/">08 · Working with JSON/APIs</a><a class="headerlink" href="#08-working-with-jsonapis" title="Permanent link">&para;</a></h3>
+<p><strong>Q69.</strong> What type does response.json() give, and what does TypeScript check?</p>
+<p><strong>Answer:</strong> any; nothing is verified against the real response</p>
+<p>returning data as Todo trusts you completely.</p>
+<p><strong>Q70.</strong> What does <code>as Todo</code> do at runtime?</p>
+<p><strong>Answer:</strong> Nothing: it performs zero runtime checking</p>
+<p>It's better than any but is not validation.</p>
+<p><strong>Q71.</strong> When does fetch reject its promise?</p>
+<p><strong>Answer:</strong> Only on a network failure; 404 and 500 still resolve</p>
+<p>Check response.ok, which is false outside 200–299.</p>
+<p><strong>Q72.</strong> How do you really verify API data is a Todo?</p>
+<p><strong>Answer:</strong> Validate the shape at runtime with a type guard</p>
+<p>The lesson's Step 3 uses a hand-written guard.</p>
+<h3 id="09-type-narrowing-type-guards"><a href="../level-2/09-type-narrowing-guards/">09 · Type Narrowing &amp; Type Guards</a><a class="headerlink" href="#09-type-narrowing-type-guards" title="Permanent link">&para;</a></h3>
+<p><strong>Q73.</strong> What does describeValue(3.14159) print?</p>
+<p><strong>Answer:</strong> number: 3.14</p>
+<p>The typeof number branch uses toFixed(2).</p>
+<p><strong>Q74.</strong> What is narrowing?</p>
+<p><strong>Answer:</strong> The compiler tracking that a variable's type became more specific, from the control flow you wrote</p>
+<p>No extra annotations are needed.</p>
+<p><strong>Q75.</strong> What does formatValue(undefined) return for string | string[] | undefined?</p>
+<p><strong>Answer:</strong> (none)</p>
+<p>After excluding undefined and string, the last option is string[] and uses join.</p>
+<p><strong>Q76.</strong> Why can a top-level function named describe fail with @types/jest installed?</p>
+<p><strong>Answer:</strong> It collides with Jest's global describe as a duplicate identifier</p>
+<p>Watch for names that overlap with globals your type setup provides.</p>
+<h3 id="10-project-typed-weather-dashboard"><a href="../level-2/10-project-weather-dashboard/">10 · Project — Typed Weather Dashboard</a><a class="headerlink" href="#10-project-typed-weather-dashboard" title="Permanent link">&para;</a></h3>
+<p><strong>Q77.</strong> Why does the project use Open-Meteo?</p>
+<p><strong>Answer:</strong> It's free and needs no API key or signup</p>
+<p>It has a geocoding endpoint (city to coordinates) and a forecast endpoint.</p>
+<p><strong>Q78.</strong> How are the Jest tests kept free of network calls?</p>
+<p><strong>Answer:</strong> They cover only the pure data-shaping logic, such as summary and weatherCodes</p>
+<p>summary.ts is a pure function combining location and forecast.</p>
+<p><strong>Q79.</strong> What happens to API responses before they're trusted?</p>
+<p><strong>Answer:</strong> Both are validated at runtime</p>
+<p>The project applies the Level 2 JSON-validation lesson.</p>
+<p><strong>Q80.</strong> Which pieces does the capstone combine?</p>
+<p><strong>Answer:</strong> Generics, utility types, typed async/await, JSON validation and Jest tests</p>
+<p>It also caches repeated city lookups.</p>
+<h2 id="level-3-advanced">Level 3 · Advanced<a class="headerlink" href="#level-3-advanced" title="Permanent link">&para;</a></h2>
+<h3 id="01-advanced-generics"><a href="../level-3/01-advanced-generics/">01 · Advanced Generics</a><a class="headerlink" href="#01-advanced-generics" title="Permanent link">&para;</a></h3>
+<p><strong>Q81.</strong> What is IsString&lt;number&gt; in <code>type IsString&lt;T&gt; = T extends string ? "yes" : "no"</code>?</p>
+<p><strong>Answer:</strong> "no"</p>
+<p>It's resolved entirely by the compiler; nothing remains at runtime.</p>
+<p><strong>Q82.</strong> What does ElementType&lt;number[]&gt; give with <code>T extends (infer U)[] ? U : T</code>?</p>
+<p><strong>Answer:</strong> number</p>
+<p>infer pulls U out of the array type; ElementType&lt;string&gt; falls through to string.</p>
+<p><strong>Q83.</strong> What does Unwrap&lt;Promise&lt;number&gt;&gt; give?</p>
+<p><strong>Answer:</strong> number</p>
+<p>It's the same pattern as the built-in Awaited&lt;T&gt;.</p>
+<p><strong>Q84.</strong> What trap does a conditional type with a naked type parameter have when given a union?</p>
+<p><strong>Answer:</strong> It distributes over each member separately and unions the results</p>
+<p>ToArray&lt;string | number&gt; becomes string[] | number[].</p>
+<h3 id="02-decorators"><a href="../level-3/02-decorators/">02 · Decorators</a><a class="headerlink" href="#02-decorators" title="Permanent link">&para;</a></h3>
+<p><strong>Q85.</strong> Which decorators does the module use?</p>
+<p><strong>Answer:</strong> Standard decorators (TC39 Stage 3, default since TypeScript 5.0), with no experimentalDecorators flag</p>
+<p>Older NestJS/Angular code may use the legacy flag.</p>
+<p><strong>Q86.</strong> What does a method decorator receive and return?</p>
+<p><strong>Answer:</strong> The original method and a context object; it returns a replacement function</p>
+<p>The generic This, Args and Return keep the method's signature.</p>
+<p><strong>Q87.</strong> What does calc.add(2, 3) print with @logged?</p>
+<p><strong>Answer:</strong> Calling add with [ 2, 3 ] then add returned 5</p>
+<p>The wrapper logs before and after calling the target.</p>
+<p><strong>Q88.</strong> What is a decorator factory?</p>
+<p><strong>Answer:</strong> A function that returns a decorator, which lets decorators take arguments, like retry(times)</p>
+<p>It's the pattern behind almost every configurable decorator.</p>
+<h3 id="03-building-apis-with-express-ts"><a href="../level-3/03-building-apis-express-ts/">03 · Building APIs with Express + TS</a><a class="headerlink" href="#03-building-apis-with-express-ts" title="Permanent link">&para;</a></h3>
+<p><strong>Q89.</strong> What happens to req and res without @types/express?</p>
+<p><strong>Answer:</strong> They fall back to any, so TypeScript can't help</p>
+<p>The package gives requests, responses and middleware a real shape.</p>
+<p><strong>Q90.</strong> What does Request&lt;{}, {}, CreateUserBody&gt; type?</p>
+<p><strong>Answer:</strong> req.body, since the third type parameter is the body</p>
+<p>Request&lt;{ id: string }&gt; types req.params; the middle parameter is the response body.</p>
+<p><strong>Q91.</strong> What status does POST /users return on success, and on a missing name or email?</p>
+<p><strong>Answer:</strong> 201 on success; 400 when name or email is missing</p>
+<p>A missing user on GET /users/:id returns 404, and the error handler returns 500.</p>
+<p><strong>Q92.</strong> What identifies Express's error-handling middleware?</p>
+<p><strong>Answer:</strong> It takes four parameters: err, req, res, next</p>
+<p>It's registered last with app.use(errorHandler).</p>
+<h3 id="04-type-safe-database-access"><a href="../level-3/04-type-safe-database-access/">04 · Type-Safe Database Access</a><a class="headerlink" href="#04-type-safe-database-access" title="Permanent link">&para;</a></h3>
+<p><strong>Q93.</strong> Why is <code>users.where("active", "yes")</code> a compile error?</p>
+<p><strong>Answer:</strong> where&lt;K extends keyof T&gt;(key: K, value: T[K]) requires the value to match that property's type (boolean)</p>
+<p>This is the trick Prisma and Drizzle use to type-check where() calls.</p>
+<p><strong>Q94.</strong> What does users.findById(99) return in the lesson?</p>
+<p><strong>Answer:</strong> undefined</p>
+<p>Its return type is T | undefined.</p>
+<p><strong>Q95.</strong> What does insert(data: Omit&lt;T, "id"&gt;) mean?</p>
+<p><strong>Answer:</strong> The caller supplies everything except id, which the table assigns</p>
+<p>A nextId counter assigns it.</p>
+<p><strong>Q96.</strong> Why build a Table&lt;T&gt; by hand?</p>
+<p><strong>Answer:</strong> So the types in ORMs like Prisma, Drizzle and Knex stop feeling like magic</p>
+<p>It's an in-memory mirror of what those libraries generate.</p>
+<h3 id="05-design-patterns-in-typescript"><a href="../level-3/05-design-patterns/">05 · Design Patterns in TypeScript</a><a class="headerlink" href="#05-design-patterns-in-typescript" title="Permanent link">&para;</a></h3>
+<p><strong>Q97.</strong> What makes ConfigStore a singleton at the type level?</p>
+<p><strong>Answer:</strong> A private constructor, so getInstance() is the only way in</p>
+<p>new ConfigStore() from outside is a compile error.</p>
+<p><strong>Q98.</strong> What does ConfigStore.getInstance() === ConfigStore.getInstance() print?</p>
+<p><strong>Answer:</strong> true</p>
+<p>Both calls return the same stored instance.</p>
+<p><strong>Q99.</strong> Which five patterns does the module cover?</p>
+<p><strong>Answer:</strong> Singleton, Factory, Strategy, Observer, Builder</p>
+<p>They're the ones met in real codebases.</p>
+<p><strong>Q100.</strong> Why does the ceremony of the Gang of Four book often shrink in TypeScript?</p>
+<p><strong>Answer:</strong> Interfaces are structural and functions are first-class</p>
+<p>Patterns read differently than in Java or C++.</p>
+<h3 id="06-testing-advanced"><a href="../level-3/06-testing-advanced/">06 · Testing Advanced</a><a class="headerlink" href="#06-testing-advanced" title="Permanent link">&para;</a></h3>
+<p><strong>Q101.</strong> Why does SignupNotifier depend on an EmailClient interface rather than a concrete class?</p>
+<p><strong>Answer:</strong> Any object shaped like EmailClient satisfies it, so tests need no real mail server</p>
+<p>That's what makes it testable.</p>
+<p><strong>Q102.</strong> What does <code>vi.fn().mockResolvedValue(false)</code> make the fake send return?</p>
+<p><strong>Answer:</strong> A promise resolving to false, so welcome() throws "failed to email …"</p>
+<p>The test asserts with await expect(...).rejects.toThrow(...).</p>
+<p><strong>Q103.</strong> What does vi.spyOn(realClient, "send") do?</p>
+<p><strong>Answer:</strong> Records calls while keeping the real behaviour</p>
+<p>The test then expects the spy toHaveBeenCalledOnce().</p>
+<p><strong>Q104.</strong> Why does the lesson use Vitest?</p>
+<p><strong>Answer:</strong> It has first-class TypeScript support and a Jest-compatible API, so it reads onto Jest too</p>
+<p>Install with npm install -D vitest.</p>
+<h3 id="07-build-tooling"><a href="../level-3/07-build-tooling/">07 · Build Tooling</a><a class="headerlink" href="#07-build-tooling" title="Permanent link">&para;</a></h3>
+<p><strong>Q105.</strong> What does esbuild not do?</p>
+<p><strong>Answer:</strong> Type-check; it will bundle code with type errors</p>
+<p>It strips types and transpiles without verifying them.</p>
+<p><strong>Q106.</strong> What does tsc not do?</p>
+<p><strong>Answer:</strong> Bundle: each input file becomes its own output file</p>
+<p>That's fine for Node but not for shipping a single script to a browser.</p>
+<p><strong>Q107.</strong> What does the standard combination use each tool for?</p>
+<p><strong>Answer:</strong> tsc --noEmit as a type-check gate; esbuild for fast bundling</p>
+<p>The build:safe script runs typecheck then build.</p>
+<p><strong>Q108.</strong> Why is esbuild so much faster than tsc in the lesson (8ms vs about 240ms)?</p>
+<p><strong>Answer:</strong> It's written in Go and skips type-checking</p>
+<p>The gap grows on big projects.</p>
+<h3 id="08-third-party-types"><a href="../level-3/08-third-party-types/">08 · Third-Party Types</a><a class="headerlink" href="#08-third-party-types" title="Permanent link">&para;</a></h3>
+<p><strong>Q109.</strong> What happens when you import a JS module that has no types?</p>
+<p><strong>Answer:</strong> Every export gets type any, until you add a .d.ts</p>
+<p>legacy/index.d.ts matches legacy/index.js by file name.</p>
+<p><strong>Q110.</strong> What are @types/* packages?</p>
+<p><strong>Answer:</strong> Community-maintained types from DefinitelyTyped, picked up automatically from node_modules/@types</p>
+<p>For example @types/lodash alongside lodash.</p>
+<p><strong>Q111.</strong> Why is <code>declare global { … }</code> needed to add shout() to String inside a file with an import or export?</p>
+<p><strong>Answer:</strong> The file is a module, so a plain interface String would only shadow locally</p>
+<p>declare global is the escape hatch back to global scope.</p>
+<p><strong>Q112.</strong> What is declaration merging?</p>
+<p><strong>Answer:</strong> Two same-named interfaces combine into one interface</p>
+<p>It's the mechanism behind module augmentation.</p>
+<h3 id="09-performance-compilation"><a href="../level-3/09-performance-compilation/">09 · Performance &amp; Compilation</a><a class="headerlink" href="#09-performance-compilation" title="Permanent link">&para;</a></h3>
+<p><strong>Q113.</strong> Why does tsc report 83 files and 58,456 lines for one small .ts file?</p>
+<p><strong>Answer:</strong> lib.d.ts and other built-in definitions are pulled in and type-checked by default</p>
+<p>Check time, not your own line count, dominates.</p>
+<p><strong>Q114.</strong> What did skipLibCheck do to Check time in the lesson's measurement?</p>
+<p><strong>Answer:</strong> Dropped it from 0.132s to 0.001s</p>
+<p>Types fell from 35,374 to 395, and your own code is still fully checked.</p>
+<p><strong>Q115.</strong> What does incremental: true do?</p>
+<p><strong>Answer:</strong> Writes a .tsbuildinfo file so later runs re-check only changed files and their dependents</p>
+<p>Configured with tsBuildInfoFile.</p>
+<p><strong>Q116.</strong> Which flag measures where compile time goes?</p>
+<p><strong>Answer:</strong> --extendedDiagnostics</p>
+<p>It prints files, lines, types, instantiations, memory and check time.</p>
+<h3 id="10-project-rest-api-with-express"><a href="../level-3/10-project-rest-api-express/">10 · Project — REST API with Express</a><a class="headerlink" href="#10-project-rest-api-with-express" title="Permanent link">&para;</a></h3>
+<p><strong>Q117.</strong> How do NotFoundError and ValidationError help the API?</p>
+<p><strong>Answer:</strong> Custom Error subclasses are thrown by the store and mapped to status codes by a central error handler</p>
+<p>find() throws NotFoundError if a task is missing.</p>
+<p><strong>Q118.</strong> What does TaskStore.update(id, patch) do with an UpdateTaskBody?</p>
+<p><strong>Answer:</strong> Changes only the fields provided (title and/or done)</p>
+<p>Each field is checked against undefined.</p>
+<p><strong>Q119.</strong> How does the build and run flow work?</p>
+<p><strong>Answer:</strong> tsc compiles src to dist; node dist/index.js starts the server</p>
+<p>dev uses tsc --watch.</p>
+<p><strong>Q120.</strong> What does list() return, and why?</p>
+<p><strong>Answer:</strong> A copy ([...this.tasks]) so callers can't mutate the store's array</p>
+<p>It protects the private state.</p>
+<h2 id="level-4-master">Level 4 · Master<a class="headerlink" href="#level-4-master" title="Permanent link">&para;</a></h2>
+<h3 id="01-advanced-type-level-programming"><a href="../level-4/01-advanced-type-level-programming/">01 · Advanced Type-Level Programming</a><a class="headerlink" href="#01-advanced-type-level-programming" title="Permanent link">&para;</a></h3>
+<p><strong>Q121.</strong> What is EventName&lt;"click"&gt; for <code>on${Capitalize&lt;T&gt;}</code>?</p>
+<p><strong>Answer:</strong> "onClick"</p>
+<p>Capitalize is one of four intrinsic string types, alongside Uppercase, Lowercase and Uncapitalize.</p>
+<p><strong>Q122.</strong> What does Split&lt;"a.b.c", "."&gt; give?</p>
+<p><strong>Answer:</strong> ["a", "b", "c"]</p>
+<p>It recurses on Rest until the pattern no longer matches, then the base case [S] wraps what's left.</p>
+<p><strong>Q123.</strong> What does <code>infer</code> capture inside a template literal pattern?</p>
+<p><strong>Answer:</strong> A piece of the matched string as its own type variable</p>
+<p>It's head-recursion at the type level.</p>
+<p><strong>Q124.</strong> What does the dot-path type enable?</p>
+<p><strong>Answer:</strong> Autocompleting and type-checking keys like "server.port" against a real object shape</p>
+<p>It's built from template literal types, recursive conditional types and tuples.</p>
+<h3 id="02-framework-integration-patterns"><a href="../level-4/02-framework-integration-patterns/">02 · Framework Integration Patterns</a><a class="headerlink" href="#02-framework-integration-patterns" title="Permanent link">&para;</a></h3>
+<p><strong>Q125.</strong> What shape do Express, Koa and Fastify share?</p>
+<p><strong>Answer:</strong> A chain of middleware functions passed a context and a next callback</p>
+<p>The module builds that pattern from scratch.</p>
+<p><strong>Q126.</strong> Why is App&lt;State&gt; generic?</p>
+<p><strong>Answer:</strong> Each project picks its own State, and every middleware's ctx.state is then typed with no casts</p>
+<p>This is how ctx.state (Koa) or req.user (Express via augmentation) can be typed per project.</p>
+<p><strong>Q127.</strong> What do ctx.state.logs and ctx.state.userId hold after app.handle(ctx) runs on "/dashboard"?</p>
+<p><strong>Answer:</strong> ['request to /dashboard', 'handled for user-42'] and user-42</p>
+<p>The three middlewares run in order, each calling next().</p>
+<p><strong>Q128.</strong> What does the run function's check <code>if (i &lt;= index)</code> guard against?</p>
+<p><strong>Answer:</strong> next() being called multiple times</p>
+<p>It throws "next() called multiple times".</p>
+<h3 id="03-monorepo-large-scale-structure"><a href="../level-4/03-monorepo-large-scale-structure/">03 · Monorepo &amp; Large-Scale Structure</a><a class="headerlink" href="#03-monorepo-large-scale-structure" title="Permanent link">&para;</a></h3>
+<p><strong>Q129.</strong> What does composite: true require and enable?</p>
+<p><strong>Answer:</strong> It's required on every package a reference points at, forcing declaration: true and stricter incremental bookkeeping</p>
+<p>It lets other packages depend on this one's compiled .d.ts output.</p>
+<p><strong>Q130.</strong> What does paths in tsconfig do?</p>
+<p><strong>Answer:</strong> Tells the type checker where to resolve @acme/core; it doesn't affect what Node does at runtime</p>
+<p>Runtime resolution is handled by the package manager's workspace linking.</p>
+<p><strong>Q131.</strong> What do references do?</p>
+<p><strong>Answer:</strong> Describe the dependency graph for tsc --build: build core before api and rebuild api if core changes</p>
+<p>They solve type-checking; workspace linking solves resolution.</p>
+<p><strong>Q132.</strong> What makes the root tsconfig a pure solution file?</p>
+<p><strong>Answer:</strong> files: [] plus references, so tsc --build builds every package in dependency order</p>
+<p>It has no code of its own.</p>
+<h3 id="04-testing-at-scale-ci"><a href="../level-4/04-testing-at-scale-ci/">04 · Testing at Scale &amp; CI</a><a class="headerlink" href="#04-testing-at-scale-ci" title="Permanent link">&para;</a></h3>
+<p><strong>Q133.</strong> Which test covers the <code>if (!ok) throw</code> branch of notifier.ts?</p>
+<p><strong>Answer:</strong> The failure-path test (rejects.toThrow); without it Branches would read 50% (1/2)</p>
+<p>Every statement, branch, function and line was covered at 100%.</p>
+<p><strong>Q134.</strong> What does vitest run --coverage use in the lesson?</p>
+<p><strong>Answer:</strong> @vitest/coverage-v8</p>
+<p>It's configured with provider: "v8" and reporters like text and lcov.</p>
+<p><strong>Q135.</strong> Why enforce a coverage floor in config?</p>
+<p><strong>Answer:</strong> So the run fails if coverage drops below the thresholds</p>
+<p>It's wired into the CI workflow.</p>
+<p><strong>Q136.</strong> What does the CI workflow do in this module?</p>
+<p><strong>Answer:</strong> Runs the tests with coverage on every push on GitHub Actions, across multiple Node versions</p>
+<p>Hundreds of tests in CI are a different problem from a few local tests.</p>
+<h3 id="05-security-considerations"><a href="../level-4/05-security-considerations/">05 · Security Considerations</a><a class="headerlink" href="#05-security-considerations" title="Permanent link">&para;</a></h3>
+<p><strong>Q137.</strong> What does a branded type like SafeHtml do?</p>
+<p><strong>Answer:</strong> Makes a plain string not assignable, so unescaped input passed to renderToPage is a compile error</p>
+<p>The brand exists purely in the type system and costs nothing at runtime.</p>
+<p><strong>Q138.</strong> How can a SafeHtml value be produced?</p>
+<p><strong>Answer:</strong> Only by calling escapeHtml (which asserts the brand)</p>
+<p>As long as escapeHtml is correct, every call site is forced through it.</p>
+<p><strong>Q139.</strong> What does renderToPage(escapeHtml("&lt;script&gt;alert('xss')&lt;/script&gt;")) output?</p>
+<p><strong>Answer:</strong> &lt;div&gt;&amp;lt;script&amp;gt;alert('xss')&amp;lt;/script&amp;gt;&lt;/div&gt;</p>
+<p>The angle brackets are escaped.</p>
+<p><strong>Q140.</strong> What else does the branded-type pattern generalise to?</p>
+<p><strong>Answer:</strong> ValidatedEmail, HashedPassword, TrustedUrl and PositiveInt</p>
+<p>Anywhere raw and checked values of the same primitive could be mixed up.</p>
+<h3 id="06-deployment-with-docker"><a href="../level-4/06-deployment-docker/">06 · Deployment with Docker</a><a class="headerlink" href="#06-deployment-with-docker" title="Permanent link">&para;</a></h3>
+<p><strong>Q141.</strong> What is wrong with the naive Dockerfile (COPY . . then npm install)?</p>
+<p><strong>Answer:</strong> The image ships dev dependencies, the compiler and full source, adding size and attack surface</p>
+<p>These provide zero runtime value.</p>
+<p><strong>Q142.</strong> What does the multi-stage build's production stage contain?</p>
+<p><strong>Answer:</strong> Only production dependencies (npm ci --omit=dev) and the compiled dist copied with COPY --from=build</p>
+<p>No compiler, no .ts source, no dev tooling.</p>
+<p><strong>Q143.</strong> Why have a .dockerignore even though the Dockerfile copies specific paths?</p>
+<p><strong>Answer:</strong> Docker still uploads the whole directory to the daemon first, including stale node_modules or dist</p>
+<p>It also keeps .env and .git out of the context.</p>
+<p><strong>Q144.</strong> What do ENV NODE_ENV=production and USER node accomplish?</p>
+<p><strong>Answer:</strong> Production mode and running as a non-root user</p>
+<p>EXPOSE 4500 documents the port.</p>
+<h3 id="07-performance-optimization"><a href="../level-4/07-performance-optimization/">07 · Performance Optimization</a><a class="headerlink" href="#07-performance-optimization" title="Permanent link">&para;</a></h3>
+<p><strong>Q145.</strong> Why does memoize&lt;Args extends unknown[], Result&gt; keep the wrapped function's exact signature?</p>
+<p><strong>Answer:</strong> It's generic over both the parameter tuple and the return type</p>
+<p>fastSquare is still (n: number) =&gt; number.</p>
+<p><strong>Q146.</strong> What is the default cache key in the lesson's memoize?</p>
+<p><strong>Answer:</strong> JSON.stringify(args)</p>
+<p>The keyFn parameter can override it.</p>
+<p><strong>Q147.</strong> What does take(lazyRange(0, 1_000_000), 5) print, and why is it cheap?</p>
+<p><strong>Answer:</strong> [ 0, 1, 2, 3, 4 ]; the generator produces values on demand without a million-element array</p>
+<p>take stops pulling after 5 values.</p>
+<p><strong>Q148.</strong> What is the key point of typing performance helpers well?</p>
+<p><strong>Answer:</strong> TypeScript compiles away, so the speed-ups are JavaScript techniques, but good generic types keep the wrapped signature</p>
+<p>Otherwise the helper becomes a liability.</p>
+<h3 id="08-writing-robust-public-apis"><a href="../level-4/08-writing-robust-public-apis/">08 · Writing Robust Public APIs</a><a class="headerlink" href="#08-writing-robust-public-apis" title="Permanent link">&para;</a></h3>
+<p><strong>Q149.</strong> What is the Result&lt;T, E&gt; pattern?</p>
+<p><strong>Answer:</strong> Errors as values: a union of { ok: true; value } and { ok: false; error }, which the caller must check before accessing .value or .error</p>
+<p>Unlike a thrown exception, a caller can't forget to check.</p>
+<p><strong>Q150.</strong> What does handle("-5") print with parseCount?</p>
+<p><strong>Answer:</strong> failed: count cannot be negative</p>
+<p>handle("42") prints parsed: 42; handle("abc") prints failed: "abc" is not a number.</p>
+<p><strong>Q151.</strong> What advantage does the signature Result&lt;number, ParseError&gt; give?</p>
+<p><strong>Answer:</strong> It documents every way the function can fail without reading the implementation</p>
+<p>Callers needn't hunt for thrown exceptions.</p>
+<p><strong>Q152.</strong> When are overloaded signatures appropriate?</p>
+<p><strong>Answer:</strong> For genuinely different call shapes, like createLogger(name) and createLogger(name, level), with one implementation</p>
+<p>The implementation signature isn't visible to callers.</p>
+<h3 id="09-strict-mode-best-practices"><a href="../level-4/09-strict-mode-best-practices/">09 · Strict Mode Best Practices</a><a class="headerlink" href="#09-strict-mode-best-practices" title="Permanent link">&para;</a></h3>
+<p><strong>Q153.</strong> How many flags does strict: true bundle?</p>
+<p><strong>Answer:</strong> Eight, including noImplicitAny and strictNullChecks</p>
+<p>Others, like noUncheckedIndexedAccess, must be opted into.</p>
+<p><strong>Q154.</strong> What does strictNullChecks do to <code>user.name</code> when user may be undefined?</p>
+<p><strong>Answer:</strong> Makes direct access without a guard a compile error</p>
+<p>Without it, undefined is silently assignable to everything.</p>
+<p><strong>Q155.</strong> What does strictPropertyInitialization catch?</p>
+<p><strong>Answer:</strong> Class fields never assigned in the constructor</p>
+<p>The error is "Property 'name' has no initializer…".</p>
+<p><strong>Q156.</strong> Why does scores["grace"].toFixed(0) crash even under full --strict?</p>
+<p><strong>Answer:</strong> Record&lt;string, number&gt; claims every key is a number; noUncheckedIndexedAccess isn't part of strict</p>
+<p>At runtime the value is undefined, giving a TypeError.</p>
+<h3 id="10-capstone-project-bookmark-api"><a href="../level-4/10-capstone-project/">10 · Capstone Project — Bookmark API</a><a class="headerlink" href="#10-capstone-project-bookmark-api" title="Permanent link">&para;</a></h3>
+<p><strong>Q157.</strong> Which threads does the Bookmark API capstone combine?</p>
+<p><strong>Answer:</strong> Typed Express, a generic in-memory store, Result-based validation, noUncheckedIndexedAccess with strict, and a Vitest suite</p>
+<p>It's built, tested and run for real.</p>
+<p><strong>Q158.</strong> Why does the capstone's tsconfig add noUncheckedIndexedAccess?</p>
+<p><strong>Answer:</strong> To close the gap strict leaves, so indexed lookups are T | undefined</p>
+<p>It's on top of strict: true.</p>
+<p><strong>Q159.</strong> Which scripts does the package.json define for the checks?</p>
+<p><strong>Answer:</strong> typecheck (tsc --noEmit) and test (vitest run)</p>
+<p>build runs tsc and start runs node dist/index.js.</p>
+<p><strong>Q160.</strong> How does the API handle bad input?</p>
+<p><strong>Answer:</strong> Result-based validation instead of throwing</p>
+<p>It applies the Level 4 Result pattern.</p>
+<h2 id="mixed-questions-across-all-levels">Mixed questions across all levels<a class="headerlink" href="#mixed-questions-across-all-levels" title="Permanent link">&para;</a></h2>
+<p><strong>Q161.</strong> What does this print?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">type</span><span class="w"> </span><span class="nx">Shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="s2">"circle"</span><span class="p">;</span><span class="w"> </span><span class="nx">r</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="s2">"square"</span><span class="p">;</span><span class="w"> </span><span class="nx">s</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">function</span><span class="w"> </span><span class="nx">area</span><span class="p">(</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="kt">Shape</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">kind</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"circle"</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">r</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="nx">2</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">x.s</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">area</span><span class="p">({</span><span class="w"> </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="s2">"circle"</span><span class="p">,</span><span class="w"> </span><span class="nx">r</span><span class="o">:</span><span class="w"> </span><span class="kt">2</span><span class="w"> </span><span class="p">}).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">2</span><span class="p">),</span><span class="w"> </span><span class="nx">area</span><span class="p">({</span><span class="w"> </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="s2">"square"</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="o">:</span><span class="w"> </span><span class="kt">3</span><span class="w"> </span><span class="p">}));</span>
+</code></pre></div>
+<p><strong>Answer:</strong> 12.57 9</p>
+<p>π·2² = 12.566… → 12.57, and 3² = 9. The kind field is the discriminant that narrows each branch.</p>
+<p><strong>Q162.</strong> What does this print?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">pair</span><span class="o">&lt;</span><span class="nx">A</span><span class="p">,</span><span class="w"> </span><span class="nx">B</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kt">A</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="kt">B</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">A</span><span class="p">,</span><span class="w"> </span><span class="nx">B</span><span class="p">]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pair</span><span class="p">(</span><span class="s2">"age"</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">));</span>
+</code></pre></div>
+<p><strong>Answer:</strong> [ 'age', 30 ]</p>
+<p>Two type parameters keep each position's type: the result is the tuple [string, number].</p>
+<p><strong>Q163.</strong> What does this print?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">sum</span><span class="p">(</span><span class="nx">...n</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">[])</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">),</span><span class="w"> </span><span class="nx">sum</span><span class="p">());</span>
+</code></pre></div>
+<p><strong>Answer:</strong> 6 0</p>
+<p>The rest parameter collects arguments into an array; the empty call reduces with the initial value 0.</p>
+<p><strong>Q164.</strong> What does this print?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">power</span><span class="p">(</span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="nx">e</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">power</span><span class="p">(</span><span class="mf">5</span><span class="p">),</span><span class="w"> </span><span class="nx">power</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span>
+</code></pre></div>
+<p><strong>Answer:</strong> 25 125</p>
+<p>The default exponent of 2 applies when it's omitted.</p>
+<p><strong>Q165.</strong> Given a function that returns Result&lt;number, string&gt; (ok → value, failure → error), this loop prints:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">parse</span><span class="p">(</span><span class="nx">s</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Result</span><span class="o">&lt;</span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">trim</span><span class="p">());</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s2">"empty"</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">n</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s2">"nan"</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">n</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">[</span><span class="s2">"42"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="s2">"x"</span><span class="p">,</span><span class="w"> </span><span class="s2">" 7 "</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parse</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">ok</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">r.value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">r.error</span><span class="p">);</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Answer:</strong> 42, empty, nan, 7 (one per line)</p>
+<p>Inside the conditional, r.ok narrows r so r.value is a number or r.error a string. The trimmed " 7 " becomes 7.</p>
+<p><strong>Q166.</strong> How many times does the wrapped function actually run?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">memoize</span><span class="o">&lt;</span><span class="nx">A</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">unknown</span><span class="p">[],</span><span class="w"> </span><span class="nx">R</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">f</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">...a</span><span class="o">:</span><span class="w"> </span><span class="kt">A</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">R</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">R</span><span class="o">&gt;</span><span class="p">();</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nx">calls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nx">run</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">...a</span><span class="o">:</span><span class="w"> </span><span class="kt">A</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">R</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">k</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">k</span><span class="p">)</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">R</span><span class="p">;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">      </span><span class="nx">calls</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">f</span><span class="p">(...</span><span class="nx">a</span><span class="p">);</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">v</span><span class="p">;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nx">calls</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">calls</span><span class="p">,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="p">};</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="kd">const</span><span class="w"> </span><span class="nx">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">memoize</span><span class="p">((</span><span class="nx">n</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">n</span><span class="p">);</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="nx">m</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="mf">4</span><span class="p">);</span><span class="w"> </span><span class="nx">m</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="mf">4</span><span class="p">);</span><span class="w"> </span><span class="nx">m</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">calls</span><span class="p">());</span>
+</code></pre></div>
+<p><strong>Answer:</strong> 2</p>
+<p>run(4) computes once and the second call hits the cache; run(5) is a new key. Two computations.</p>
+<p><strong>Q167.</strong> What does this print?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">function</span><span class="o">*</span><span class="w"> </span><span class="nx">range</span><span class="p">(</span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="k">yield</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">function</span><span class="w"> </span><span class="nx">take</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">it</span><span class="o">:</span><span class="w"> </span><span class="kt">Iterable</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">T</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">r</span><span class="o">:</span><span class="w"> </span><span class="kt">T</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">r</span><span class="p">;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">take</span><span class="p">(</span><span class="nx">range</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="nx">_000_000</span><span class="p">),</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span>
+</code></pre></div>
+<p><strong>Answer:</strong> [ 10, 11, 12 ] without building a million-element array</p>
+<p>The generator produces values on demand and take stops after three.</p>
+<p><strong>Q168.</strong> This compiles under strict. What does it print at runtime?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">scores</span><span class="o">:</span><span class="w"> </span><span class="kt">Record</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ada</span><span class="o">:</span><span class="w"> </span><span class="kt">100</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">scores</span><span class="p">[</span><span class="s2">"grace"</span><span class="p">]);</span>
+</code></pre></div>
+<p><strong>Answer:</strong> undefined</p>
+<p>The index signature claims every string key is a number, but the key is missing. noUncheckedIndexedAccess (not part of strict) would type it number | undefined.</p>
+<p><strong>Q169.</strong> What is logged?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">chain</span><span class="o">:</span><span class="w"> </span><span class="kt">Middleware</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"a"</span><span class="p">);</span><span class="w"> </span><span class="nx">n</span><span class="p">();</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"a2"</span><span class="p">);</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="p">(</span><span class="nx">c</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"b"</span><span class="p">);</span><span class="w"> </span><span class="nx">n</span><span class="p">();</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">];</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">log</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">mw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">chain</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">mw</span><span class="p">)</span><span class="w"> </span><span class="nx">mw</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">run</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">));</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nx">run</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">","</span><span class="p">));</span>
+</code></pre></div>
+<p><strong>Answer:</strong> a,b,a2</p>
+<p>The first middleware runs until next(), the second runs fully, then control returns to push "a2".</p>
+<p><strong>Q170.</strong> What does this print?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">class</span><span class="w"> </span><span class="nx">A</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">A</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="ow">new</span><span class="w"> </span><span class="nx">A</span><span class="p">();</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">A</span><span class="p">();</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">count</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Answer:</strong> 2</p>
+<p>static members belong to the class, so all instances share one counter.</p>
+<p><strong>Q171.</strong> What does this print?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">fmt</span><span class="p">(</span><span class="nx">v</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">undefined</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">undefined</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s2">"none"</span><span class="p">;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"string"</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">}</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fmt</span><span class="p">(</span><span class="kc">undefined</span><span class="p">),</span><span class="w"> </span><span class="nx">fmt</span><span class="p">(</span><span class="s2">"ab"</span><span class="p">),</span><span class="w"> </span><span class="nx">fmt</span><span class="p">(</span><span class="mf">2</span><span class="p">));</span>
+</code></pre></div>
+<p><strong>Answer:</strong> none AB 2.0</p>
+<p>Each if narrows the union; the last branch is a number, so toFixed(1) gives "2.0".</p>
+<p><strong>Q172.</strong> What does <code>tsc</code> do to your types when it emits JavaScript?</p>
+<p><strong>Answer:</strong> Checks them, then erases them: nothing remains at runtime</p>
+<p>Types exist only at compile time, so as Todo performs no runtime validation.</p>
+<p><strong>Q173.</strong> Why is <code>JSON.parse(text) as Task[]</code> not real validation?</p>
+<p><strong>Answer:</strong> A type assertion is compile-time only; a malformed file would still pass</p>
+<p>Validate at runtime with a type guard or schema before trusting external data.</p>
+<p><strong>Q174.</strong> Which tsconfig setting is described as the most important, and what does it bundle?</p>
+<p><strong>Answer:</strong> strict: true, which bundles eight flags such as noImplicitAny and strictNullChecks</p>
+<p>noUncheckedIndexedAccess is not part of strict and must be added separately.</p>
+<p><strong>Q175.</strong> What does <code>T extends keyof U</code> or <code>K extends keyof T</code> give in <code>where&lt;K extends keyof T&gt;(key: K, value: T[K])</code>?</p>
+<p><strong>Answer:</strong> The key must exist on T and the value must match that property's type</p>
+<p>That's why users.where("active", "yes") is a compile error when active is boolean.</p>
+<p><strong>Q176.</strong> Which is the correct way to test that a function throws in Jest or Vitest?</p>
+<p><strong>Answer:</strong> expect(() =&gt; divide(1, 0)).toThrow(...), wrapping the call in a function</p>
+<p>Otherwise the exception is thrown while evaluating the argument, before expect runs.</p>
+<p><strong>Q177.</strong> Why do tsc --noEmit and esbuild often appear together in build scripts?</p>
+<p><strong>Answer:</strong> tsc checks types but doesn't bundle; esbuild bundles fast but doesn't type-check</p>
+<p>A typical flow is typecheck first, then build.</p>
+<p><strong>Q178.</strong> In a multi-stage Dockerfile for a TypeScript service, what does the production stage contain?</p>
+<p><strong>Answer:</strong> Production dependencies and the compiled dist, with no compiler or source</p>
+<p>npm ci --omit=dev plus COPY --from=build /app/dist keeps the image small and reduces attack surface.</p>
+<p><strong>Q179.</strong> What does a branded type like SafeHtml = string &amp; { readonly __brand: "SafeHtml" } achieve?</p>
+<p><strong>Answer:</strong> Forces raw strings to pass through the sanitiser, at no runtime cost</p>
+<p>The brand exists only in the type system.</p>
+<h2 id="practical-coding-questions">Practical coding questions<a class="headerlink" href="#practical-coding-questions" title="Permanent link">&para;</a></h2>
+<h3 id="safe-division-with-result">Safe division with Result<a class="headerlink" href="#safe-division-with-result" title="Permanent link">&para;</a></h3>
+<p>Implement safeDivide(a, b) returning a Result: { ok: true, value } normally, and { ok: false, error: "divide by zero" } when b is 0. Then print both results for (10, 4) and (1, 0) with JSON.stringify.</p>
+<p>Starter code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>type Result&lt;T, E&gt; =
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>  | { ok: true; value: T }
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  | { ok: false; error: E };
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>function safeDivide(a: number, b: number): Result&lt;number, string&gt; {
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>  // your code
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>}
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>console.log(JSON.stringify(safeDivide(10, 4)), JSON.stringify(safeDivide(1, 0)));
+</code></pre></div>
+<p>Expected output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>{"ok":true,"value":2.5} {"ok":false,"error":"divide by zero"}
+</code></pre></div>
+<p>??? success "Show a solution"</p>
+<div class="highlight"><pre><span></span><code>```
+type Result&lt;T, E&gt; =
+  | { ok: true; value: T }
+  | { ok: false; error: E };
+
+function safeDivide(a: number, b: number): Result&lt;number, string&gt; {
+  if (b === 0) return { ok: false, error: "divide by zero" };
+  return { ok: true, value: a / b };
+}
+
+console.log(JSON.stringify(safeDivide(10, 4)), JSON.stringify(safeDivide(1, 0)));
+```
+
+The return type documents both outcomes and callers must narrow with result.ok before using .value. Verified by running the solution (Node's type stripping): output matches.
+</code></pre></div>
+<h3 id="generic-groupby">Generic groupBy<a class="headerlink" href="#generic-groupby" title="Permanent link">&para;</a></h3>
+<p>Write groupBy&lt;T, K extends string&gt;(items, key) that returns a Record&lt;K, T[]&gt; grouping items by the key function. Group ["apple", "avocado", "banana", "blueberry", "cherry"] by first letter.</p>
+<p>Starter code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>function groupBy&lt;T, K extends string&gt;(items: T[], key: (t: T) =&gt; K): Record&lt;K, T[]&gt; {
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  // your code
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>}
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>console.log(JSON.stringify(groupBy(["apple", "avocado", "banana", "blueberry", "cherry"], (s) =&gt; s[0] as string)));
+</code></pre></div>
+<p>Expected output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>{"a":["apple","avocado"],"b":["banana","blueberry"],"c":["cherry"]}
+</code></pre></div>
+<p>??? success "Show a solution"</p>
+<div class="highlight"><pre><span></span><code>```
+function groupBy&lt;T, K extends string&gt;(items: T[], key: (t: T) =&gt; K): Record&lt;K, T[]&gt; {
+  const out = {} as Record&lt;K, T[]&gt;;
+  for (const item of items) {
+    const k = key(item);
+    (out[k] ??= []).push(item);
+  }
+  return out;
+}
+
+console.log(JSON.stringify(groupBy(["apple", "avocado", "banana", "blueberry", "cherry"], (s) =&gt; s[0] as string)));
+```
+
+The ??= operator creates each group on first use. Two generic parameters keep both the item type and the key type. Verified by running the solution: output matches.
+</code></pre></div>
+<hr />
+<p>More free practice: the <a href="../">TypeScript Mastery Path</a> curriculum, the <a href="https://learnmasterypath.com/interview-pack/">Interview Prep Pack</a> and the <a href="https://learnmasterypath.com/resume/">free resume ATS check</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+  
+  <nav class="mp-related" aria-label="Related free courses">
+    <h2>Related free courses</h2>
+    <ul>
+      <li><a href="https://learnmasterypath.com/python-mastery-path/">Python</a></li><li><a href="https://learnmasterypath.com/java-mastery-path/">Java</a></li><li><a href="https://learnmasterypath.com/javascript-mastery-path/">JavaScript</a></li><li><a href="https://learnmasterypath.com/csharp-mastery-path/">C#</a></li><li><a href="https://learnmasterypath.com/shell-mastery-path/">Shell/Bash</a></li>
+      <li><a href="https://learnmasterypath.com/">All 100+ courses &rarr;</a></li>
+    </ul>
+  </nav>
+  
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cheat-sheet/" class="md-footer__link md-footer__link--next" aria-label="Next: Cheat Sheet">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Cheat Sheet
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+  <div class="mp-foot">
+    <div class="mp-foot-inner">
+      <a class="mp-foot-brand" href="https://learnmasterypath.com/"><svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg><span>Mastery Path</span></a>
+      <nav class="mp-sitelinks" aria-label="Site and legal links">
+        <a href="https://learnmasterypath.com/">All courses</a>
+        <a href="https://learnmasterypath.com/about.html">About</a>
+        <a href="https://learnmasterypath.com/contact.html">Contact</a>
+        <a href="https://learnmasterypath.com/typescript-mastery-path/privacy/">Privacy Policy</a>
+        <a href="https://learnmasterypath.com/terms.html">Terms</a>
+        <a href="https://learnmasterypath.com/typescript-mastery-path/license/">License</a>
+        <a href="https://learnmasterypath.com/verify/">Verify a certificate</a>
+      </nav>
+    </div>
+    <p class="mp-license-note">
+      © 2026 Vinod Kumar Sigilipelli · Except where otherwise noted, lesson content is licensed under
+      <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> and code examples under the
+      <a href="https://opensource.org/license/mit">MIT License</a>.
+    </p>
+  </div>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.path", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../javascripts/progress-tracker.js"></script>
+      
+        <script src="../javascripts/final-quiz.js"></script>
+      
+    
+  </body>
+</html>
